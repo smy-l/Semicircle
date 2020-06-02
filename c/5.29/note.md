@@ -109,13 +109,9 @@ int main() {
 }
 
 #endif
-
-
 ```
 
 ### 栈（链表）
-
-
 ```
 #include <stdio.h>
 #include <stdlib.h>
@@ -214,15 +210,5 @@ int main() {
 }
 
 #endif
-
-
-
-```
-
-## 其他
-```
-while(*s != '\0'){
-     
-}
 
 ```
