@@ -15,8 +15,6 @@ typedef struct {
     int top;
 }Stack;
 
-
-
 Stack* initStack(){
     Stack* stack = malloc(sizeof(Stack));
     stack->top = -1;
@@ -31,7 +29,6 @@ int is_full(Stack* stack){
         return 1;
     }
 }
-
 
 //push
 int push(Stack* stack, int elem){
@@ -80,7 +77,6 @@ void peep(Stack* stack){
     }
 }
 
-
 int main(){
     Stack* pStack = initStack();
     
@@ -105,21 +101,9 @@ int main(){
     
 }
 
-
 #endif
 
-
 /*---------------------------------------------------*/
-
-
-/*---------------------------------------------------*/
-
-
-/*---------------------------------------------------*/
-
-
-/*---------------------------------------------------*/
-
 
 #if 1
 /*
@@ -145,7 +129,6 @@ void print_list(Node* head) {
     }
     printf("\n");
 }
-
 
 Stack* push(Stack* pStack, int elem) {
     Stack* pNew = malloc(sizeof(Stack));
@@ -184,7 +167,6 @@ int main() {
     //pStack->next = NULL;
     print_list(pStack);
     
-    
     // 20
     pNew = malloc(sizeof(Stack));
     pNew->elem = 20;
@@ -205,7 +187,6 @@ int main() {
     pStack = pop(pStack, &t);
     printf("弹出%d\n", t);
     print_list(pStack);
-
     
     pStack = pop(pStack, &t);
     printf("弹出%d\n", t);
@@ -220,12 +201,7 @@ int main() {
     }
 
 }
-
 #endif
-
-
-
-
 ```
 
 
