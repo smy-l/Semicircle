@@ -6,16 +6,16 @@
 ## 上传
 ### 单个仓库
 ```
-git add .
-git status
-git commit -m "注释"
-git push
+git status             //查看修改
+git add .              //将所有更改添加(.可以更改为单个文件名)
+git commit -m "注释"    //将变更固定，添加描述语句
+git push               //同步到服务器
 ```
 
 ### 多个仓库
 ```
-git add .
 git status
+git add .
 git commit -m "注释"
 git push 仓库名称 分支
 
