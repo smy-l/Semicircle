@@ -175,7 +175,7 @@ int pop(Stack* head);
 int top(Stack* head);
 int is_full(Stack* head);
 int is_empty(Stack* head);
-//int enqueue(Queue* queue, int data);
+void enqueue(Queue* queue, int data);
 int dequeue(Queue* queue);
 
 Stack* init_stack(void) {
