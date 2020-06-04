@@ -51,9 +51,7 @@
      Z(n) = n*(n+1)+(n-1)
      */
     if(n == 0){
-        
-    }else if(n == 1){
-        result = 2;
+    
     }else{
         result = n * (n + 1) + (n - 1);
     }
@@ -69,7 +67,7 @@
     
         Z = calc_aig_spaces(n);
     
-        printf("%d条折线最多能划分%d个空间\n",n,Z);
+        printf("%d根折线最多能划分%d个空间\n",n,Z);
     
         return 0;
     }
