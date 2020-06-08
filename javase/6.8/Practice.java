@@ -26,6 +26,7 @@ public class Practice{
 		int[] n = new int [10];
 		System.out.println(n.length);
 		//n.length = 11;
+		//编译报错，证明其是final
 
 
 		//5.定义二维数组
