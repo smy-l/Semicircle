@@ -36,32 +36,32 @@ class Cal {
         while (flowStatus != FlowStatus.QUIT) {
             switch (flowStatus) {
                 case ROOT:
-                    displayRootMenu();
-                    userInput = scanInt();
+                displayRootMenu();
+                userInput = scanInt();
                     // 用户输入不合法
-                    if (userInput <= 0 || userInput > ROOT_MENU_LEN) {
-                        printf("不存在的选项！\n");
+                if (userInput <= 0 || userInput > ROOT_MENU_LEN) {
+                    printf("不存在的选项！\n");
                         // 用户输入的退出项，退出项是菜单数组中的最后一项
-                    } else if (userInput == ROOT_MENU_LEN - 1) {
-                        flowStatus = FlowStatus.QUIT;
-                    } else {
-                        calType = getCalType(userInput);
-                        flowStatus = FlowStatus.OPT_ONE_INPUT;
-                    }
-                    break;
+                } else if (userInput == ROOT_MENU_LEN - 1) {
+                    flowStatus = FlowStatus.QUIT;
+                } else {
+                    calType = getCalType(userInput);
+                    flowStatus = FlowStatus.OPT_ONE_INPUT;
+                }
+                break;
                 case OPT_ONE_INPUT:
-                    printf("请输入第一个操作数:");
-                    calNumOne = scanInt();
-                    flowStatus = FlowStatus.OPT_TWO_INPUT;
-                    break;
+                printf("请输入第一个操作数:");
+                calNumOne = scanInt();
+                flowStatus = FlowStatus.OPT_TWO_INPUT;
+                break;
                 case OPT_TWO_INPUT:
-                    printf("请输入第二个操作数:");
-                    calNumTwo = scanInt();
-                    calculate(calType, calNumOne, calNumTwo);
-                    flowStatus = FlowStatus.ROOT;
-                    break;
+                printf("请输入第二个操作数:");
+                calNumTwo = scanInt();
+                calculate(calType, calNumOne, calNumTwo);
+                flowStatus = FlowStatus.ROOT;
+                break;
                 case QUIT:
-                    return;
+                return;
             }
         }
     }
@@ -109,30 +109,30 @@ class Cal {
     static void calculate(CalculateType calType, int calNumOne, int calNumTwo) {
         switch (calType) {
             case ADD:
-                printf("%d + %d = %d\n", calNumOne, calNumTwo, calNumOne + calNumTwo);
-                break;
+            printf("%d + %d = %d\n", calNumOne, calNumTwo, calNumOne + calNumTwo);
+            break;
             case SUB:
-                printf("%d - %d = %d\n", calNumOne, calNumTwo, calNumOne - calNumTwo);
-                break;
+            printf("%d - %d = %d\n", calNumOne, calNumTwo, calNumOne - calNumTwo);
+            break;
             case MUL:
-                printf("%d * %d = %d\n", calNumOne, calNumTwo, calNumOne * calNumTwo);
-                break;
+            printf("%d * %d = %d\n", calNumOne, calNumTwo, calNumOne * calNumTwo);
+            break;
             case DIV:
-                if(calNumTwo == 0){
-                    printf("输入不合法\n");
-                }else{
+            if(calNumTwo == 0){
+                printf("输入不合法\n");
+            }else{
                 printf("%d / %d = %.2f\n", calNumOne, calNumTwo, (calNumOne * 1.0) / calNumTwo);
-                }
-                break;
+            }
+            break;
             case BAL:
-                if(calNumTwo == 0){
-                    printf("输入不合法\n");
-                }else{
+            if(calNumTwo == 0){
+                printf("输入不合法\n");
+            }else{
                 printf("%d / %d = %d···%d\n",calNumOne, calNumTwo, calNumOne / calNumTwo, calNumOne % calNumTwo);
-                }
-                break;
+            }
+            break;
             default:
-                break;
+            break;
         }
     }
 
@@ -145,17 +145,17 @@ class Cal {
     static CalculateType getCalType(int userInput) {
         switch (userInput) {
             case 1:
-                return CalculateType.ADD;
+            return CalculateType.ADD;
             case 2:
-                return CalculateType.SUB;
+            return CalculateType.SUB;
             case 3:
-                return CalculateType.MUL;
+            return CalculateType.MUL;
             case 4:
-                return CalculateType.DIV;
+            return CalculateType.DIV;
             case 5:
-                return CalculateType.BAL;
+            return CalculateType.BAL;
             default:
-                return CalculateType.NONE;
+            return CalculateType.NONE;
         }
     }
 
