@@ -15,9 +15,12 @@ export PATH=$PATH:路径  *添加路径* <br>
 但是每次仅限当前终端，并未完全修改，若要完全修改，则需要更改.bash_profile<br>
 
 mac对Java有一定支持，在bash终端下可以在.bash_profile文件中使用一下命令<br>
-`export JAVA_HOME=$(/usr/libexec/java_home -v 11)`
+`export JAVA_HOME=$(/usr/libexec/java_home -v 11)`<br>
 
-
+如果环境变量出现异常,使用命令<br>
+```
+export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+```
 **具体步骤**
 在终端中使用以下命令(仅限mac)
 1. vi ~/.bash_profile
