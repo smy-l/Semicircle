@@ -55,7 +55,16 @@ java不需要自己释放空间，有程序自动完成，这个机制被称为�
 使用final修饰；<br>
 如果被赋值后，再次赋值会报错；即只能赋值一次
 
-null只能对引用数据类型使用，不能对固定数据类型使用。
+### 基本数据类型
+byte<br>
+short<br>
+int<br>
+long<br>
+float<br>
+double<br>
+char<br>
+boolean<br>
+注：null只能对引用数据类型使用，不能对基本数据类型使用。<br>
 
 ## 数组
 ### 数组创建
@@ -82,9 +91,9 @@ arr.length
 ### 遍历数组
 增强型for循环(不需要使用下标情况下使用)
 ```
-for(int one : a){//one除a以外都可命名
-    //one前一定要有数据类型
-    System.out.println(one);
+for(int temp : a){//temp除a以外都可命名
+    //temp前一定要有数据类型
+    System.out.println(temp);
 }
 ```
 
