@@ -10,6 +10,7 @@
         答：test.class
     - 请尝试使用java运行编译后的文件，应该输入什么命令<br>
         答：java test
+        
 3. 保持上一题的状态，编辑Hello.java将class后面的名称修改为Test，然后编译Hello.java
     - 是否生成新的class文件<br>
         答：未生成新的文件。
@@ -19,6 +20,7 @@
         答：无法运行，显示无法加载主类
     - 将test.class 重命名为TEST.class尝试运行，是否可以运行成功，如果不成功记录错误<br>
         答：java Test
+        
 4. 仿照Hello.java写一个HelloWorld.java, 其中class声明为HelloWorld，向屏幕输出Hello World!
     ```
     class HelloWorld{
