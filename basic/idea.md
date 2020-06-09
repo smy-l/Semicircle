@@ -12,6 +12,7 @@
 删除到当前单词首 | option + delete
 删除到当前单词尾 | fn + option + delete
 代码来回切换 | shift + option + "[" / "]"
+光标移动到行首/尾 | command + <-/->
 
 
 ### 操作
