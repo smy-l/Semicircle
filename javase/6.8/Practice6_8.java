@@ -1,4 +1,4 @@
-public class Practice{
+public class Practice6_8{
 	public static void main(String[] args){
 		//1.定义7天时间毫秒值
 		int  sevenDaysMilliseconds;
