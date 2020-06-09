@@ -12,9 +12,9 @@ public class Practice{
 
 		
 		//3.如何验证小数字面量默认值是double数据类型的
-		float a = 3.14f;
-		double b = 3.14;
-		System.out.println(a);
+		//float a = 3.14E39F;//编译报错
+		double b = 3.14E38D;
+		//System.out.println(a);
 		System.out.println(b);
 		//观察编译结果，若float型出错，则表示默认为double，反之亦然
 		//结果表明默认类型为double型
@@ -27,14 +27,20 @@ public class Practice{
 		System.out.println(n.length);
 		//n.length = 11;
 		//编译报错，证明其是final
+		//int [] arr2 = new int[0xFFFFFFFF];//编译报错
 
 
 		//5.定义二维数组
 		char[][] arr = new char [][]{{'你','我','他'},{'金','木','水','火','土'},{'天','地'}};
 		//{'你','我','他'};
-		//{'金','木','水','火','土'}
+		//{'金','木','水','火','土'};
 		//{'天','地'};
-		
+
+		// char[][] arr1 = new char[3][];
+		// char[0] = {'你','我','他'};
+		// char[1] = {'金','木','水','火','土'};
+		// char[3] = {'天','地'};
+
 		for(char[] tmp: arr){
 			System.out.println(tmp);
 		}
