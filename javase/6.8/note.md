@@ -38,7 +38,7 @@ export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 JVM为java虚拟机，JRE为运行环境，JDK包含JRE，运行一定要安装JDK<br>
 java不需要自己释放空间，有程序自动完成，这个机制被称为垃圾回收
 
-## 数据类型
+## 数据类型(数据存储)
 ### 变量命名
 变量名称允许使用中文，但是尽量不用<br>
 
