@@ -44,7 +44,7 @@ int yue(int m,int n)              // m为总人数，n为报数的次数
 	pt head, current, prev; 
 	creat(&head,m);               // 创建循环链表，m个节点
 	current = head->next;
-	for (int i = 1; i < m; i++)   // 循环 m - 1次， 剩下最后一个人
+	for (jnt i = 1; i < m; i++)   // 循环 m - 1次， 剩下最后一个人
 	{
 		for (int j = 0; j < n - 1; j++)   // current指到报道n的人
 		{
