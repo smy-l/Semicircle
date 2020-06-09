@@ -120,7 +120,7 @@ class Practice6_9{
      * 7.
      * 编写一个方法用于int数组去重，将数组中重复的元素只保留一个
      */
-    static int[] arrayDeduplication(int[] arr){
+    static int[] filtArray(int[] arr){
         int n = arr.length;
         for(int i = 0; i < n; i++){
             for(int j = i+1; j < n; j++){
@@ -164,7 +164,8 @@ class Practice6_9{
         // 定义一个数组，内容 {13,26,-3,4,54,26,37,18,69,-10}，
         // 编写一个print方法，使用字符串拼接的方式，将数组内容数组输出为如下格式，每5个换行
 
-        //3.1测试上述2种方法
+        //3.1
+        // 测试上述2种方法
         System.out.println("-----1.sort(int arr[], boolean isAsc)-----");
         int[] arr3_1_1 = {13,26,-3,4,54,26,37,18,69,-10};
         sort(arr3_1_1,false);
@@ -184,13 +185,15 @@ class Practice6_9{
         System.out.println();
 
 
-        //3.2定义print函数
+        //3.2
+        // 定义print函数
         System.out.println("-----3.print(int arr[])------");
         int[] arr3_2 = {13,26,-3,4,54,26,37,18,69,-10};
         print(arr3_2);
         System.out.println();
 
-        //4.编写一个方法不使用*完成两个数相乘
+        //4.
+        // 编写一个方法不使用*完成两个数相乘
         System.out.println("-----4.除法-----");
         int Num1 = -10;
         int Num2 = 10;
@@ -199,14 +202,16 @@ class Practice6_9{
         System.out.println();
 
 
-        //5.编写一个方法输入分钟时间，向控制台输出多少年，多少天
+        //5.
+        // 编写一个方法输入分钟时间，向控制台输出多少年，多少天
         System.out.println("-----5.计算年数天数-----");
         long minute = 3456789;
         convert(minute);
         System.out.println();
 
 
-        //6.有1.5元钱兑换1分，2分，5分硬币100枚，
+        //6.
+        // 有1.5元钱兑换1分，2分，5分硬币100枚，
         // 每种面值至少一个，请输出所有的兑换方案，并统计方案的总数
         System.out.println("-----6.硬币方案-----");
         int countMoney = 150;
@@ -227,7 +232,7 @@ class Practice6_9{
         //编写一个方法用于int数组去重，将数组中重复的元素只保留一个
         System.out.println("-----7.数组去重-----");
         int[] arr7 = {1,1,1,22,22,3,44,5,66,22,1};
-        arr7 = arrayDeduplication(arr7);
+        arr7 = filtArray(arr7);
         for(int one : arr7){
             System.out.print(" " + one + " ");
         }
