@@ -10,7 +10,6 @@
    float型最大为3.4e38(可以存储那么大，但是只能保证6～7位准确)<br>
    double型最大为1.7e308(只能保证15～16位准确)
 
-
 ## 数据运算
 1. 自增自减运算符
    例子：
@@ -65,3 +64,71 @@ long -> double<br>
 ```
 String[] a = 123 + 213 + ""; //转换为字符串
 ```
+
+## 程序流程控制
+
+### 顺序结构
+
+### 分支结构
+```
+if(){
+
+}else if{
+
+}else{
+
+}
+```
+```
+switch(choice){
+    case()
+
+        break;
+
+    default:
+        break;
+}
+```
+### 循环结构
+```
+while(){
+
+}
+```
+```
+do{
+
+}while()
+```
+
+## 方法/函数
+方法传递的是值，对函数外部没有影响
+```
+int a = 5;
+int b = 10;
+swap(a,b);
+System.out.printlf(a);
+System.out.printlf(b);//输出仍然是5和10
+
+int[] arr;
+arr[0] = 5;
+arr[1] = 10;
+swap(arr[0],arr[1]);
+System.out.printlf(arr[0]);
+System.out.printlf(arr[1]);//输出仍然是5和10
+```
+传递引用数据类型可以更改
+```
+swap(int[] arr){
+    int temp = arr[0];
+    arr[0] = arr[1];
+    arr[1] = temp;
+}
+```
+
+### 方法重载
+名称一致，传入的参数或者参数数量不同
+
+### 局部变量
+在一个函数下，不允许创建一个相同的变量
+
