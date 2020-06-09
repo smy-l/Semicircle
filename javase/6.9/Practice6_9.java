@@ -102,10 +102,8 @@ class Practice6_9{
     static void convert(long minute){
         long years;
         long days;
-        long daysRemainingMinutes;
         years = minute / (60 * 24 * 365);
-        daysRemainingMinutes = minute % (60 * 24 * 365);
-        days = daysRemainingMinutes / (60 * 24);
+        days = (minute / (60 * 24)) % 365;
         System.out.println(years + "年" + days + "天");
     }
 
@@ -216,16 +214,18 @@ class Practice6_9{
         System.out.println("-----6.硬币方案-----");
         int countMoney = 150;
         int countNum = 100;
+        int count = 0;
         for(int i = 1; i <= countMoney; i++){
             for(int j = 1; j <= countMoney/2; j++){
                 for(int k = 1; k <= countMoney/5; k++){
                     if((i + j * 2 + k * 5) == countMoney && (i + j + k) == countNum){
-                        System.out.printf("%d  %d  %d",i,j,k);
-                        System.out.println();
+                        System.out.printf("兑换方案为：1分有 %2d 个，2分有%2d个，5分有%2d个\n",i,j,k);
+                        count++;
                     }
                 }
             }
         }
+        System.out.printf("共有%d个方案\n",count);
         System.out.println();
 
         //7.
