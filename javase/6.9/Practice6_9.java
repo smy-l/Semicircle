@@ -1,15 +1,14 @@
-class Practice6_9{
+public class Practice6_9 {
     /**
      * 1.
      * 根据传入的参数来将数组升序或降序排列
      *
      * @param isAsc true 升序， false 降序
-     *
      */
     static void sort(int arr[], boolean isAsc) {
-        if(isAsc){
-            for (int i = 0; i < arr.length; i++){
-                for(int j = 0; j < arr.length-1; j++) {
+        if (isAsc) {
+            for (int i = 0; i < arr.length; i++) {
+                for (int j = 0; j < arr.length - 1; j++) {
                     if (arr[j] > arr[j + 1]) {
                         int temp = arr[j];
                         arr[j] = arr[j + 1];
@@ -17,9 +16,9 @@ class Practice6_9{
                     }
                 }
             }
-        }else{
-            for (int i = 0; i < arr.length; i++){
-                for(int j = 0; j < arr.length-1; j++) {
+        } else {
+            for (int i = 0; i < arr.length; i++) {
+                for (int j = 0; j < arr.length - 1; j++) {
                     if (arr[j] < arr[j + 1]) {
                         int temp = arr[j];
                         arr[j] = arr[j + 1];
@@ -38,7 +37,7 @@ class Practice6_9{
      */
     static void sort(int arr[]) {
         boolean a = true;
-        sort(arr,a);
+        sort(arr, a);
     }
 
     /**
@@ -47,12 +46,12 @@ class Practice6_9{
      * 定义一个数组，内容 {13,26,-3,4,54,26,37,18,69,-10}，
      * 编写一个print方法，使用字符串拼接的方式，将数组内容数组输出为如下格式，每5个换行
      */
-    static void print(int arr[]){
+    static void print(int arr[]) {
         int count = 0;
-        for(int i = 0; i < arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
             System.out.print("[" + i + "]" + "=" + arr[i] + " ");
             count++;
-            if(count % 5 == 0){
+            if (count % 5 == 0) {
                 System.out.println();
             }
         }
@@ -60,37 +59,36 @@ class Practice6_9{
 
     /**
      * 4.不用*完成乘法
-     *
      */
-    static int multiply(int n1, int n2){
+    static int multiply(int n1, int n2) {
         int result = 0;//分情况讨论
-        if(n1 > 0 && n2 > 0){
-            for(int i = 1; i <= n2; i++){
+        if (n1 > 0 && n2 > 0) {
+            for (int i = 1; i <= n2; i++) {
                 result = result + n1;
             }
 
-        }else if(n1 < 0 && n2 < 0){
-            n1 = n1 / (-1);
-            n2 = n2 / (-1);
-            for(int i = 1; i <= n2; i++){
+        } else if (n1 < 0 && n2 < 0) {
+            n1 = -n1;
+            n2 = -n2;
+            for (int i = 1; i <= n2; i++) {
                 result = result + n1;
             }
 
-        }else if(n1 == 0 || n2 == 0){
+        } else if (n1 == 0 || n2 == 0) {
 
-        }else if(n1 < 0 && n2 > 0){
-            n1 = n1 / (-1);
-            for(int i = 1; i <= n2; i++){
+        } else if (n1 < 0 && n2 > 0) {
+            n1 = -n1;
+            for (int i = 1; i <= n2; i++) {
                 result = result + n1;
             }
-            result = result / (-1);
+            result = -result;
 
-        }else if(n1 > 0 && n2 < 0){
-            n2 = n2 / (-1);
-            for(int i = 1; i <= n2; i++){
+        } else if (n1 > 0 && n2 < 0) {
+            n2 = -n2;
+            for (int i = 1; i <= n2; i++) {
                 result = result + n1;
             }
-            result = result / (-1);
+            result = -result;
         }
         return result;
     }
@@ -99,7 +97,7 @@ class Practice6_9{
      * 5.
      * 编写一个方法输入分钟时间，向控制台输出多少年，多少天
      */
-    static void convert(long minute){
+    static void convert(long minute) {
         long years;
         long days;
         years = minute / (60 * 24 * 365);
@@ -118,13 +116,13 @@ class Practice6_9{
      * 7.
      * 编写一个方法用于int数组去重，将数组中重复的元素只保留一个
      */
-    static int[] filtArray(int[] arr){
-        int n = arr.length;
-        for(int i = 0; i < n; i++){
-            for(int j = i+1; j < n; j++){
-                if(arr[i] == arr[j]){
-                    for(int k = j; k < n -1; k++){
-                        arr[k] = arr[k+1];
+    static int[] filtArray(int[] arr) {
+        int n = arr.length;//数组长度
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (arr[i] == arr[j]) {
+                    for (int k = j; k < n - 1; k++) {//将之后的数组元素往前移
+                        arr[k] = arr[k + 1];
                     }
                     n--;
                     j--;
@@ -133,16 +131,21 @@ class Practice6_9{
         }
 
         int[] result = new int[n];
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             result[i] = arr[i];
         }
-        return  result;
+
+//        for (int one : result) {
+//            System.out.print(" " + one + " ");
+//        }
+
+        return result;
     }
 
     public static void main(String[] args) {
         //上午1.
-        float a =1.2E38F;
-        int b = (int)a;
+        float a = 1.2E38F;
+        int b = (int) a;
         System.out.println(a);
         System.out.println(b);
         System.out.println();
@@ -165,18 +168,18 @@ class Practice6_9{
         //3.1
         // 测试上述2种方法
         System.out.println("-----1.sort(int arr[], boolean isAsc)-----");
-        int[] arr3_1_1 = {13,26,-3,4,54,26,37,18,69,-10};
-        sort(arr3_1_1,false);
-        for (int one :arr3_1_1) {
-            System.out.print(" "+ one + " ");
+        int[] arr3_1_1 = {13, 26, -3, 4, 54, 26, 37, 18, 69, -10};
+        sort(arr3_1_1, false);
+        for (int one : arr3_1_1) {
+            System.out.print(" " + one + " ");
         }
         System.out.println();
         System.out.println();
 
         System.out.println("-----2.sort(int arr[])-----");
-        int[] arr3_1_2 = {13,26,-3,4,54,26,37,18,69,-10};
+        int[] arr3_1_2 = {13, 26, -3, 4, 54, 26, 37, 18, 69, -10};
         sort(arr3_1_2);
-        for (int one :arr3_1_2) {
+        for (int one : arr3_1_2) {
             System.out.print(" " + one + " ");
         }
         System.out.println();
@@ -186,16 +189,16 @@ class Practice6_9{
         //3.2
         // 定义print函数
         System.out.println("-----3.print(int arr[])------");
-        int[] arr3_2 = {13,26,-3,4,54,26,37,18,69,-10};
+        int[] arr3_2 = {13, 26, -3, 4, 54, 26, 37, 18, 69, -10};
         print(arr3_2);
         System.out.println();
 
         //4.
         // 编写一个方法不使用*完成两个数相乘
         System.out.println("-----4.除法-----");
-        int Num1 = -10;
-        int Num2 = 10;
-        int result = multiply(Num1,Num2);
+        int Num1 = -9;
+        int Num2 = -10;
+        int result = multiply(Num1, Num2);
         System.out.println(result);
         System.out.println();
 
@@ -215,25 +218,26 @@ class Practice6_9{
         int countMoney = 150;
         int countNum = 100;
         int count = 0;
-        for(int i = 1; i <= countMoney; i++){
-            for(int j = 1; j <= countMoney/2; j++){
-                for(int k = 1; k <= countMoney/5; k++){
-                    if((i + j * 2 + k * 5) == countMoney && (i + j + k) == countNum){
-                        System.out.printf("兑换方案为：1分有 %2d 个，2分有%2d个，5分有%2d个\n",i,j,k);
+        for (int i = 1; i <= countMoney; i++) {
+            for (int j = 1; j <= countMoney / 2; j++) {
+                for (int k = 1; k <= countMoney / 5; k++) {
+                    if ((i + j * 2 + k * 5) == countMoney && (i + j + k) == countNum) {
+                        System.out.printf("兑换方案为：1分有 %2d 个，2分有%2d个，5分有%2d个\n", i, j, k);
                         count++;
                     }
                 }
             }
         }
-        System.out.printf("共有%d个方案\n",count);
+        System.out.printf("共有%d个方案\n", count);
         System.out.println();
 
         //7.
         //编写一个方法用于int数组去重，将数组中重复的元素只保留一个
         System.out.println("-----7.数组去重-----");
-        int[] arr7 = {1,1,1,22,22,3,44,5,66,22,1};
+        int[] arr7 = new int[]{1, 1, 1, 22, 22, 3, 44, 5, 66, 22, 1};
+//        filtArray(new int[]{1, 1, 1, 22, 22, 3, 44, 5, 66, 22, 1});
         arr7 = filtArray(arr7);
-        for(int one : arr7){
+        for (int one : arr7){
             System.out.print(" " + one + " ");
         }
         System.out.println();
