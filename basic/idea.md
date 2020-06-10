@@ -22,3 +22,20 @@
 ### 快捷键
 命令 | 代码
 :-:|:-: 
+
+
+## idea插件
+名称     |  作用
+:-: | :-:
+BackgroundImage  |    修改背景
+Chinese (simplifies)...|   中文插件
+CodeGlance |  代码一览，右上角代码框
+Material Theme UI |   主题
+Rainbow Brackets |  彩色括号
+Translation |  翻译
+
+
+
+
+
+
