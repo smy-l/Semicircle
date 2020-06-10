@@ -21,8 +21,6 @@ public class Practice6_9 {
         }
     }
 
-
-
     static void swap(int[] arr, int a, int b){
         int temp = arr[a];
         arr[a] = arr[b];
