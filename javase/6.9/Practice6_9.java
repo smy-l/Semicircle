@@ -6,27 +6,27 @@ public class Practice6_9 {
      * @param isAsc true 升序， false 降序
      */
     static void sort(int arr[], boolean isAsc) {
-        if (isAsc) {
-            for (int i = 0; i < arr.length; i++) {
-                for (int j = 0; j < arr.length - 1; j++) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - 1; j++) {
+                if (isAsc) {
                     if (arr[j] > arr[j + 1]) {
-                        int temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
+                        swap(arr, j, j + 1);
                     }
-                }
-            }
-        } else {
-            for (int i = 0; i < arr.length; i++) {
-                for (int j = 0; j < arr.length - 1; j++) {
+                } else {
                     if (arr[j] < arr[j + 1]) {
-                        int temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
+                        swap(arr, j, j + 1);
                     }
                 }
             }
         }
+    }
+
+
+
+    static void swap(int[] arr, int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
     }
 
     /**
@@ -109,6 +109,7 @@ public class Practice6_9 {
      * 6.
      * 有1.5元钱兑换1分，2分，5分硬币100枚，
      * 每种面值至少一个，请输出所有的兑换方案，并统计方案的总数
+     * 在main方法中
      */
 
 
@@ -117,7 +118,7 @@ public class Practice6_9 {
      * 编写一个方法用于int数组去重，将数组中重复的元素只保留一个
      */
     static int[] filtArray(int[] arr) {
-        int n = arr.length;//数组长度
+        int n = arr.length;//数组有效长度
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 if (arr[i] == arr[j]) {
