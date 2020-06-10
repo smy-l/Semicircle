@@ -3,6 +3,8 @@
 ### 快捷键
 命令 | 代码
 :-:|:-: 
+git commit | command + k
+git push | command + shift + k
 快速对齐(格式化代码) | option + command + L
 翻译 | control + command + O
 删除当前行 | command + delete
@@ -13,6 +15,7 @@
 删除到当前单词尾 | fn + option + delete
 代码来回切换 | shift + option + "[" / "]"
 光标移动到行首/尾 | command + <-/->
+
 
 
 ### 操作
