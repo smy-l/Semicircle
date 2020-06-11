@@ -33,6 +33,7 @@ Elephant
 ## .class和.java分开
 ```
 javac -d out 文件名.java
+//javac -cp .....
 
 切换到out文件夹下，使用
 java 文件名  //系统默认的classpath为当前文件夹
