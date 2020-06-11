@@ -4,7 +4,6 @@ public class Fraction {
 	int denominator; //分母
 	int molecule;	//分子
 
-
 	//设置分数
 	public void setFraction(int mol, int den){
 		if(den == 0){
@@ -51,11 +50,12 @@ public class Fraction {
 		}else{
 			minNum = denominator;
 		}
+
 		//找公因数，约分
 		for(int i = minNum; i > 1; i--){
 			if(denominator % i == 0 & molecule % i == 0){
 				denominator /= i;
-				molecule /=i;
+				molecule /= i;
 			}
 		}
 		System.out.println(molecule + "/" + denominator);
@@ -66,14 +66,17 @@ public class Fraction {
 		a.setFraction(10,15);
 		Fraction b = new Fraction();
 		b.setFraction(10,30);
-		System.out.println(a.toDouble());
-		System.out.println(b.toDouble());
 		a.print();
+		System.out.println(a.toDouble());
 		b.print();
+		System.out.println(b.toDouble());
+		System.out.println("====加法====");
 		a = a.plus(b);
 		a.print();
 		System.out.println(a.toDouble());
-
+		System.out.println("====乘法====");
+		a = a.multiply(b);
+		a.print();
+		System.out.println(a.toDouble());
 	}
-
 }
