@@ -16,6 +16,8 @@ git push | command + shift + K
 代码来回切换 | shift + option + "[" / "]"
 光标移动到行首/尾 | command + <-/->
 批量替换 | (选中后)command + R
+代码上下移动 | command + shift + 上下键
+
 
 
 
@@ -37,6 +39,7 @@ CodeGlance |  代码一览，右上角代码框
 Material Theme UI |   主题
 Rainbow Brackets |  彩色括号
 Translation |  翻译
+
 
 
 
