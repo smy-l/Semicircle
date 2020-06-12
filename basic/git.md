@@ -76,6 +76,10 @@ git config --gloval user.name "邮箱地址"
     ipconfig /flushdns //刷新DNS缓存(windows)
     ```
 
+## 强行pull
+```
+git reset HEAD --hard
+```
 
 
 
