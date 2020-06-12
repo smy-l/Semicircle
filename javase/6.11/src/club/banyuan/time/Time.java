@@ -34,8 +34,9 @@ public class Time {
 
     public static void main(String[] args) {
         Time time = new Time();
-        time.setTime(2, 79, 59);
+        time.setTime(20, 9, 73);
         time.toString();
+//        System.out.println(time.toString());
         time.nextSecond();
         time.toString();
     }
