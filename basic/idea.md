@@ -10,13 +10,14 @@ git push | command + shift + K
 删除当前行 | command + delete
 复制当前行 | command + D
 大小写转换 | command + shift + U
-开始新的一行 | shift + return
+开始新的一行 | shift + enter(return)
 删除到当前单词首 | option + delete
 删除到当前单词尾 | fn + option + delete
 代码来回切换 | shift + option + "[" / "]"
 光标移动到行首/尾 | command + <-/->
 批量替换 | (选中后)command + R
 代码上下移动 | command + shift + 上下键
+提示如何修改 |   option + enter(return)
 
 
 
