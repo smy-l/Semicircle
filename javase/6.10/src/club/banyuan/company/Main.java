@@ -28,8 +28,7 @@ public class Main {
 		Employee employee3 = new Employee(180,"王五",2000);
 		Employee employee4 = new Employee(194,"赵六",2000);
 		Employee employee5 = new Employee();
-		employee5.setName("和二").setWorkHour(196).setBaseSalary(Employee.defaultBaseSalary);
-
+		employee5.setName("和二").setWorkHour(196).setBaseSalary(3000);
 
 		company.add(employee1);
 		company.add(employee2);
