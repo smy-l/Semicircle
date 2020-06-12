@@ -15,7 +15,7 @@ public class VideoStore {
 
     public void checkOut(String name) {
         for (int i = 0; i < videoCount; i++) {
-            if (videos[i].getVideoName().equals(name)) {
+            if (videos[i].getVideoName().equals(name) & !videos[i].isRent()) {
                 videos[i].setRent(true);
                 videos[i].rentCount++;
             }
@@ -26,7 +26,6 @@ public class VideoStore {
         for (int i = 0; i < videoCount; i++) {
             if (videos[i].getVideoName().equals(name)) {
                 videos[i].setRent(false);
-
             }
         }
     }
