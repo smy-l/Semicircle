@@ -45,11 +45,7 @@ public class Fraction {
 		}
 
 		int minNum = 0;
-		if(denominator > molecule){
-			minNum = molecule;
-		}else{
-			minNum = denominator;
-		}
+		minNum = Math.min(denominator, molecule);
 
 		//找公因数，约分
 		for(int i = minNum; i > 1; i--){
