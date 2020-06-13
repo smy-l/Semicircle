@@ -41,7 +41,6 @@ public class StaticDemo {
  
    }
 }
-
 ```
 ```
 A. 15 17 22 28
@@ -82,9 +81,12 @@ F. 运行错误
 ```
 public class StaticDemo {
  
-    static String n1= examName("O");{
+    static String n1= examName("O");
+
+    {
         n1=examName("A");
     }
+
     static{
         n1=examName("C");
     }
@@ -277,8 +279,8 @@ class Test1 {
         int x = 20; 
         System.out.println(x); 
     } 
-    static
-    { 
+    
+    static{ 
         int x = 10; 
         System.out.print(x + " "); 
     } 
@@ -297,8 +299,8 @@ class Test1 {
     public static void main(String[] args) { 
         System.out.println(x); 
     } 
-    static
-    { 
+
+    static{ 
         System.out.print(x + " "); 
     } 
 } 
@@ -317,8 +319,7 @@ class Test1 {
         Test1 t1 = new Test1(); 
         System.out.println(t1.x); 
     } 
-    static
-    { 
+    static{ 
         int x = 20; 
         System.out.print(x + " "); 
     } 
@@ -337,6 +338,7 @@ class Test1 {
     public static void main(String[] args) { 
         System.out.println(Test1.x); 
     } 
+    
     static
     { 
         int x = 20; 
