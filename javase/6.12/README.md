@@ -21,8 +21,51 @@ Person lisi = new Person("李四");
 一共创建了5个对象
 两个参数的构造方法被调用了2次
 ```
-
 ### 6_12_2
+1. 分析修复代码问题
+
+2. 更新Circle类，增加以下内容
+    - 添加一个构造方法传入Circle对象，新创建的对象将复制传入的Circle对象的半径。
+    - 添加一个public 方法 setRadius(double r)
+    - 创建一个circle2 对象，将circle1对象作为构造方法参数传入，显示其周长和半径
+    - 使用setRadius 修改circle1 的半径。是否会同时修改circle2的半径？ 验证答案
+    - 声明 Circle circle3 = circle2，当修改circle2的半径之后，circle3的周长和面积是否发生变化。
+    - 执行上述代码后，将circle2 = null，circle3 的值是否为null
+
+### 6_12_3
+
+#### 实现Product类具备以下属性和方法
+**属性**
+
+- name : String
+- price : double
+- scanCode : int
+- num : int
+- 方法
+
+**构造方法(String name,double price)**
+- String getName()
+- int getScanCode()
+- double getPrice()
+- void changePrice(double)
+- int getNum()
+- void setNum(int)
+- String getInfo()
+- boolean buy(int)
+- ScanCode 是一个4位数字，首位数字不能为0，将在构造对象的时候自动生成，保证每一个Product对象的ScanCode是唯一的 
+- buy 方法将num 减去传入的数字，如果传入数字较大表示库存不足，num不做修改则返回false，否则返回true
+
+- getInfo() 返回一个字符串如下
+
+    ```
+    --- 产品信息 ---
+    名称: 手机
+    编码：1001
+    价格: 2001.00元
+    自己编写一个测试用的类，测试所有的方法功能正常
+    ```
+
+### 6_12_4
 
 1. 以下代码的输出结果是
 ```
