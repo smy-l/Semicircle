@@ -21,6 +21,8 @@ Person lisi = new Person("李四");
 一共创建了5个对象
 两个参数的构造方法被调用了2次
 ```
+连接：https://github.com/smy-l/Semicircle/tree/master/javase/6.12/src/practice6_12/club/banyuan/person
+
 ### 6_12_2
 1. 分析修复代码问题
 
@@ -32,6 +34,9 @@ Person lisi = new Person("李四");
     - 声明 Circle circle3 = circle2，当修改circle2的半径之后，circle3的周长和面积是否发生变化。
     - 执行上述代码后，将circle2 = null，circle3 的值是否为null
 
+链接：https://github.com/smy-l/Semicircle/tree/master/javase/6.12/src/practice6_12/club/banyuan/circle
+
+
 ### 6_12_3
 
 #### 实现Product类具备以下属性和方法
@@ -42,6 +47,7 @@ Person lisi = new Person("李四");
 - scanCode : int
 - num : int
 - 方法
+
 
 **构造方法(String name,double price)**
 - String getName()
@@ -64,8 +70,10 @@ Person lisi = new Person("李四");
     价格: 2001.00元
     自己编写一个测试用的类，测试所有的方法功能正常
     ```
+链接：https://github.com/smy-l/Semicircle/tree/master/javase/6.12/src/practice6_12/club/banyuan/product
 
 ### 6_12_4
+链接：https://github.com/smy-l/Semicircle/blob/master/javase/6.12/src/practice6_12/club/banyuan/%E9%80%89%E6%8B%A9%E9%A2%98.md
 
 1. 以下代码的输出结果是
 ```
