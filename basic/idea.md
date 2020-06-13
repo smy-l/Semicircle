@@ -18,6 +18,7 @@ git push | command + shift + K
 批量替换 | (选中后)command + R
 代码上下移动 | command + shift + 上下键
 提示如何修改 |   option + enter(return)
+快速建立get/set |command + N
 
 
 
