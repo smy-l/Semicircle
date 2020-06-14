@@ -30,9 +30,21 @@ git push | command + shift + K
 ### 快捷键
 命令 | 代码
 :-:|:-: 
+设置 | control + alt + s
+左右切换选项卡 | alt + ->/<-
+选择相逐个同字符 | alt+j 
+在每行选择相同字符 | ctrl+shift+alt+j
+在光标处插入新的行 | shift+enter
+复制光标所在行 | Ctrl+D
+移动光标所在行 | Shift+Ctrl+上下键 
+智能提示/修复 | Alt+enter
+生成get，set方法 | Alt+in0sert
+格式化代码 | Ctrl+Alt+L
+方法参数提示 | ctrl + p
+变量更名 | shift+F6
 
-
-
+鼠标滑轮调节文字大小
+Settings>Editor>General>勾选change font size (zoom) with ctrl+mouse wheel
 
 ## idea插件
 名称     |  作用
