@@ -21,7 +21,7 @@ Person lisi = new Person("李四");
 一共创建了5个对象
 两个参数的构造方法被调用了2次
 ```
-连接：https://github.com/smy-l/Semicircle/tree/master/javase/6.12/src/practice6_12/club/banyuan/person
+链接：https://github.com/smy-l/Semicircle/tree/master/javase/6.12/src/practice6_12/club/banyuan/person
 
 ### 6_12_2
 1. 分析修复代码问题
