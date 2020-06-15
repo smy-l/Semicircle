@@ -36,8 +36,13 @@ public class Product {
         this.num = num;
     }
 
+    //可以这么写
     public String getInfo() {
-        return ("--- 产品信息 ---\n名称：" + name + "\n编码：" + scanCode + "\n价格：" + price + "元\n");
+//        return ("--- 产品信息 ---\n名称：" + name + "\n编码：" + scanCode + "\n价格：" + price + "元\n");
+        return "--- 产品信息 ---\n" +
+                "名称：" + name +
+                "\n编码：" + scanCode +
+                "\n价格：" + price + "元\n";
     }
 
     public boolean buy(int num) {
