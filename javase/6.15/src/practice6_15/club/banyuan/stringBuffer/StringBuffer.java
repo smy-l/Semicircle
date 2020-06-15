@@ -38,14 +38,23 @@ public class StringBuffer {
         count = 0;
     }
 
+    //仅反转from到to
+    public char[] onlyReverse(int from, int to){
+        char[] charArr = new char[count];
+        int numCount = 0;
+        for (int i = from; i < to; i++) {
+            charArr[i] = value[to - numCount - 1];
+            numCount++;
+        }
+        return charArr;
+    }
+
     /**
      * 将之前的输入内容反转
      */
     public String reverse() {
         char[] temp = new char[count];
-        for (int i = 0; i < count; i++) {
-            temp[count - 1 - i] = value[i];
-        }
+        temp = onlyReverse(0,count);
         return String.valueOf(temp);
     }
 
@@ -65,21 +74,19 @@ public class StringBuffer {
         char[] temp = new char[count];
 
         //反转from到to
-        int numCount = 0;
-        for (int i = from; i < to; i++) {
-            temp[i] = value[to - numCount - 1];
-            numCount++;
-        }
+        temp = onlyReverse(from,to);
 
+        //copy from 之前
+        System.arraycopy(value, 0, temp, 0, from);
 //        for(int j = 0; j < from; j++){
 //            temp[j] = value[j];
 //        }
-        System.arraycopy(value, 0, temp, 0, from);
 
+        //copy from 之后
+        if (count - to >= 0) {
 //        for (int i = to; i < count; i++) {
 //            temp[i] = value[i];
 //        }
-        if (count - to >= 0) {
             System.arraycopy(value, to, temp, to, count - to);
         }
 
@@ -95,11 +102,7 @@ public class StringBuffer {
         for(int i = from; i <= count; i++){
             if(value[i] == ' ' || i == count){
                 to = i;
-                int numCount = 0;
-                for (int j = from; j < to; j++) {
-                    temp[j] = value[to - numCount - 1];
-                    numCount++;
-                }
+                System.arraycopy(onlyReverse(from,to),from,temp,from,to - from);
                 from = to + 1;
             }
         }
@@ -119,8 +122,9 @@ public class StringBuffer {
         System.out.println(s1.reverse());
         System.out.println();
 
-        System.out.println("=====反转4-7字符=====");
-        System.out.println(s1.reverse(4,7));
+        System.out.println("=====反转2-8字符=====");
+        System.out.println(s1.toString());
+        System.out.println(s1.reverse(2,8));
         System.out.println();
 
         System.out.println("=====清除后再增加=====");
