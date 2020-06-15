@@ -53,8 +53,7 @@ public class StringBuffer {
      * 将之前的输入内容反转
      */
     public String reverse() {
-        char[] temp = new char[count];
-        temp = onlyReverse(0,count);
+        char[] temp = onlyReverse(0,count);
         return String.valueOf(temp);
     }
 
@@ -71,10 +70,8 @@ public class StringBuffer {
             return null;
         }
 
-        char[] temp = new char[count];
-
         //反转from到to
-        temp = onlyReverse(from,to);
+        char[] temp = onlyReverse(from,to);
 
         //copy from 之前
         System.arraycopy(value, 0, temp, 0, from);
@@ -98,11 +95,16 @@ public class StringBuffer {
         char[] temp = new char[count];
         System.arraycopy(value,0,temp,0,count);
         int from = 0;
-        int to = 0;
+        int to;
         for(int i = from; i <= count; i++){
             if(value[i] == ' ' || i == count){
                 to = i;
                 System.arraycopy(onlyReverse(from,to),from,temp,from,to - from);
+//                int numCount = 0;
+//                for (int j = from; j < to; j++) {
+//                    temp[j] = value[to - numCount - 1];
+//                    numCount++;
+//                }
                 from = to + 1;
             }
         }
