@@ -43,6 +43,7 @@ git push | command + shift + K
 方法参数提示 | ctrl + p
 变量更名 | shift+F6
 
+
 鼠标滑轮调节文字大小
 Settings>Editor>General>勾选change font size (zoom) with ctrl+mouse wheel
 
