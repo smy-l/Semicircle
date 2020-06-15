@@ -38,7 +38,7 @@ git push | command + shift + K
 复制光标所在行 | Ctrl+D
 移动光标所在行 | Shift+Ctrl+上下键 
 智能提示/修复 | Alt+enter
-生成get，set方法 | Alt+in0sert
+生成get，set方法 | Alt+insert
 格式化代码 | Ctrl+Alt+L
 方法参数提示 | ctrl + p
 变量更名 | shift+F6
