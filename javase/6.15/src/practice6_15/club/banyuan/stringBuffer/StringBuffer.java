@@ -82,18 +82,19 @@ public class StringBuffer {
         return String.valueOf(temp);
     }
 
+    //单词反转
     public String wordReversal(){
         char[] temp = new char[count];
         System.arraycopy(value,0,temp,0,count);
         int from = 0;
         int to = 0;
-        for(int i = from; i < count; i++){
-            if(value[i] == ' '){
+        for(int i = from; i <= count; i++){
+            if(value[i] == ' ' || i == count){
                 to = i;
-                int count = 0;
+                int numCount = 0;
                 for (int j = from; j < to; j++) {
-                    temp[j] = value[to - count - 1];
-                    count++;
+                    temp[j] = value[to - numCount - 1];
+                    numCount++;
                 }
                 from = to + 1;
             }
@@ -107,14 +108,22 @@ public class StringBuffer {
         StringBuffer s1 = new StringBuffer();
         s1.append("123 456 789");
         s1.append('s');
+        System.out.println(s1.toString());
+        System.out.println();
 
-//        System.out.println(s1.toString());
-//        System.out.println(s1.reverse(2,6));
-//        System.out.println(s1);
-//        s1.clear();
-//        s1.append("123123");
+        System.out.println("=====反转2-6字符=====");
+        System.out.println(s1.reverse(2,6));
+        System.out.println();
+
+        System.out.println("=====清除后再增加=====");
+        System.out.println(s1);
+        s1.clear();
+        s1.append("To be or not to be");
 //        System.out.println(s1);
         System.out.println(s1.toString());
+        System.out.println();
+
+        System.out.println("=====单词反转=====");
         System.out.println(s1.wordReversal());
 
     }
