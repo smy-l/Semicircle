@@ -63,8 +63,12 @@ public class StringBuffer {
         }
 
         char[] temp = new char[count];
+
+        //反转from到to
+        int numCount = 0;
         for (int i = from; i < to; i++) {
-            temp[to - i + 1] = value[i];
+            temp[i] = value[to - numCount - 1];
+            numCount++;
         }
 
 //        for(int j = 0; j < from; j++){
@@ -111,8 +115,12 @@ public class StringBuffer {
         System.out.println(s1.toString());
         System.out.println();
 
-        System.out.println("=====反转2-6字符=====");
-        System.out.println(s1.reverse(2,6));
+        System.out.println("=====反转=====");
+        System.out.println(s1.reverse());
+        System.out.println();
+
+        System.out.println("=====反转4-7字符=====");
+        System.out.println(s1.reverse(4,7));
         System.out.println();
 
         System.out.println("=====清除后再增加=====");
