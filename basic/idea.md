@@ -19,11 +19,8 @@ git push | command + shift + K
 代码上下移动 | command + shift + 上下键
 提示如何修改 |   option + enter(return)
 快速建立get/set |command + N
-
-
-
-
-### 操作
+快速起名  | command + alt + v
+重新命名 ｜ fn + shift + F6
 
 
 ## windows
