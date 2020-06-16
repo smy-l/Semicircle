@@ -111,7 +111,13 @@ public class StringBuffer {
         return String.valueOf(temp);
     }
 
-
+    public String shiftOne(String str){
+        String one = str.substring(1);
+//        char[] temp = str.toCharArray();
+//        char two = temp[0];
+        char two = (str.toCharArray())[0];
+        return one + two;
+    }
 
     public static void main(String[] args) {
         StringBuffer s1 = new StringBuffer();
