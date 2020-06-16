@@ -21,11 +21,6 @@ public class GuessFourNum {
 
     //猜四个数字
     public static void guessFourNum() {
-        setValue();
-        for (char one: value) {
-            System.out.print(one);
-        }
-        System.out.println("\n====ans====");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.next();
         while (input.length() != 4) {
@@ -72,6 +67,11 @@ public class GuessFourNum {
 
 
     public static void main(String[] args) {
+        setValue();
+        for (char one: value) {
+            System.out.print(one);
+        }
+        System.out.println("\n====ans====");
         System.out.println("猜一猜4个不重复的数字，请输入4个数字： ");
         GuessFourNum.guessFourNum();
     }
