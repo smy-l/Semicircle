@@ -37,6 +37,7 @@ public class GuessGame {
                 System.out.println("你当前选择的难度等级0~999");
                 break;
             case (0):
+                return;
         }
         setGuessCount();
     }
