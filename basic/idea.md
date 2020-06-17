@@ -21,6 +21,20 @@ git push | command + shift + K
 快速建立get/set |command + N
 快速起名  | command + alt + v
 重新命名 ｜ fn + shift + F6
+创建方法  | option + enter
+快速到出现问题到地方 | shift + F2
+
+
+### 使用技巧
+```
+int[] answer = new int[4];
+answer.fori //可以快速生成
+`
+for(int i = 0; i < answer.length; i++){
+
+}
+`
+```
 
 
 ## windows
