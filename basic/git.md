@@ -61,7 +61,7 @@ git config --gloval user.name "邮箱地址"
 ```
 
 
-## 提升github下载/上传速度
+## 提升github下载/上传速度(似乎没什么用)
 1. mac终端执行`sudo vim /etc/hosts`<br>
     windows终端进入*C:\Windows\System32\drivers\etc*修改hosts文件
 2. 浏览器访问**https://www.ipaddress.com**，分别输入`github.com`和`github.global.ssl.fastly.net`获取对应ip，将其添加在hosts文件后<br>
