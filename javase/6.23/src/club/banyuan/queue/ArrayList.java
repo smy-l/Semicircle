@@ -1,4 +1,4 @@
-package club.banyuan;
+package club.banyuan.queue;
 
 import java.util.Arrays;
 
@@ -123,11 +123,7 @@ public class ArrayList {
      * @return 数组中没有元素，返回true
      */
     public boolean isEmpty() {
-        if (count == 0) {
-            return true;
-        }
-
-        return false;
+        return count == 0;
     }
 
     /**
