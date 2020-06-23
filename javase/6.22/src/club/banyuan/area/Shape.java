@@ -1,15 +1,21 @@
 package club.banyuan.area;
 
-public class Shape {
-    public double area() {
-        return 0.0;
-    }
+public abstract class Shape {
+//    public double area() {
+//        return 0.0;
+//    }
+//
+//    public double perimeter() {
+//        return 0.0;
+//    }
+//
+//    public String getShapeName() {
+//        return "形状";
+//    }
 
-    public double perimeter() {
-        return 0.0;
-    }
+    public abstract double area();
+    public abstract double perimeter();
+    public abstract double getShapeName();
 
-    public String getShapeName() {
-        return "形状";
-    }
+
 }

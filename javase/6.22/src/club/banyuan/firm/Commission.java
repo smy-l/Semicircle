@@ -10,19 +10,21 @@ public class Commission extends Hourly {
         this.commissionRate = commissionRate;
     }
 
-    public void addSales(double totalSales){
+    public void addSales(double totalSales) {
         this.totalSales += totalSales;
     }
 
     @Override
     public double pay() {
-        return super.pay() + totalSales * commissionRate;
+        double payment = super.pay() + totalSales * commissionRate;
+        totalSales = 0;
+        return payment;
     }
 
     @Override
     public String toString() {
         String result = super.toString();
-        result += "\n销售总额: " + totalSales;
+        result += "\n销售总额: " + totalSales + "\n佣金率: " + commissionRate;
         return result;
     }
 
