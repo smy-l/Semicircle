@@ -29,6 +29,9 @@ class MainClass
     }
 }
 ```
+```
+My Method
+```
 #### 2.
 ```
 interface A 
@@ -63,6 +66,9 @@ public class Test extends B
     } 
 }
 ```
+```
+getInfo
+```
 #### 3.
 ```
 interface A
@@ -78,6 +84,9 @@ class B implements A
     }
 }
 ```
+```
+编译报错，接口中常量为final类型
+```
 
 #### 4.以下内容是否编译通过，如果不能请指出错误原因
 ```
@@ -90,6 +99,9 @@ interface B extends A
 {
     //Interface B extending Class A
 }
+```
+```
+接口不能继承类
 ```
 #### 5.
 ```
@@ -132,7 +144,13 @@ public class MainClass
     }
 }
 ```
+```
+QQQQPPPP
+PPPPQQQQ
+```
+
 #### 6.
+
 ```
 class A implements B
 {   
@@ -158,7 +176,12 @@ public class MainClass
 }
 ```
 
+```
+4
+```
+
 ####  7.以下内容是否编译通过，如果不能请指出错误原因
+
 ```
 interface A
 {
@@ -172,6 +195,10 @@ interface A
     }
 }
 ```
+```
+???
+```
+
 ####  8.以下内容是否编译通过，如果不能请指出错误原因
 ```
 interface ABC
@@ -188,6 +215,10 @@ interface PQR extends ABC
 	public void methodTwo();
 }
 ```
+```
+允许
+```
+
 #### 9.
 ```
 interface ABC
@@ -226,6 +257,10 @@ public class MainClass
 	}
 }
 ```
+```
+？？？
+```
+
 #### 10.
 ```
 interface X
@@ -262,6 +297,13 @@ public class MainClass
         System.out.println(X.c);
     }
 }
+```
+
+```
+A
+B
+A
+A
 ```
 
 #### 11.
@@ -310,6 +352,11 @@ public class MainClass
 }
 
 ```
+```
+NOT FINALFINAL
+FINAL
+```
+
 #### 12.
 ```
 interface X
@@ -340,6 +387,10 @@ public class MainClass
     }
 }
 ```
+```
+CLASS Y
+```
+
 #### 13.
 ```
 interface A
@@ -399,6 +450,13 @@ public class MainClass
     }
 }
 ```
+```
+1110
+1
+-1
+1
+```
+
 #### 14.
 ```
 interface A
@@ -457,6 +515,13 @@ public class MainClass
 }
 ```
 
+```
+AAABBB
+BBBAAA
+DDDBBBAAA
+BBBAAA
+```
+
 #### 15.
 ```
 interface X
@@ -477,6 +542,10 @@ class Z implements Y
     }
 }
 ```
+```
+？？？
+```
+
 #### 16.
 ```
 abstract class A
@@ -519,6 +588,12 @@ public class MainClass
         c.myMethod(new Integer(121));
     }
 }
+```
+
+```
+Number
+Object
+Number
 ```
 
 #### 17.
@@ -566,3 +641,10 @@ public class MainClass
     }
 }
 ```
+
+```
+2
+3
+3
+```
+
