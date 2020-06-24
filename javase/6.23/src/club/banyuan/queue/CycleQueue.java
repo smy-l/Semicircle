@@ -15,6 +15,18 @@ public class CycleQueue implements Queue {
         this(10);
     }
 
+    public int getPutIndex() {
+        return putIndex;
+    }
+
+    public int getGetIndex() {
+        return getIndex;
+    }
+
+    public Object[] getValue() {
+        return value;
+    }
+
     @Override
     public void add(Object o) {
         //判断队列是否满，扩容
@@ -65,21 +77,23 @@ public class CycleQueue implements Queue {
 
         c1.add(1);
         c1.add(2);
+//        c1.delete();
         c1.add(3);
+//        c1.delete();
         c1.add(4);
         c1.add(5);
         c1.add(6);
-        c1.delete();
-        c1.delete();
-        c1.delete();
-        c1.delete();
-        c1.delete();
-        c1.delete();
-        c1.delete();
+        c1.add(7);
 
-//        System.out.println("getIndex: " + c1.getIndex);
-//        System.out.println("putIndex: " + c1.putIndex);
-//        System.out.println(c1.value.length);
+//        c1.delete();
+//        c1.delete();
+//        c1.delete();
+//        c1.delete();
+//        c1.delete();
+
+//        System.out.println("getIndex: " + c1.getGetIndex());
+//        System.out.println("putIndex: " + c1.getPutIndex());
+//        System.out.println(c1.getValue().length);
         for (int i = 0; i < c1.value.length; i++) {
             System.out.print(c1.value[i] + " ");
         }

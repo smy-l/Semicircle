@@ -101,7 +101,7 @@ interface B extends A
 }
 ```
 ```
-接口不能继承类
+接口不能继承类，接口只能继承接口并且可以多继承
 ```
 #### 5.
 ```
@@ -196,7 +196,7 @@ interface A
 }
 ```
 ```
-???
+接口里面不能有构造方法（构造代码块）以及静态代码块，但是可以有静态方法以及静态变量
 ```
 
 ####  8.以下内容是否编译通过，如果不能请指出错误原因
@@ -258,7 +258,7 @@ public class MainClass
 }
 ```
 ```
-？？？
+栈溢出，（死循环）
 ```
 
 #### 10.
@@ -543,7 +543,7 @@ class Z implements Y
 }
 ```
 ```
-？？？
+Z实现了Y，但是Y中有两个方法，2种解决方法：修改为抽象类或实现抽象方法
 ```
 
 #### 16.
@@ -576,15 +576,15 @@ public class MainClass
     public static void main(String[] args)
     {
         A a = new C();
-         
+         //指定了方法参数，一定和A中定义的匹配
         a.myMethod(new Integer(121));
          
         B b = new C();
-         
+         //指定了方法参数，一定和B中定义的匹配
         b.myMethod(new Integer(121));
          
         C c = new C();
-         
+         //两个重载方法找最近关系的方法
         c.myMethod(new Integer(121));
     }
 }
