@@ -4,7 +4,7 @@ import club.banyuan.character.Fighter;
 
 public class StunAttack extends Skill{
     public StunAttack() {
-        super("眩晕攻击");
+        setName("眩晕攻击");
     }
 
     @Override

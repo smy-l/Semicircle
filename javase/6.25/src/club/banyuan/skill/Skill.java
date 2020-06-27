@@ -6,7 +6,7 @@ import club.banyuan.weapon.*;
 public abstract class Skill implements SkillAble{
     private String name;
 
-    public Skill(String name) {
+    public void setName(String name){
         this.name = name;
     }
 

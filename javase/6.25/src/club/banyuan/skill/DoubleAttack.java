@@ -6,7 +6,7 @@ import club.banyuan.weapon.*;
 public class DoubleAttack extends Skill{
 
     public DoubleAttack() {
-        super("双倍攻击");
+        setName("双倍攻击");
     }
 
     @Override

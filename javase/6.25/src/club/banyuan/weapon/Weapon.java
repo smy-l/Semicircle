@@ -1,10 +1,21 @@
 package club.banyuan.weapon;
 
 public abstract class Weapon implements WeaponAble{
+    private String name;
+    private int attackNum;
+
+    public Weapon(String name) {
+        this.name = name;
+    }
 
     @Override
-    public abstract String getName();
+    public  String getName(){
+        return name;
+    }
 
     @Override
-    public abstract int attack();
+    public int attack(){
+        return attackNum;
+    }
+
 }

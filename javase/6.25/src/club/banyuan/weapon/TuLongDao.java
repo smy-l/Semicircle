@@ -1,20 +1,13 @@
 package club.banyuan.weapon;
 
 public class TuLongDao extends Weapon {
-    private String name = "屠龙刀";
-    private int attackNum;
 
     public TuLongDao() {
+        super("屠龙刀");
     }
 
     @Override
-    public String getName() {
-        return name;
+    public int attack(){
+        return (int)(Math.random() * 11 + 20);
     }
-
-    @Override
-    public int attack() {
-        return attackNum = (int) (Math.random() * 11 + 20);
-    }
-
 }
