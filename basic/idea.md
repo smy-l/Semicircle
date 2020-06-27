@@ -54,6 +54,9 @@ for(int i = 0; i < answer.length; i++){
 格式化代码 | Ctrl+Alt+L
 方法参数提示 | ctrl + p
 变量更名 | shift+F6
+翻译(直接替换) | ctrl + shift + X
+翻译(解释，无输入界面) | ctrl + shift + Y
+翻译(解释，有输入界面) | ctrl + shift + O
 
 
 鼠标滑轮调节文字大小
