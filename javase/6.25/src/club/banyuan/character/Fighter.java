@@ -6,6 +6,7 @@ import club.banyuan.weapon.*;
 public class Fighter {
     private String name;
     private int bloodVolume = 1000;
+    private int blueVolume = 100;
     private Weapon weapon;
     private Skill[] skills;
     private int dizziness = 0;
@@ -14,6 +15,14 @@ public class Fighter {
         this.name = name;
         this.weapon = weapon;
         this.skills = skills;
+    }
+
+    public int getBlueVolume() {
+        return blueVolume;
+    }
+
+    public void setBlueVolume(int blueVolume) {
+        this.blueVolume = blueVolume;
     }
 
     public Skill[] getSkills() {

@@ -1,21 +1,21 @@
 package club.banyuan.weapon;
 
+import club.banyuan.character.Fighter;
+
 public class GanJiang extends Weapon{
 
     public GanJiang() {
         super("阳剑-干将");
     }
 
-
     private int GJSkill(){
         int random = (int)(Math.random() * 5);
         if(random == 0){
-            System.out.println("发动技能，武器伤害50");
-            return 50;
+            System.out.println("发动武器技能，伤害60");
+            return 60;
         }
-        return (int)(Math.random() * 10 + 10);
+        return (int)(Math.random() * 11 + 15);
     }
-
 
     @Override
     public int attack(){

@@ -8,14 +8,20 @@ public abstract class Weapon implements WeaponAble{
         this.name = name;
     }
 
+    public int getAttackNum() {
+        return attackNum;
+    }
+
+    public void setAttackNum(int attackNum) {
+        this.attackNum = attackNum;
+    }
+
     @Override
     public  String getName(){
         return name;
     }
 
     @Override
-    public int attack(){
-        return attackNum;
-    }
+    public abstract int attack();
 
 }

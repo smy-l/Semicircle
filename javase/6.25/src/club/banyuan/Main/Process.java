@@ -25,6 +25,7 @@ public class Process {
             } else {
                 attacking(f2, f1);
             }
+            System.out.println();
         }
     }
 

@@ -5,6 +5,7 @@ import club.banyuan.character.Fighter;
 public class HitThePoint extends Skill {
     public HitThePoint() {
         setName("穿透攻击");
+        setBlue(5);
     }
 
     private int successAttack(Fighter from){
@@ -20,6 +21,12 @@ public class HitThePoint extends Skill {
 
     @Override
     public void apply(Fighter from, Fighter to) {
-        to.hurt(successAttack(from));
+        if(isEnough(from)) {
+            from.setBlueVolume(from.getBlueVolume() - getBlue());
+            to.hurt(successAttack(from));
+        }else{
+            System.out.println("蓝量不足，使用普通攻击");
+            to.hurt(from.getWeapon().attack());
+        }
     }
 }
