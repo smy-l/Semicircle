@@ -24,6 +24,7 @@ git push | command + shift + K
 创建方法  | option + enter
 快速到出现问题到地方 | shift + F2
 选中当前单词 | control + W
+回到上个方法中  | command + alt + <-
 
 
 ### 使用技巧

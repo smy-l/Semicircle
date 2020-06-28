@@ -25,9 +25,15 @@ public class MainClass {
 //        Fighter zhangWuJi = new Fighter("张无忌", weapons[0], skills);
 //        Fighter mieJueShiTai = new Fighter("灭绝师太", weapons[1], skills);
 //        Fighter player1 = new Fighter("金毛狮王", weapons[2], skills);
-        Fighter zhangWuJi = new Fighter("张无忌", w1.weapons[0], s1.skills);
-        Fighter mieJueShiTai = new Fighter("灭绝师太", w1.weapons[1], s1.skills);
-        Fighter jinMaoShiWang = new Fighter("金毛狮王",w1.weapons[2],s1.skills);
+
+//        Fighter zhangWuJi = new Fighter("张无忌", w1.weapons[0], s1.skills);
+        Fighter zhangWuJi = new Fighter("张无忌", new TuLongDao(), s1.skills);
+
+//        Fighter mieJueShiTai = new Fighter("灭绝师太", w1.weapons[1], s1.skills);
+        Fighter mieJueShiTai = new Fighter("灭绝师太", new YiTianJian(), s1.skills);
+
+//        Fighter jinMaoShiWang = new Fighter("金毛狮王",w1.weapons[2],s1.skills);
+        Fighter jinMaoShiWang = new Fighter("金毛狮王",new GanJiang(),s1.skills);
 
         //过程
 //        Process.process(zhangWuJi, mieJueShiTai);

@@ -13,14 +13,11 @@ public class StunAttack extends Skill {
     public void apply(Fighter from, Fighter to) {
         if (isEnough(from)) {
             from.setBlueVolume(from.getBlueVolume() - getBlue());
-            to.hurt((int) (from.getWeapon().attack() * 0.5));
+            to.hurt(from.getWeapon().attack() / 2);
             to.setDizziness(to.getDizziness() + 1);
         } else {
             System.out.println("蓝量不足，使用普通攻击");
             to.hurt(from.getWeapon().attack());
         }
-
-//        to.hurt((int)(from.getWeapon().attack() * 0.5));
-//        to.setDizziness(to.getDizziness() + 1);
     }
 }

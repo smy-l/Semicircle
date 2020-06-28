@@ -6,7 +6,7 @@ import club.banyuan.weapon.*;
 public class Fighter {
     private String name;
     private int bloodVolume = 1000;
-    private int blueVolume = 100;
+    private int blueVolume = 50;
     private Weapon weapon;
     private Skill[] skills;
     private int dizziness = 0;
@@ -16,6 +16,7 @@ public class Fighter {
         this.weapon = weapon;
         this.skills = skills;
     }
+
 
     public int getBlueVolume() {
         return blueVolume;
@@ -67,13 +68,14 @@ public class Fighter {
 
     public void attack(Fighter fighter) {
         int skillIndex = (int) (Math.random() * skills.length);
-        System.out.println(getName() + "向" + fighter.getName() + "发起" + skills[skillIndex].getName() + "！");
+        System.out.println(getName() + "使用了" + getWeapon().getName() + "向" + fighter.getName() + "发起" + skills[skillIndex].getName() + "！");
         skills[skillIndex].apply(this, fighter);
     }
 
     public void hurt(int hurt) {
         setBloodVolume(bloodVolume - hurt);
         System.out.println(getName() + "受到伤害" + hurt + "点");
+        System.out.println("剩余生命值为：" + getBloodVolume());
     }
 
     public void vertigo(int rounds) {
