@@ -25,6 +25,7 @@ git push | command + shift + K
 快速到出现问题到地方 | shift + F2
 选中当前单词 | control + W
 回到上个方法中  | command + alt + <-
+快速切换到单词的首尾 | alt + <-/->
 
 
 ### 使用技巧
