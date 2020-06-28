@@ -5,11 +5,11 @@ import club.banyuan.weapon.*;
 
 public class Fighter {
     private String name;
-    private int bloodVolume = 1000;
-    private int blueVolume = 50;
+    private int hp = 1000;
+    private int mp = 50;
     private Weapon weapon;
     private Skill[] skills;
-    private int dizziness = 0;
+    private int vertigo = 0;
 
     public Fighter(String name, Weapon weapon, Skill[] skills) {
         this.name = name;
@@ -17,53 +17,36 @@ public class Fighter {
         this.skills = skills;
     }
 
-
-    public int getBlueVolume() {
-        return blueVolume;
+    public int getMp() {
+        return mp;
     }
 
-    public void setBlueVolume(int blueVolume) {
-        this.blueVolume = blueVolume;
-    }
-
-    public Skill[] getSkills() {
-        return skills;
-    }
-
-    public void setSkills(Skill[] skills) {
-        this.skills = skills;
+    public void setMp(int mp) {
+        this.mp = mp;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getHp() {
+        return hp;
     }
 
-    public int getBloodVolume() {
-        return bloodVolume;
-    }
-
-    public void setBloodVolume(int bloodVolume) {
-        this.bloodVolume = bloodVolume;
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     public Weapon getWeapon() {
         return weapon;
     }
 
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
+    public int getVertigo() {
+        return vertigo;
     }
 
-    public int getDizziness() {
-        return dizziness;
-    }
-
-    public void setDizziness(int dizziness) {
-        this.dizziness = dizziness;
+    public void setVertigo(int vertigo) {
+        this.vertigo = vertigo;
     }
 
     public void attack(Fighter fighter) {
@@ -73,17 +56,21 @@ public class Fighter {
     }
 
     public void hurt(int hurt) {
-        setBloodVolume(bloodVolume - hurt);
+        setHp(hp - hurt);
         System.out.println(getName() + "受到伤害" + hurt + "点");
-        System.out.println("剩余生命值为：" + getBloodVolume());
+        System.out.println("剩余生命值为：" + getHp());
     }
 
     public void vertigo(int rounds) {
+        vertigo += rounds;
         System.out.println(getName() + "眩晕1回合");
-        rounds = rounds + 1;
     }
 
     public void recover() {
-        setDizziness(getDizziness() - 1);
+        setVertigo(getVertigo() - 1);
+    }
+
+    public boolean isAlive(){
+        return getHp() > 0;
     }
 }

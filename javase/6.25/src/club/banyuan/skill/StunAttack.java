@@ -6,18 +6,17 @@ public class StunAttack extends Skill {
 
     public StunAttack() {
         setName("眩晕攻击");
-        setBlue(3);
+        setSkillMP(3);
     }
 
     @Override
     public void apply(Fighter from, Fighter to) {
-        if (isEnough(from)) {
-            from.setBlueVolume(from.getBlueVolume() - getBlue());
-            to.hurt(from.getWeapon().attack() / 2);
-            to.setDizziness(to.getDizziness() + 1);
+        if (isEnoughAttack(from)) {
+            int hurt = from.getWeapon().attack() / 2;
+            to.hurt(hurt);
+            to.setVertigo(1);
         } else {
-            System.out.println("蓝量不足，使用普通攻击");
-            to.hurt(from.getWeapon().attack());
+            noMP(from, to);
         }
     }
 }
