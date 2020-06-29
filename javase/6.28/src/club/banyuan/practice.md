@@ -12,7 +12,7 @@ class Outer{
 }
 ```
 ```
-
+编译报错，创建内部类需要用外部类对象
 ```
 
 #### 2. 以下代码能否通过编译，为什么
@@ -28,7 +28,7 @@ static class Outer{
 ```
 
 ```
-类不能用static修饰
+外部类不能用static修饰
 ```
 
 #### 3.
@@ -75,7 +75,7 @@ class A
 }
 ```
 ```
-编译报错，内部类不能用static修饰
+编译报错，内部类中不能用static修饰
 ```
 
 #### 5.
@@ -115,6 +115,10 @@ class ABC
         int i = 111;
     }
 }
+
+//扩展
+ABC.XYZ a = new ABC().new XYZ();
+a.i;
 ```
 
 ```
@@ -125,17 +129,29 @@ System.out.println(new ABC().new XYZ().i);
 ```
 class A
 {
+		//2. 修改，将其用static修饰，只运行一次
     {
         new B();
     }
      
     static class B
     {
+    		3. 修改，将其用static修饰，只运行一次
         {
             new A().new C();
         }
     }
-     
+    
+    //1. 修改
+    `
+    class B
+    {
+        {
+            new C();
+        }
+    }
+    `
+    
     class C
     {
         {
@@ -200,7 +216,7 @@ public class MainClass
 {
     public static void main(String[] args)
     {
-        A a = new A() { };
+        A a = new A() { };  //构建一个A的匿名子类
     }
 }
 ```
@@ -272,7 +288,7 @@ class A
 ```
 
 ```
-不能，应该先创建外部类A才能创建内部类B
+编译报错，超出了局部内部类的范围
 ```
 
 #### 12. 以下代码能否通过编译，为什么
@@ -294,7 +310,7 @@ class A
 ```
 
 ```
-不能，内部类不能出现static
+编译报错，内部类不能出现static
 ```
 
 
@@ -317,7 +333,7 @@ class A
 class B
 {
     A a = new A()
-    {
+    {// 创建一个A的子类
         void methodA1(int i)
         {
             System.out.println(++i+i++);
@@ -447,7 +463,7 @@ class A
 ```
 
 ```
-
+无法访问
 ```
 
 #### 18.
