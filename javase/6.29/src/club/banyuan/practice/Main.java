@@ -3,6 +3,10 @@ package club.banyuan.practice;
 public class Main {
     public static void main(String[] args) {
 
+        for (Weekday value : Weekday.values()) {
+            Weekday.printIsHoliday(value);
+        }
+
         Weekday sat = Weekday.SATURDAY;
         for (Weekday day : Weekday.values()) {
             System.out.print(day.compareTo(sat) + " ");
@@ -14,7 +18,5 @@ public class Main {
                 System.out.println("等于sat");
             }
         }
-
-        Weekday.print(Weekday.SATURDAY);
     }
 }

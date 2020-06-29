@@ -21,7 +21,7 @@ public enum Weekday {
         return name;
     }
 
-    public static void print(Weekday weekday) {
+    public static void printIsHoliday(Weekday weekday) {
         if (isHoliday(weekday)) {
             System.out.println(weekday.toString() + "是假日");
         } else {
