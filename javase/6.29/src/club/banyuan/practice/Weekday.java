@@ -32,7 +32,7 @@ public enum Weekday {
     public static boolean isWeekDay(Weekday weekday) {
         Weekday[] values = values();
         for (Weekday value : values) {
-            if (!weekday.equals(SATURDAY) && !weekday.equals(SUNDAY)) {
+            if (!weekday.name.equals(SATURDAY.name) && !weekday.name.equals(SUNDAY.name)) {
                 return true;
             }
         }
