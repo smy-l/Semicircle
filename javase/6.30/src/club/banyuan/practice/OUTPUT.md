@@ -12,6 +12,10 @@ class Main {
 }
 ```
 
+```
+编译报错，应该为错误类型，不是基本类型
+```
+
 #### 2.
 ```
 class Test extends Exception { }
@@ -30,6 +34,11 @@ class Main {
   }
 }
 ```
+```
+Got the Test Exception
+Inside finally block 
+```
+
 #### 3.
 ```
 class Main {
@@ -40,6 +49,10 @@ class Main {
   }
 }
 ```
+```
+运行报错，分母不能为零
+```
+
 #### 4.
 ```
 class Base extends Exception {}
