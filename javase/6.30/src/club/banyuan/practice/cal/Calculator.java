@@ -96,6 +96,13 @@ public class Calculator {
                     }
                 }
 
+                //非数字，其他输入，其他输入: IllegalInputException: "Illegal Argument"
+                //数字1, 其他输入, 非数字: IllegalInputException: "Illegal Argument"
+                if (!isInt(tokens[0]) || !isInt(tokens[2])) {
+                    throw new IllegalInputException("Illegal Argument");
+                }
+
+
 //                //数字1, "+", 数字2: 返回两个数字的和
 //                if ("+".equals(tokens[1])) {
 //                    if (isInt(tokens[0]) && isInt(tokens[2])) {
@@ -129,11 +136,7 @@ public class Calculator {
 //                    return num1 / num2;
 //                }
 
-                //非数字，其他输入，其他输入: IllegalInputException: "Illegal Argument"
-                //数字1, 其他输入, 非数字: IllegalInputException: "Illegal Argument"
-                if (!isInt(tokens[0]) || !isInt(tokens[2])) {
-                    throw new IllegalInputException("Illegal Argument");
-                }
+
 
 //                if (isInt(tokens[0]) && !isInt(tokens[2])) {
 //                    throw new IllegalInputException("Illegal Argument");
