@@ -74,6 +74,10 @@ public class Main {
   }
 } 
 ```
+```
+编译报错，子类的异常包含在父类当中，删除或将其提前
+```
+
 #### 5.
 ```
 class Test
@@ -100,6 +104,12 @@ class Test
     }
 }
 ```
+```
+a = 0;
+Divide by zero error
+inside the finally block
+```
+
 #### 6.
 ```
 class Test
@@ -127,22 +137,26 @@ class Test
     }
 }
 ```
+```
+不会出现数组下标越界的错误
+```
+
 #### 7.
 ```
 class Test
 {
-    String str = "a";
+    String str = "a";   // 1
  
     void A()
     {
         try
         {
-            str +="b";
+            str +="b";   // 2
             B();
         }
-        catch (Exception e)
+        catch (Exception e)  //7
         {
-            str += "c";
+            str += "c";   //8
         }
     }
  
@@ -150,16 +164,16 @@ class Test
     {
         try
         {
-            str += "d";
+            str += "d";   //3
             C();
         }
         catch(Exception e)
         {
-            throw new Exception();
+            throw new Exception();  //6
         }
         finally
         {
-            str += "e";
+            str += "e";   //5
         }
  
         str += "f";
@@ -168,12 +182,12 @@ class Test
      
     void C() throws Exception
     {
-        throw new Exception();
+        throw new Exception();   //4
     }
  
     void display()
     {
-        System.out.println(str);
+        System.out.println(str);  //9
     }
  
     public static void main(String[] args)
@@ -186,6 +200,10 @@ class Test
 }
 
 ```
+```
+abdec
+```
+
 #### 8.
 ```
 class Test
@@ -195,29 +213,29 @@ class Test
     {
         try
         {
-            count++;
+            count++;   // 1
              
             try
             {
-                count++;
+                count++;  // 2
  
                 try
                 {
-                    count++;
+                    count++;  // 3
                     throw new Exception();
  
                 }
                  
                 catch(Exception ex)
                 {
-                    count++;
-                    throw new Exception();
+                    count++;  // 4
+                    throw new Exception();  // 5
                 }
             }
              
             catch(Exception ex)
             {
-                count++;
+                count++;  / 6
             }
         }
          
@@ -230,7 +248,7 @@ class Test
  
     void display()
     {
-        System.out.println(count);
+        System.out.println(count);  // 7
     }
  
     public static void main(String[] args) throws Exception
@@ -240,6 +258,10 @@ class Test
         obj.display();
     }
 }
+```
+
+```
+5
 ```
 
 #### 9.方法返回值是
@@ -266,6 +288,10 @@ public int myMethod(){
 
 }
 ```
+```
+3
+```
+
 #### 10.
 
 ```
@@ -291,6 +317,10 @@ public int myMethod(){
     } 
 
 ```
+```
+IOException called!!!
+```
+
 #### 11.
 
 ```
@@ -310,6 +340,10 @@ try {
     } 
 ```
 
+```
+IOException called!!!
+```
+
 #### 12.
 ```
 public class Test {
@@ -318,26 +352,30 @@ public class Test {
  
     public static void main(String[] args) {
         test(1);
-        result += "*";
+        result += "*";  // 5
         test(0);
         System.out.println(result);
     }
  
     public static void test(int i) {
-        result += "1";
+        result += "1"; // 1   // 6
         try {
             if (i == 0) {
                 throw new RuntimeException("");
             }
-            result += "2";
+            result += "2";  // 2
         } catch (Exception e) {
-            result += "3";
+            result += "3";  // 7
             return;
         } finally {
-            result += "4";
+            result += "4";  // 3  // 8
         }
-        result += "5";
+        result += "5";  // 4
     }
 }
+```
+
+```
+1245*134
 ```
 
