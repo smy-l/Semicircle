@@ -67,53 +67,82 @@ public class Calculator {
                 // 计算表达式
                 // TODO: complete the cases
 
-                //数字1, "+", 数字2: 返回两个数字的和
-                if ("+".equals(tokens[1])) {
-                    if (isInt(tokens[0]) && isInt(tokens[2])) {
-                        int num1 = Integer.parseInt(tokens[0]);
-                        int num2 = Integer.parseInt(tokens[2]);
+                if(isInt(tokens[0]) && isInt(tokens[2])){
+                    int num1 = Integer.parseInt(tokens[0]);
+                    int num2 = Integer.parseInt(tokens[2]);
+                    //数字1, "+", 数字2: 返回两个数字的和
+                    if("+".equals(tokens[1])){
                         return num1 + num2;
                     }
 
-                }
+                    //数字1, "-", 数字2: 返回两个数字的差
 
-                //数字1, "-", 数字2: 返回两个数字的差
-                if ("-".equals(tokens[1])) {
-                    if (isInt(tokens[0]) && isInt(tokens[2])) {
-                        int num1 = Integer.parseInt(tokens[0]);
-                        int num2 = Integer.parseInt(tokens[2]);
+                    if("-".equals(tokens[1])){
                         return num1 - num2;
                     }
 
+                    if("/".equals(tokens[1])){
+                        //数字1, "/", 0: DivideByZeroException
+                        if(num2 == 0){
+                            throw new DivideByZeroException();
+                        }
+                        //数字1, "/", 非零数字:  返回两个数字的商
+                        return num1 / num2;
+                    }
+
+                    //数字1, 非运算符, 数字2: IllegalInputException: "Illegal Operator"
+                    if(!isOperator(tokens[1])){
+                        throw new IllegalInputException("Illegal Operator");
+                    }
                 }
 
+//                //数字1, "+", 数字2: 返回两个数字的和
+//                if ("+".equals(tokens[1])) {
+//                    if (isInt(tokens[0]) && isInt(tokens[2])) {
+//                        int num1 = Integer.parseInt(tokens[0]);
+//                        int num2 = Integer.parseInt(tokens[2]);
+//                        return num1 + num2;
+//                    }
+//
+//                }
 
-                //数字1, "/", 0: DivideByZeroException
-                if (isInt(tokens[0]) && "/".equals(tokens[1]) && "0".equals(tokens[2])) {
-                    throw new DivideByZeroException();
-                }
+//                //数字1, "-", 数字2: 返回两个数字的差
+//                if ("-".equals(tokens[1])) {
+//                    if (isInt(tokens[0]) && isInt(tokens[2])) {
+//                        int num1 = Integer.parseInt(tokens[0]);
+//                        int num2 = Integer.parseInt(tokens[2]);
+//                        return num1 - num2;
+//                    }
+//
+//                }
 
-                //数字1, "/", 非零数字:  返回两个数字的商
-                if (isInt(tokens[0]) && "/".equals(tokens[1]) && isInt(tokens[2])) {
-                    int num1 = Integer.parseInt(tokens[0]);
-                    int num2 = Integer.parseInt(tokens[2]);
-                    return num1 / num2;
-                }
+
+//                //数字1, "/", 0: DivideByZeroException
+//                if (isInt(tokens[0]) && "/".equals(tokens[1]) && "0".equals(tokens[2])) {
+//                    throw new DivideByZeroException();
+//                }
+//
+//                //数字1, "/", 非零数字:  返回两个数字的商
+//                if (isInt(tokens[0]) && "/".equals(tokens[1]) && isInt(tokens[2])) {
+//                    int num1 = Integer.parseInt(tokens[0]);
+//                    int num2 = Integer.parseInt(tokens[2]);
+//                    return num1 / num2;
+//                }
 
                 //非数字，其他输入，其他输入: IllegalInputException: "Illegal Argument"
-                if (!isInt(tokens[0])) {
-                    throw new IllegalInputException("Illegal Argument");
-                }
-
                 //数字1, 其他输入, 非数字: IllegalInputException: "Illegal Argument"
-                if (isInt(tokens[0]) && !isInt(tokens[2])) {
+                if (!isInt(tokens[0]) || !isInt(tokens[2])) {
                     throw new IllegalInputException("Illegal Argument");
                 }
 
-                //数字1, 非运算符, 数字2: IllegalInputException: "Illegal Operator"
-                if (isInt(tokens[0]) && isInt(tokens[2]) && !isOperator(tokens[1])) {
-                    throw new IllegalInputException("Illegal Operator");
-                }
+//                if (isInt(tokens[0]) && !isInt(tokens[2])) {
+//                    throw new IllegalInputException("Illegal Argument");
+//                }
+
+//                //数字1, 非运算符, 数字2: IllegalInputException: "Illegal Operator"
+//                if (isInt(tokens[0]) && isInt(tokens[2]) && !isOperator(tokens[1])) {
+//                    throw new IllegalInputException("Illegal Operator");
+//                }
 
             default:
                 // 4个或等多操作符号抛出异常
