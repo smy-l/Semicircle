@@ -10,7 +10,7 @@ public enum Weekday {
     SUNDAY("星期天"),
 
     ;
-    private String name;
+    private final String name;
 
     Weekday(String name) {
         this.name = name;
@@ -23,20 +23,14 @@ public enum Weekday {
 
     public static void printIsHoliday(Weekday weekday) {
         if (isHoliday(weekday)) {
-            System.out.println(weekday.toString() + "是假日");
+            System.out.println(weekday + "是假日");
         } else {
-            System.out.println(weekday.toString() + "不是假日");
+            System.out.println(weekday + "不是假日");
         }
     }
 
     public static boolean isWeekDay(Weekday weekday) {
-        Weekday[] values = values();
-        for (Weekday value : values) {
-            if (!weekday.name.equals(SATURDAY.name) && !weekday.name.equals(SUNDAY.name)) {
-                return true;
-            }
-        }
-        return false;
+        return weekday.ordinal() <= Weekday.FRIDAY.ordinal();
     }
 
     public static boolean isHoliday(Weekday weekday) {
