@@ -39,13 +39,15 @@ public class Calculator {
             case 0:
                 // TODO: complete the cases
                 throw new IllegalInputException("Illegal Token Length");
+
             case 1:
                 // 只有一种情况，用户输入 quit
                 // TODO: complete the cases
                 if ("quit".equalsIgnoreCase(tokens[0])) {
-                    throw new QuitException();
+                    throw new QuitException("Quitting\n" + "Thanks!");
                 }
                 throw new IllegalInputException("Illegal Argument");
+
             case 2:
                 // 只有一种情况，用户输入 负数
                 // TODO: complete the cases
@@ -73,15 +75,19 @@ public class Calculator {
                     }
 
                     //数字1, "-", 数字2: 返回两个数字的差
-
                     if ("-".equals(tokens[1])) {
                         return num1 - num2;
+                    }
+
+                    //数字1, "*", 数字2: 返回两个数字的积
+                    if ("*".equals(tokens[1])) {
+                        return num1 * num2;
                     }
 
                     if ("/".equals(tokens[1])) {
                         //数字1, "/", 0: DivideByZeroException
                         if (num2 == 0) {
-                            throw new DivideByZeroException();
+                            throw new DivideByZeroException("Tried to divide by zero");
                         }
                         //数字1, "/", 非零数字:  返回两个数字的商
                         return num1 / num2;
@@ -98,7 +104,6 @@ public class Calculator {
                 if (!isInt(tokens[0]) || !isInt(tokens[2])) {
                     throw new IllegalInputException("Illegal Argument");
                 }
-
 
 //                //数字1, "+", 数字2: 返回两个数字的和
 //                if ("+".equals(tokens[1])) {
@@ -184,7 +189,7 @@ public class Calculator {
 
         } catch (QuitException e) {
             // TODO: complete implementation.
-            System.out.println("Quitting\n" + "Thanks!");
+            System.out.println(e.getMessage());
             return true;
 
         } catch (IllegalInputException e) {
@@ -194,15 +199,14 @@ public class Calculator {
         } catch (CalculatorException e) {
             // 这捕获了剩下的CalculatorException情况：DivideByZeroException
             // TODO: complete implementation.
-            System.out.println("Tried to divide by zero");
+            System.out.println(e.getMessage());
 
         } finally {
+            // TODO: complete implementation.
             if (!"quit".equalsIgnoreCase(tokens[0])) {
                 System.out.println("Input was :" + input);
             }
         }
-
-        // TODO: complete implementation.
 
         // 未指定退出
         return false;
