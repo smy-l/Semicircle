@@ -1,8 +1,5 @@
 package club.banyuan.practice.cal;
 
-import club.banyuan.practice.cal.CalculatorException;
-import club.banyuan.practice.cal.IllegalInputException;
-
 /**
  * Calculator类提供了用于解析包含简单表达式的输入字符串以及计算表达式结果的功能。
  */
@@ -36,7 +33,7 @@ public class Calculator {
      * @return 计算表达式的结果
      * @throws CalculatorException 如果用户输入不合法，或者已键入“ quit”。抛出CalculatorException 的几个子类之一，以便提供有关错误原因的更多信息.
      */
-    public static int compute(String[] tokens) throws CalculatorException, IllegalInputException, DivideByZeroException, QuitException {
+    public static int compute(String[] tokens) throws CalculatorException, IllegalInputException {
         // 不同符号数量的各种情况
         switch (tokens.length) {
             case 0:
@@ -67,23 +64,23 @@ public class Calculator {
                 // 计算表达式
                 // TODO: complete the cases
 
-                if(isInt(tokens[0]) && isInt(tokens[2])){
+                if (isInt(tokens[0]) && isInt(tokens[2])) {
                     int num1 = Integer.parseInt(tokens[0]);
                     int num2 = Integer.parseInt(tokens[2]);
                     //数字1, "+", 数字2: 返回两个数字的和
-                    if("+".equals(tokens[1])){
+                    if ("+".equals(tokens[1])) {
                         return num1 + num2;
                     }
 
                     //数字1, "-", 数字2: 返回两个数字的差
 
-                    if("-".equals(tokens[1])){
+                    if ("-".equals(tokens[1])) {
                         return num1 - num2;
                     }
 
-                    if("/".equals(tokens[1])){
+                    if ("/".equals(tokens[1])) {
                         //数字1, "/", 0: DivideByZeroException
-                        if(num2 == 0){
+                        if (num2 == 0) {
                             throw new DivideByZeroException();
                         }
                         //数字1, "/", 非零数字:  返回两个数字的商
@@ -91,7 +88,7 @@ public class Calculator {
                     }
 
                     //数字1, 非运算符, 数字2: IllegalInputException: "Illegal Operator"
-                    if(!isOperator(tokens[1])){
+                    if (!isOperator(tokens[1])) {
                         throw new IllegalInputException("Illegal Operator");
                     }
                 }
@@ -135,7 +132,6 @@ public class Calculator {
 //                    int num2 = Integer.parseInt(tokens[2]);
 //                    return num1 / num2;
 //                }
-
 
 
 //                if (isInt(tokens[0]) && !isInt(tokens[2])) {
@@ -201,7 +197,7 @@ public class Calculator {
             System.out.println("Tried to divide by zero");
 
         } finally {
-            if(!"quit".equalsIgnoreCase(tokens[0])){
+            if (!"quit".equalsIgnoreCase(tokens[0])) {
                 System.out.println("Input was :" + input);
             }
         }
