@@ -152,7 +152,7 @@ public class Calculator {
         } catch (CalculatorException e) {
             // 这捕获了剩下的CalculatorException情况：DivideByZeroException
             // TODO: complete implementation.
-            if(e instanceof DivideByZeroException) {
+            if (e instanceof DivideByZeroException) {
                 System.out.println(e.getMessage());
             }
 
