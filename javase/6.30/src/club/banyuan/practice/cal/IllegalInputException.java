@@ -1,6 +1,6 @@
 package club.banyuan.practice.cal;
 
-public class IllegalInputException extends Exception{
+public class IllegalInputException extends CalculatorException{
     public IllegalInputException() {
     }
 

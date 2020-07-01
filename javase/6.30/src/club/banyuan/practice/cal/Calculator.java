@@ -33,7 +33,7 @@ public class Calculator {
      * @return 计算表达式的结果
      * @throws CalculatorException 如果用户输入不合法，或者已键入“ quit”。抛出CalculatorException 的几个子类之一，以便提供有关错误原因的更多信息.
      */
-    public static int compute(String[] tokens) throws CalculatorException, IllegalInputException {
+    public static int compute(String[] tokens) throws CalculatorException {
         // 不同符号数量的各种情况
         switch (tokens.length) {
             case 0:
@@ -55,7 +55,7 @@ public class Calculator {
                     throw new IllegalInputException("Illegal Operator");
                 }
 
-                if (!isInt(tokens[1])) {
+                if (!judgmentNum(tokens[1].toCharArray(), 0)) {
                     throw new IllegalInputException("Illegal Argument");
                 }
 
@@ -65,37 +65,33 @@ public class Calculator {
             case 3:
                 // 计算表达式
                 // TODO: complete the cases
-
                 if (isInt(tokens[0]) && isInt(tokens[2])) {
                     int num1 = Integer.parseInt(tokens[0]);
                     int num2 = Integer.parseInt(tokens[2]);
-                    //数字1, "+", 数字2: 返回两个数字的和
-                    if ("+".equals(tokens[1])) {
-                        return num1 + num2;
-                    }
+                    switch (tokens[1]) {
+                        //数字1, "+", 数字2: 返回两个数字的和
+                        case "+":
+                            return num1 + num2;
 
-                    //数字1, "-", 数字2: 返回两个数字的差
-                    if ("-".equals(tokens[1])) {
-                        return num1 - num2;
-                    }
+                        //数字1, "-", 数字2: 返回两个数字的差
+                        case "-":
+                            return num1 - num2;
 
-                    //数字1, "*", 数字2: 返回两个数字的积
-                    if ("*".equals(tokens[1])) {
-                        return num1 * num2;
-                    }
+                        //数字1, "*", 数字2: 返回两个数字的积
+                        case "*":
+                            return num1 * num2;
 
-                    if ("/".equals(tokens[1])) {
-                        //数字1, "/", 0: DivideByZeroException
-                        if (num2 == 0) {
-                            throw new DivideByZeroException("Tried to divide by zero");
-                        }
-                        //数字1, "/", 非零数字:  返回两个数字的商
-                        return num1 / num2;
-                    }
+                        case "/":
+                            //数字1, "/", 0: DivideByZeroException
+                            if (num2 == 0) {
+                                throw new DivideByZeroException("Tried to divide by zero");
+                            }
+                            //数字1, "/", 非零数字:  返回两个数字的商
+                            return num1 / num2;
 
-                    //数字1, 非运算符, 数字2: IllegalInputException: "Illegal Operator"
-                    if (!isOperator(tokens[1])) {
-                        throw new IllegalInputException("Illegal Operator");
+                        default:
+                            //数字1, 非运算符, 数字2: IllegalInputException: "Illegal Operator"
+                            throw new IllegalInputException("Illegal Operator");
                     }
                 }
 
@@ -104,49 +100,6 @@ public class Calculator {
                 if (!isInt(tokens[0]) || !isInt(tokens[2])) {
                     throw new IllegalInputException("Illegal Argument");
                 }
-
-//                //数字1, "+", 数字2: 返回两个数字的和
-//                if ("+".equals(tokens[1])) {
-//                    if (isInt(tokens[0]) && isInt(tokens[2])) {
-//                        int num1 = Integer.parseInt(tokens[0]);
-//                        int num2 = Integer.parseInt(tokens[2]);
-//                        return num1 + num2;
-//                    }
-//
-//                }
-
-//                //数字1, "-", 数字2: 返回两个数字的差
-//                if ("-".equals(tokens[1])) {
-//                    if (isInt(tokens[0]) && isInt(tokens[2])) {
-//                        int num1 = Integer.parseInt(tokens[0]);
-//                        int num2 = Integer.parseInt(tokens[2]);
-//                        return num1 - num2;
-//                    }
-//
-//                }
-
-
-//                //数字1, "/", 0: DivideByZeroException
-//                if (isInt(tokens[0]) && "/".equals(tokens[1]) && "0".equals(tokens[2])) {
-//                    throw new DivideByZeroException();
-//                }
-//
-//                //数字1, "/", 非零数字:  返回两个数字的商
-//                if (isInt(tokens[0]) && "/".equals(tokens[1]) && isInt(tokens[2])) {
-//                    int num1 = Integer.parseInt(tokens[0]);
-//                    int num2 = Integer.parseInt(tokens[2]);
-//                    return num1 / num2;
-//                }
-
-
-//                if (isInt(tokens[0]) && !isInt(tokens[2])) {
-//                    throw new IllegalInputException("Illegal Argument");
-//                }
-
-//                //数字1, 非运算符, 数字2: IllegalInputException: "Illegal Operator"
-//                if (isInt(tokens[0]) && isInt(tokens[2]) && !isOperator(tokens[1])) {
-//                    throw new IllegalInputException("Illegal Operator");
-//                }
 
             default:
                 // 4个或等多操作符号抛出异常
@@ -199,11 +152,13 @@ public class Calculator {
         } catch (CalculatorException e) {
             // 这捕获了剩下的CalculatorException情况：DivideByZeroException
             // TODO: complete implementation.
-            System.out.println(e.getMessage());
+            if(e instanceof DivideByZeroException) {
+                System.out.println(e.getMessage());
+            }
 
         } finally {
             // TODO: complete implementation.
-            if (!"quit".equalsIgnoreCase(tokens[0])) {
+            if (tokens.length > 0 && !"quit".equalsIgnoreCase(tokens[0])) {
                 System.out.println("Input was :" + input);
             }
         }
@@ -214,16 +169,20 @@ public class Calculator {
 
     public static boolean isInt(String input) {
         char[] chars = input.toCharArray();
-        for (char one : chars) {
-            if (one < '0' || one > '9') {
+        if ('-' == chars[0]) {
+            return judgmentNum(chars, 1);
+        } else {
+            return judgmentNum(chars, 0);
+        }
+    }
+
+    private static boolean judgmentNum(char[] chars, int i) {
+        for (; i < chars.length; i++) {
+            if (chars[i] < '0' || chars[i] > '9') {
                 return false;
             }
         }
         return true;
-    }
-
-    public static boolean isOperator(String input) {
-        return "+".equals(input) || "-".equals(input) || "/".equals(input);
     }
 
 }
