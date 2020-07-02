@@ -1,7 +1,5 @@
 package club.banyuan.practice.dataSet;
 
-import club.banyuan.practice.dataSet.Measurable;
-
 public class Country implements Measurable {
 
   private int population;

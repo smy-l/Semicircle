@@ -1,6 +1,6 @@
 package club.banyuan.practice.dataSet;
 
-public interface Measurable {
+public interface Measurable<T> {
 
   double getMeasure();
 }

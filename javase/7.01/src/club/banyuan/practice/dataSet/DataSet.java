@@ -1,8 +1,5 @@
 package club.banyuan.practice.dataSet;
 
-import club.banyuan.practice.dataSet.Measurable;
-import club.banyuan.practice.dataSet.Measurer;
-
 public class DataSet<T> {
 
   private double sum;
@@ -36,9 +33,9 @@ public class DataSet<T> {
     count++;
   }
 
-  private void add(Measurable measurable) {
+  private void add(Measurable<T> measurable) {
     sum = sum + measurable.getMeasure();
-    if (count == 0 || ((Measurable) maximum).getMeasure() < measurable.getMeasure()) {
+    if (count == 0 || ((Measurable<T>) maximum).getMeasure() < measurable.getMeasure()) {
       maximum = (T)measurable;
     }
     count++;

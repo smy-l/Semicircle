@@ -18,7 +18,7 @@ dist下的main.jar 中缺少了club/banyuan/animal/Dog.class和META-INF/MANIFEST
 
    1. jar cf Dog.jar -C src club/banyuan/animal/Dog.class 
    2. 在dist同级目录下创建lib文件夹，将Dog.jar移动到里面
-   3. java -cp dist/main.jar:lib/Dog.jar club.banyuan.Main
+   3. java -cp dist/main.jar:lib/Dog.jar practice6_25.club.banyuan.Main
 
    
 
@@ -27,7 +27,7 @@ dist下的main.jar 中缺少了club/banyuan/animal/Dog.class和META-INF/MANIFEST
    运行步骤：
 
    1. jar uf dist/main.jar -C src club/banyuan/animal/Dog.class
-   2. java -cp dist/main.jar club.banyuan.Main
+   2. java -cp dist/main.jar practice6_25.club.banyuan.Main
 
    
 
