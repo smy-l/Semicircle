@@ -28,14 +28,13 @@ public class WordExample {
         int count = 1;
         Map<String, Integer> likes = new HashMap<>();
         String[] tokens = words.split(" ");
-//            String[] tokens = {"And","And","And"};
+
         for (int i = 0; i < tokens.length; i++) {
             tokens[i] = tokens[i].replace(",","");
             tokens[i] = tokens[i].replace(".","");
             tokens[i] = tokens[i].replace("?","");
             tokens[i] = tokens[i].replace(":","");
             tokens[i] = tokens[i].replace("\n","");
-//            System.out.println(tokens[i]);
 
             if (likes.containsKey(tokens[i])) {
                 int num = likes.get(tokens[i]);
