@@ -1,4 +1,4 @@
-//package practice6_29.club.banyuan.practice.pairs;
+//package practice6_29.practice7_01.club.banyuan.practice.pairs;
 //
 //public class Pairs<K, V> implements Iterable<Pair<K, V>> {
 //

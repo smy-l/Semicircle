@@ -1,4 +1,4 @@
-package club.banyuan.practice.points;
+package practice7_01.club.banyuan.practice.points;
 
 import java.util.LinkedList;
 import java.util.List;

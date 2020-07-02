@@ -1,4 +1,4 @@
-//package practice6_29.club.banyuan.practice.pairs;
+//package practice6_29.practice7_01.club.banyuan.practice.pairs;
 //
 ///**
 // * 该代码说明了Pairs类的用法。

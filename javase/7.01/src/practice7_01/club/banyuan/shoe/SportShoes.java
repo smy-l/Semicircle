@@ -1,4 +1,4 @@
-package club.banyuan.shoe;
+package practice7_01.club.banyuan.shoe;
 
 public class SportShoes extends Shoe {
 

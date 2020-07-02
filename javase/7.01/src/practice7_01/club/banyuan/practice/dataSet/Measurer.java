@@ -1,4 +1,4 @@
-package club.banyuan.practice.dataSet;
+package practice7_01.club.banyuan.practice.dataSet;
 
 public interface Measurer<T> {
 

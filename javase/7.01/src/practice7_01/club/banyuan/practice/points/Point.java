@@ -1,4 +1,4 @@
-package club.banyuan.practice.points;
+package practice7_01.club.banyuan.practice.points;
 
 public class Point {
 

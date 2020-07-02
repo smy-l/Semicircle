@@ -1,4 +1,4 @@
-package club.banyuan.practice;
+package practice6_29.club.banyuan.practice;
 
 public class Main {
     public static void main(String[] args) {

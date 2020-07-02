@@ -1,4 +1,4 @@
-package club.banyuan.practice.pairs;
+package practice7_01.club.banyuan.practice.pairs;
 
 public class ObjectPairDriver {
 

@@ -1,4 +1,4 @@
-package club.banyuan;
+package practice7_01.club.banyuan;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package club.banyuan.practice;
+package practice6_29.club.banyuan.practice;
 
 public enum Weekday {
     MONDAY("星期一"),

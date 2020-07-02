@@ -1,4 +1,4 @@
-package club.banyuan.practice.team;
+package practice7_01.club.banyuan.practice.team;
 
 import java.util.Objects;
 
