@@ -27,20 +27,14 @@ public class WordExample {
     public static void main(String[] args) {
         int count = 1;
         Map<String, Integer> likes = new HashMap<>();
-        String[] tokens = words.split(" ");
+        String[] tokens = words.split("[ ,.?:]");
 
-        for (int i = 0; i < tokens.length; i++) {
-            tokens[i] = tokens[i].replace(",","");
-            tokens[i] = tokens[i].replace(".","");
-            tokens[i] = tokens[i].replace("?","");
-            tokens[i] = tokens[i].replace(":","");
-            tokens[i] = tokens[i].replace("\n","");
-
-            if (likes.containsKey(tokens[i])) {
-                int num = likes.get(tokens[i]);
-                likes.replace(tokens[i], num, num + 1);
+        for (String token : tokens) {
+            if (likes.containsKey(token)) {
+                int num = likes.get(token);
+                likes.replace(token, num, num + 1);
             } else {
-                likes.put(tokens[i], count);
+                likes.put(token, count);
             }
         }
         System.out.println(likes);
