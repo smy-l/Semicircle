@@ -3,7 +3,7 @@
 class Main {
    public static void main(String args[]) {
       try {
-         throw 10;
+         throw 10;    // 编译报错，必须爆出Throwable的子类
       }
       catch(int e) {
          System.out.println("Got the  Exception " + e);
@@ -138,7 +138,7 @@ class Test
 }
 ```
 ```
-不会出现数组下标越界的错误
+要把子类放到父类上面
 ```
 
 #### 7.
@@ -299,7 +299,7 @@ public int myMethod(){
 
       File file = new File("filename.txt");
 
-      Scanner sc = new Scanner(file);
+      Scanner sc = new Scanner(file); // 抛出异常
 
       throw new IOException();
     }
@@ -318,7 +318,7 @@ public int myMethod(){
 
 ```
 ```
-IOException called!!!
+FileNotFoundException called!!!
 ```
 
 #### 11.
@@ -328,7 +328,7 @@ try {
 
       File file = new File("filename.txt");
 
-      Scanner sc = new Scanner(file);
+      Scanner sc = new Scanner(file); // 抛出异常
 
       throw new IOException();
     }

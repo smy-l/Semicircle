@@ -1,5 +1,7 @@
 package practice7_01.club.banyuan.practice.points;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Iterator;
@@ -12,13 +14,17 @@ public class PointUtils {
     public static Point highestPoint(List<Point> points) {
         Iterator<Point> pointIterator = points.iterator();
         // TODO 使用迭代器完成此方法!
-        Point max = points.get(0);
+        Point point = null;
+        int maxY = Integer.MIN_VALUE;
         Iterator<Point> iterator = points.iterator();
         while (iterator.hasNext()) {
-            if (max.getY() < iterator.next().getY())
-                max = iterator.next();
+            Point next = iterator.next();
+            if (next.getY()  > maxY) {
+                maxY = next.getY();
+                point = next;
+            }
         }
-        return max;
+        return point;
     }
 
     /**
@@ -28,7 +34,7 @@ public class PointUtils {
         Iterator<Point> pointIterator = points.iterator();
         // TODO 使用迭代器完成此方法!
         Point average = new Point(0, 0);
-        int count = 0;
+        int count = 1;
         int sumX = 0;
         int sumY = 0;
         Iterator<Point> iterator = points.iterator();
