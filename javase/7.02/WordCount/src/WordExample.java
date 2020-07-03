@@ -25,18 +25,22 @@ public class WordExample {
 
 
     public static void main(String[] args) {
-        int count = 1;
-        Map<String, Integer> likes = new HashMap<>();
+        Map<String, Integer> wordCount = new HashMap<>();
         String[] tokens = words.split("[ ,.?:]");
-
+        int count = 0;
         for (String token : tokens) {
-            if (likes.containsKey(token)) {
-                int num = likes.get(token);
-                likes.replace(token, num, num + 1);
-            } else {
-                likes.put(token, count);
+            if (token.length() == 0) {
+                continue;
             }
+            Integer countOne = wordCount.getOrDefault(token, 0) + 1;
+            wordCount.put(token,countOne);
+            count++;
         }
-        System.out.println(likes);
+        System.out.println(wordCount);
+        for (Integer value : wordCount.values()) {
+            count -= value;
+        }
+        System.out.println(count);
+
     }
 }

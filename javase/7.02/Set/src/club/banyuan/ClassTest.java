@@ -9,20 +9,20 @@ public class ClassTest {
 
     public static void main(String[] args) {
         ClassTest class1 = new ClassTest();
-        Set<Student> test1 = new LinkedHashSet<>();
-        test1.add(new Student(1, "张三", 11));
-        test1.add(new Student(3, "赵六", 13));
-        test1.add(new Student(2, "王五", 12));
-        test1.add(new Student(4, "张三", 14));
+//        Set<Student> test1 = new LinkedHashSet<>();
+        class1.addStu(new Student(1, "张三", 11));
+        class1.addStu(new Student(3, "赵六", 13));
+        class1.addStu(new Student(2, "王五", 12));
+        class1.addStu(new Student(4, "张三", 14));
 
-        class1.addMoreInformation(test1);
+//        class1.addMoreInformation(class1);
         printStudent(class1.studentSet);
 
         System.out.println("===========");
-        printStudent(sortAge(class1.studentSet));
+        printStudent(class1.sortAge());
 
         System.out.println("===========");
-        printStudent(sortId(class1.studentSet));
+        printStudent(class1.sortId());
     }
 
     public void addMessage() {
@@ -48,6 +48,9 @@ public class ClassTest {
     public void addMoreInformation(Set<Student> students) {
         studentSet.addAll(students);
     }
+    public void addStu(Student s1){
+        studentSet.add(s1);
+    }
 
 
     public static void printStudent(Set<Student> studentSet) {
@@ -61,16 +64,16 @@ public class ClassTest {
         }
     }
 
-    public static List<Student> sortId(Set<Student> studentSet) {
-        Set<Student> tempStudent = new TreeSet<>(Comparator.comparingInt(Student::getId));
-        tempStudent.addAll(studentSet);
-        return new ArrayList<>(tempStudent);
+    public  List<Student> sortAge() {
+        Set<Student> sortByAgeDsc = new TreeSet<>((o1, o2) -> o2.getAge() - o1.getAge());
+        sortByAgeDsc.addAll(studentSet);
+        return new ArrayList<>(sortByAgeDsc);
     }
 
-    public static List<Student> sortAge(Set<Student> studentSet) {
-        Set<Student> tempStudents = new TreeSet<>((o1, o2) -> o2.getAge() - o1.getAge());
-        tempStudents.addAll(studentSet);
-        return new ArrayList<>(tempStudents);
+    public List<Student> sortId() {
+        Set<Student> sortByIdAsc = new TreeSet<>(Comparator.comparingInt(Student::getId));
+        sortByIdAsc.addAll(studentSet);
+        return new ArrayList<>(sortByIdAsc);
     }
 
 }
