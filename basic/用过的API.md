@@ -50,5 +50,6 @@ Iterator<Integer> iterator = list.iterator();
 
 ```
 取A和B交集
+返回boolean值,有内容变化返回true，
 ```
 
