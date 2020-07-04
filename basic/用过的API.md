@@ -53,3 +53,10 @@ Iterator<Integer> iterator = list.iterator();
 返回boolean值,有内容变化返回true，
 ```
 
+1. Math.max
+2. Math.min
+3. Math.abs
+4. Math.ceil(向上取整)
+5. Math.floor(向下取整)
+6. Math.round(四舍五入)
+7. Math.random(取随机数)
