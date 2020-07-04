@@ -13,21 +13,25 @@ git push | command + shift + K
 开始新的一行 | shift + enter(return)
 删除到当前单词首 | option + delete
 删除到当前单词尾 | fn + option + delete
+ | 
 代码来回切换 | shift + option + "[" / "]"
+标签页来回切换 | command + shift + "[" / "]"
+切换到光标上/下个位置  | command + alt + <- / ->
 光标移动到行首/尾 | command + <-/->
+ | 
 批量替换 | (选中后)command + R
+批量重新命名 | fn + shift + F6 
+ |  
 代码上下移动 | command + shift + 上下键
 提示如何修改 |   option + enter(return)
 快速建立get/set |command + N
 快速起名  | command + alt + v
-重新命名 ｜ fn + shift + F6
-创建方法  | option + enter
-快速到出现问题到地方 | shift + F2
-选中当前单词 | control + W
-回到上个方法中  | command + alt + <-
-快速切换到单词的首尾 | alt + <-/->
-快速生成一些语句，如`if/else` `try/catch`等 | command + alt + T
-
+ |  
+显示解决方法 | option + enter 
+快速到出现问题到地方 | shift + F2 
+选中当前单词 | control + W 
+快速切换到单词的首尾 | alt + <-/-> 
+快速生成一些语句，如`if/else` `try/catch`等 | command + alt + T 
 
 ### 使用技巧
 ```
