@@ -12,7 +12,7 @@ Hello from thread 50
 Hello from thread 49
 Hello from thread 48
 Hello from thread 47
-... 省略
+... 省略 
 Hello from thread 2
 Hello from thread 1
 ```

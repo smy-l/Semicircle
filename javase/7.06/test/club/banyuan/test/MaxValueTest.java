@@ -12,7 +12,7 @@ public class MaxValueTest {
 
     private double sequentialMax(int[] arr) {
         double max = Double.NEGATIVE_INFINITY;
-        for (int i=0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             double sinValue = Math.sin(arr[i]);
             if (sinValue > max) {
                 max = sinValue;
@@ -35,7 +35,7 @@ public class MaxValueTest {
         int numWarmups = 3;
         long seqTime = 0;
         double seqMax = 0;
-        for (int i=0; i < numWarmups; i++) {
+        for (int i = 0; i < numWarmups; i++) {
             timeBefore = System.currentTimeMillis();
             seqMax = sequentialMax(arr);
             seqTime = System.currentTimeMillis() - timeBefore;
@@ -46,7 +46,7 @@ public class MaxValueTest {
         int numThreads = Runtime.getRuntime().availableProcessors();
         System.out.println("Number of threads: " + numThreads);
 
-        for (int i=0; i < numWarmups; i++) {
+        for (int i = 0; i < numWarmups; i++) {
             timeBefore = System.currentTimeMillis();
             parallelMax = MaxMultithreaded.max(arr, numThreads);
             parallelTime = System.currentTimeMillis() - timeBefore;
@@ -57,9 +57,9 @@ public class MaxValueTest {
 
         System.out.println("Sequential time = " + seqTime);
         System.out.println("Parallel time = " + parallelTime);
-        double speedup = ((double)seqTime)/parallelTime;
+        double speedup = ((double) seqTime) / parallelTime;
         System.out.println("Speedup = " + speedup);
-        assertTrue(parallelTime <= seqTime / ((2./3)*numThreads));
+        assertTrue(parallelTime <= seqTime / ((2. / 3) * numThreads));
         assertEquals(parallelMax, seqMax, 1e-9);
     }
 }

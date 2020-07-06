@@ -12,7 +12,7 @@ public class SumThreadTest {
 
     private double sequentialTotal(int[] arr) {
         double sum = 0;
-        for (int i=0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             sum += Math.sin((arr[i]));
         }
         return sum;
@@ -29,7 +29,7 @@ public class SumThreadTest {
         long timeBefore = 0;
         long seqTime = 0;
         double seqSum = 0;
-        for (int i=0; i < numWarmups; i++) {
+        for (int i = 0; i < numWarmups; i++) {
             timeBefore = System.currentTimeMillis();
             seqSum = sequentialTotal(arr);
             seqTime = System.currentTimeMillis() - timeBefore;
@@ -41,7 +41,7 @@ public class SumThreadTest {
         int numThreads = Runtime.getRuntime().availableProcessors();
         System.out.println("Number of threads: " + numThreads);
 
-        for (int i=0; i < numWarmups; i++) {
+        for (int i = 0; i < numWarmups; i++) {
             timeBefore = System.currentTimeMillis();
             parallelSum = SumMultithreaded.sum(arr, numThreads);
             parallelTime = System.currentTimeMillis() - timeBefore;
@@ -52,9 +52,9 @@ public class SumThreadTest {
 
         System.out.println("Sequential time = " + seqTime);
         System.out.println("Parallel time = " + parallelTime);
-        double speedup = ((double)seqTime)/parallelTime;
+        double speedup = ((double) seqTime) / parallelTime;
         System.out.println("Speedup = " + speedup);
-        assertTrue(parallelTime <= seqTime / ((2./3)*numThreads));
+        assertTrue(parallelTime <= seqTime / ((2. / 3) * numThreads));
         assertEquals(parallelSum, seqSum, 1);
     }
 }

@@ -46,7 +46,7 @@ public class MaxMultithreaded {
             ms[i].start();
         }
 
-        // 等待线程完成并计算它们的结果。
+        // 等待线程完成并得出结果。
         for (int i = 0; i < numThreads; i++) {
             ms[i].join();
             double tempMax = ms[i].getMax();
