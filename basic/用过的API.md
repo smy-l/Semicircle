@@ -13,7 +13,21 @@ Math.round (四舍五入)
 Math.random (取随机数)
 ```
 
-## 2. String
+## 2. System.
+
+### arraycopy
+
+```
+System.arraycopy(原数组, 起始位置, 要复制到的数组, 起始位置, 复制几个);
+```
+
+### currentTimeMillis();
+
+```
+System.currentTimeMillis(); //获取当前时间到1970年1月1日的毫秒值，返回Long类型的数字。
+```
+
+## 3. String
 
 ### toStirng
 
@@ -37,6 +51,14 @@ Arrays.toString(数组名)
 ```
 查看对象是否包含变量，返回boolean值，包含为true，否则为false
 ```
+
+### A.ToCharArray()
+
+```
+将A字符串转换成char数组
+```
+
+
 
 ## 3. 集合(Set)
 
@@ -87,14 +109,156 @@ elem为集合A的一个类型的变量，如果A中包含elem，则返回true
 不会改变A中的元素
 ```
 
-## Iterator
+### forEach();
+
+```
+
+```
+
+
+
+### Iterator
 
 ```
 //接口通用的遍历方式
 Iterator<Integer> iterator = list.iterator();
 
  while (iterator.hasNext()) {
-      System.out.println(iterator.next());
+ //一定要调用一次iterator.next();
+      System.out.println(iterator.next());  //打印
  }
+ 
+ //使用for循环的方式删除set元素，会出现问题
+ //删除元素
+ iterator.next().remove();
+```
+
+
+
+## 4. Map
+
+### A.entrySet
+
+```
+返回的是一个set
+有getKey();和getValue();
+```
+
+### A.keySet
+
+```
+返回的是一个set
+拿到保存的所有的key
+```
+
+### A.values
+
+```
+返回的是Collection
+拿到的是value的集合
+```
+
+## 5. Thread(多线程)
+
+```
+// Thread.currentThread()  返回的是一个main(进程)
+// 静态
+// 以下代码中Thread.currentThread()可以替换为一个Thread类的实例对象
+```
+
+### getName()
+
+```
+// 获取名字
+Thread.currentThread().getName();
+```
+
+### getPriority()
+
+```
+// 设置/获取优先级（优先级最小为1，最大为10）
+Thread.currentThread().getPriority();
+```
+
+### getId()
+
+```
+// 获取id
+Thread.currentThread().getId();
+```
+
+### isAlive()
+
+```
+// 是否存活
+Thread.currentThread().isAlive();
+```
+
+### isDeamon()
+
+```
+// 判断进程是否为守护线程
+Thread.currentThread().isDeamon();
+```
+
+### isInterrupted()
+
+```
+// 是否中断
+Thread.currentThread().isInterrupted();
+```
+
+### 对象.join()
+
+```
+// 使得main进程暂停，先将之前进程运行结束，再去执行之后其他进程
+thread.join(); // thread是Thread的实例化对象
+// 需要捕获异常try/catch
+```
+
+```
+try{
+	thread.join();
+}catch(){
+
+}
+```
+
+### 对象.setPriority()
+
+```
+设置优先级
+```
+
+## Thread的静态API
+
+### Thread.sleep(millis); （用的比较多）
+
+```
+Thread.sleep(millis); // millis休眠的毫秒数
+// 需要捕获异常try/catch
+```
+
+```
+try{
+	Thread.sleep(millis);
+}catch(){
+
+}
+```
+
+### Thread.yield();
+
+```
+Thread.yield(); // 通知cpu可以转到其他进程（优先级不低于当前进程）上
+```
+
+## Thread的构造方法
+
+```
+String
+Runnalbe,String // 线程类，线程名称
+()
+Runnable
 ```
 
