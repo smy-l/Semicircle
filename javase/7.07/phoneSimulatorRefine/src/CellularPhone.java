@@ -5,7 +5,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class CellularPhone extends Thread {
 
-    private volatile boolean displayProgress = false;
     private volatile boolean callInProgress = false;
     private volatile boolean keepGoing = true;
     private List<String> message = new ArrayList<>();
@@ -32,7 +31,7 @@ public class CellularPhone extends Thread {
      * @returns 如果调用被接受，则为true
      */
     public boolean startCall(String name, String callDisplayMessage) {
-        if (callInProgress | displayProgress) {
+        if (callInProgress) {
             return false;
         }
         lock.lock();
@@ -70,11 +69,14 @@ public class CellularPhone extends Thread {
     /**
      * 运行模拟器
      */
-    public void run() {
+    synchronized public void run() {
         // 循环直到stopPhone被调用
         while (keepGoing) {
             // 如果没有电话
             if (!callInProgress) {
+                if (message.size() != 0) {
+                    displayMessages();
+                }
                 displayWaiting();
                 // 假装手机在做别的事情
                 try {
@@ -87,16 +89,15 @@ public class CellularPhone extends Thread {
     }
 
     public void addMessage(String str) {
-        lock.lock();
         this.message.add(str);
-        lock.unlock();
     }
 
     private void displayMessages() {
-        displayProgress = true;
+        lock.lock();
         for (String str : message) {
             System.out.println(str);
         }
         message.clear();
+        lock.unlock();
     }
 }
