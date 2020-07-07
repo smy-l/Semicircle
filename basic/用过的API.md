@@ -230,6 +230,57 @@ try{
 设置优先级
 ```
 
+### synchronized(成员属性名)
+
+```
+// 同步代码块
+// 对代码进行加锁
+synchronized(成员属性名){
+	// 成员属性名一定都是相同的对象（相同类创建的同一个对象 或者 静态对象）
+	// do something
+}
+```
+
+注：// do something代码块成为***临界区***
+
+### 等待 wait();
+
+```
+wait();
+// 可以使用 this.wait();
+// 需要使用try/catch捕获异常
+```
+
+### 通知 
+
+```
+notify();   // 把一个等待的线程唤醒
+notifyAll(); // 把全部等待的线程唤醒
+// 可以使用 this.wait();
+// 通知所有线程启动
+```
+
+### Lock
+
+```
+private Lock lock = new ReentrantLock(); //创建锁
+private Condition prodCondition = lock.newCondition(); // 解锁的必须步骤
+private Condition consumeCondition = lock.newCondition(); // 解锁的必须步骤
+
+lock.lock(); // 加锁
+lock.unlock(); // 解锁，可以使用try/catch/finally，将其添加在finally代码块里
+lock.trylock(); // 尝试着去拿锁，
+
+//前面的对象名不同，看自己的创建对象
+prodCondition.singalAll(); // 解锁
+
+//wait方式
+consumeCondition.await(); // 等待，后面可以加时间，毫秒或者分钟等
+
+```
+
+**注：在此方法中wait方法也方法改变**
+
 ## Thread的静态API
 
 ### Thread.sleep(millis); （用的比较多）
