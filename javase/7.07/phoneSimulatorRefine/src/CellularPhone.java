@@ -1,5 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -7,7 +8,7 @@ public class CellularPhone extends Thread {
 
     private volatile boolean callInProgress = false;
     private volatile boolean keepGoing = true;
-    private List<String> message = new ArrayList<>();
+    private Set<String> message = new CopyOnWriteArraySet<>();
     private Lock lock = new ReentrantLock();
 
     public CellularPhone(String name) {
@@ -34,6 +35,20 @@ public class CellularPhone extends Thread {
         if (callInProgress) {
             return false;
         }
+
+//        boolean b = false;
+//        try {
+//            b = lock.tryLock(200, TimeUnit.MILLISECONDS);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        if(!b){
+//            return false;
+//        }
+
+//        if (!lock.tryLock()) {
+//            return false;
+//        }
         lock.lock();
         callInProgress = true;
         display("<" + name + ">: Call (" + callDisplayMessage + ") begins");
@@ -69,14 +84,12 @@ public class CellularPhone extends Thread {
     /**
      * 运行模拟器
      */
-    synchronized public void run() {
+    public void run() {
         // 循环直到stopPhone被调用
         while (keepGoing) {
             // 如果没有电话
             if (!callInProgress) {
-                if (message.size() != 0) {
-                    displayMessages();
-                }
+                displayMessages();
                 displayWaiting();
                 // 假装手机在做别的事情
                 try {
@@ -88,16 +101,14 @@ public class CellularPhone extends Thread {
         }
     }
 
-    public void addMessage(String str) {
-        this.message.add(str);
+    synchronized public void addMessage(String str) {
+        message.add(str);
     }
 
-    private void displayMessages() {
-        lock.lock();
+    synchronized private void displayMessages() {
         for (String str : message) {
             System.out.println(str);
         }
         message.clear();
-        lock.unlock();
     }
 }

@@ -10,10 +10,10 @@ public class Driver {
     PhoneCallGenerator pcGen2 = new PhoneCallGenerator("Jerry", aPhone);
     MessageGenerator mGer1 = new MessageGenerator("Mother", aPhone);
     MessageGenerator mGer2 = new MessageGenerator("Father", aPhone);
-    pcGen1.start();
-    pcGen2.start();
     mGer1.start();
     mGer2.start();
+    pcGen1.start();
+    pcGen2.start();
 
     try {
       // 等待，直到所有的电话都结束
