@@ -102,12 +102,24 @@ public class Philosophy implements Callable<String> {
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                if (left.isToken()) {
+                    left.put(this);
+                }
+                if (right.isToken()) {
+                    right.put(this);
+                }
 //                e.printStackTrace();
             }
         }
-        return getName() + "吃饭次数："
-                + getEatTimes() + " 思考次数："
-                + getThinkTimes() + " 饿肚子次数："
-                + getHungryTimes();
+        return this.toString();
+    }
+
+    @Override
+    public String toString() {
+        return getName() + "{" +
+                "eatTimes=" + eatTimes +
+                ", thinkTimes=" + thinkTimes +
+                ", hungryTimes=" + hungryTimes +
+                '}';
     }
 }

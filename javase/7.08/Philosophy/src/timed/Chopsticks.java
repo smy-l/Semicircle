@@ -34,4 +34,8 @@ public class Chopsticks {
             System.out.println(philosophy.getName() + "放下筷子" + code);
         }
     }
+
+    public boolean isToken() {
+        return isToken;
+    }
 }

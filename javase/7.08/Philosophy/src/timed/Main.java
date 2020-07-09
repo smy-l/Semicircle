@@ -29,18 +29,10 @@ public class Main {
             result.add(executorService.submit(philosophies[i]));
         }
 
-        try {
-            Thread.sleep(1000 * 20);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000 * 20);
 
         executorService.shutdownNow();
-        try {
-            executorService.awaitTermination(10, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        executorService.awaitTermination(10, TimeUnit.SECONDS);
 
         for (Future<String> stringFuture : result) {
             System.out.println(stringFuture.get());
