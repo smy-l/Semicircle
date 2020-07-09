@@ -21,11 +21,20 @@ public class Encode {
     String inputFilePath = args[0];
     String outputFilePath = args[1];
 
-    System.out.println("输入文件：" + inputFilePath);
-    System.out.println("输出文件：" + outputFilePath);
     // TODO
     //完成此部分代码，调用 caesarEncode 对传入的inputFilePath文件进行加密
     //将加密后的文本输出到 outputFilePath 文件中
+    int len = outputFilePath.toCharArray().length;
+    char[] chars = new char[len];
+    for (int i = 0; i < len; i++) {
+      char c = caesarEncode(outputFilePath.toCharArray()[i]);
+      chars[i] = c;
+    }
+    outputFilePath = String.valueOf(chars);
+
+
+    System.out.println("输入文件：" + inputFilePath);
+    System.out.println("输出文件：" + outputFilePath);
 
     System.out.println("加密成功！");
   }
