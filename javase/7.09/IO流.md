@@ -24,16 +24,19 @@ file.exists(); // 返回boolean
 File directory = new File("绝对路径");
 
 // 获取文件夹大小(仅仅是文件夹大小，不包含文件夹下所有文件的大小)
-file.length(); // 返回long值
+directory.length(); // 返回long值
 
 // 获取文件夹名字
-file.getName(); // 返回String类型
+directory.getName(); // 返回String类型
 
 // 判断是否是文件夹
-file.isDirectory(); // 返回boolean值
+directory.isDirectory(); // 返回boolean值
 
 // 判断文件夹是否存在
-file.exists(); // 返回boolean
+directory.exists(); // 返回boolean
+
+// 返回directory文件夹下所有文件
+directory.listFile(); // 返回File[]数组
 ```
 
 ### 遍历文件夹下所有文件，返回名称，和`ls`相似
@@ -91,8 +94,6 @@ private static void readFile() {
   }
 ```
 
-### 常用API
-
 ```
 is 为输入流实例对象
 
@@ -113,11 +114,10 @@ is.readAllBytes(); // 返回btye[]数组
    ```
 
 2. ```
-   OutputStream os = new FileOutputSteram(file);
-   // 输入流，即使文件中包含要添加的字段，仍会（换行）添加
+   OutputStream os = new FileOutputSteram(file，true);
+   // 输出流，即使文件中包含要添加的字段，仍会（换行）添加
    ```
 
-   
 
 ```
 String words = "to be or not to be!";

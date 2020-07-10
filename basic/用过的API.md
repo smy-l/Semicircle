@@ -58,6 +58,27 @@ Arrays.toString(数组名)
 将A字符串转换成char数组
 ```
 
+### A.subString(int begin);
+
+```
+// 截取字符串，从begin位置开始截取
+
+A.subString(int begin, int end)
+// 从begin开始到end结束
+```
+
+### A.lastIndexOf(String s);
+
+```
+// 返回最后一次出现s的第一个字符的下标
+```
+
+A.IndexOf(String s);
+
+```
+// 返回第一次出现s的第一个字符的下标
+```
+
 
 
 ## 3. 集合(Set)
