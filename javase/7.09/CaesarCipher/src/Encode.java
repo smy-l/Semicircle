@@ -14,7 +14,7 @@ public class Encode {
   public static final int NUM_CHARS = 26;
   public static final int OFFSET = 3;
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     BufferedReader inStream = null;
     BufferedWriter outStream = null;
 
@@ -24,13 +24,30 @@ public class Encode {
     // TODO
     //完成此部分代码，调用 caesarEncode 对传入的inputFilePath文件进行加密
     //将加密后的文本输出到 outputFilePath 文件中
-    int len = outputFilePath.toCharArray().length;
-    char[] chars = new char[len];
-    for (int i = 0; i < len; i++) {
-      char c = caesarEncode(outputFilePath.toCharArray()[i]);
-      chars[i] = c;
+    try {
+      inStream = new BufferedReader(new FileReader(inputFilePath));
+      outStream = new BufferedWriter(new FileWriter(outputFilePath));
+
+      String line = inStream.readLine();
+      while (line != null) {
+        char[] chars = line.toCharArray();
+        for (char aChar : chars) {
+          outStream.write(caesarEncode(aChar));
+        }
+        outStream.newLine();
+        line = inStream.readLine();
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      if(inStream != null){
+        inStream.close();
+      }
+
+      if(outStream != null){
+        outStream.close();
+      }
     }
-    outputFilePath = String.valueOf(chars);
 
 
     System.out.println("输入文件：" + inputFilePath);
