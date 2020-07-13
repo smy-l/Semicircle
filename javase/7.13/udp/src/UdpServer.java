@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class UdpServer {
 
   public static void main(String[] args) {
+    boolean isClose = false;
     Scanner scanner = new Scanner(System.in);
 
     while (true) {
@@ -24,33 +25,45 @@ public class UdpServer {
         System.out.println(e.getMessage());
       }
 
-
-      try {
-        System.out.println("开始输入");
-        DatagramSocket socket = new DatagramSocket();
-        String input = scanner.nextLine();
-
-        if(input.equals("quit")){
-          return;
+      if(isClose){
+        System.out.println("是否开启输入：true/false");
+        String is = scanner.nextLine();
+        if(is.equals("true")){
+          isClose = false;
         }
-        String[] inputStr = input.split(" ");
-        if (inputStr.length == 3) {
-          if (ipIsCurrent(inputStr[0]) && connectorIsCurrent(inputStr[2])) {
-            byte[] bytes = input.getBytes();
-            DatagramPacket packet = new DatagramPacket(bytes, bytes.length, InetAddress.getByName(inputStr[0]), Integer.parseInt(inputStr[2]));
-            socket.send(packet);
-            socket.close();
+      }
+
+      if (!isClose) {
+        try {
+          System.out.println("开始输入");
+          DatagramSocket socket = new DatagramSocket();
+          String input = scanner.nextLine();
+
+          if (input.equals("quit")) {
+            return;
           }
-        } else {
-          System.out.println("输入不合法!");
+          String[] inputStr = input.split(" ");
+          if (inputStr.length == 3) {
+            if (ipIsCurrent(inputStr[0]) && connectorIsCurrent(inputStr[2])) {
+              byte[] bytes = input.getBytes();
+              DatagramPacket packet = new DatagramPacket(bytes, bytes.length, InetAddress.getByName(inputStr[0]), Integer.parseInt(inputStr[2]));
+              socket.send(packet);
+              socket.close();
+            }
+          } else {
+            System.out.println("输入不合法!");
+          }
+          System.out.println("是否停止输入信息: true/false");
+          String is = scanner.nextLine();
+          if ("true".equals(is)) {
+            isClose = true;
+          }
+        } catch (IOException | IllegalArgumentException e) {
+          System.out.println(e.getMessage());
         }
-      } catch (IOException | IllegalArgumentException e) {
-        System.out.println(e.getMessage());
       }
     }
-
   }
-
 
   private static boolean connectorIsCurrent(String s) {
     int connector = Integer.parseInt(s);
