@@ -76,7 +76,7 @@ class VideoStore {
     return true;
   }
 
-  private Video findVideo(String title) {
+  public Video findVideo(String title) {
     for (Video video : videos) {
       if (video.title.equals(title)) {
         return video;

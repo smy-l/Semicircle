@@ -4,6 +4,11 @@ public class LittleCar extends Car {
   public LittleCar() {
   }
 
+  public LittleCar(String model, int factoryYear, String factory, String code, String maintenanceDate, int seatNum) {
+    super(model, factoryYear, factory, code, maintenanceDate);
+    this.seatNum = seatNum;
+  }
+
   public int getSeatNum() {
     return seatNum;
   }
@@ -23,12 +28,20 @@ public class LittleCar extends Car {
       status = "可用";
     }
 
-    return "-----" + getCode() + "------" +
-            getSeatNum() + "车" +
+    String timeRecord = "尚未出租";
+    for (int i = 0; i < rantRecord.size(); i += 2) {
+      if(rantRecord.size() % 2 != 0){
+        rantRecord.add("尚未归还！");
+      }
+      timeRecord = rantRecord.get(i) + "-" + rantRecord.get(i + 2);
+    }
+
+    return "-----" + getCode() + "------\n" +
+            getSeatNum() + "座车\n" +
             "年份：" + getFactoryYear() +
-            "厂家：" + getFactory() +
-            "状态：" + status +
-            "保养日期：" + getEndMaintainedDate() +
-            "租借记录：";
+            "\n厂家：" + getFactory() +
+            "\n状态：" + status +
+            "\n保养日期：" + getEndMaintainedDate() +
+            "\n租借记录：" + timeRecord;
   }
 }

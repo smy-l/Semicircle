@@ -44,7 +44,12 @@ class VideoStoreLauncher {
   private static void rating() {
     Scanner scanner = new Scanner(System.in);
     String name = scanner.nextLine();
-    int rate = scanner.nextInt();
+    if(vs.findVideo(name) == null){
+      System.out.println("没有该电影！，请重新输入：");
+      rating();
+    }
+    String rateString = scanner.nextLine();
+    int rate = Integer.parseInt(rateString);
     vs.receiveRating(name, rate);
   }
 

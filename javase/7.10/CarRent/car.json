@@ -1,1 +1,11 @@
-[{"code":"c_987","customerCode":0,"factory":"大众","factoryYear":1990,"model":"Car","startMaintainedDate":"8787"}]
+[
+  {
+    "code":"v_123456",
+    "customerCode":0,
+    "endMaintainedDate":"2001-1-1",
+    "factory":"福特",
+    "factoryYear":2000,
+    "fuelType":"汽油",
+    "model":"Van"
+  }
+]

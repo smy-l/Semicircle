@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Car {
   protected String model;
   protected int factoryYear;
@@ -6,23 +9,24 @@ public class Car {
 
   protected boolean isMaintain;
   protected String startMaintainedDate;
-  protected String endMaintainedDate;
+  protected String endMaintainedDate = "-";
 
   protected boolean isRanting;
   protected String rantTime;
   protected String returnTime;
 
   protected int customerCode;
+  List<String> rantRecord = new ArrayList<>();
 
   public Car() {
   }
 
-  public Car(String model, int factoryYear, String factory, String code, String maintenanceDate) {
+  public Car(String model, int factoryYear, String factory, String code, String endMaintenanceDate) {
     this.model = model;
     this.factoryYear = factoryYear;
     this.factory = factory;
     this.code = code;
-    this.startMaintainedDate = maintenanceDate;
+    this.endMaintainedDate = endMaintenanceDate;
   }
 
   public boolean isMaintain(boolean status) {

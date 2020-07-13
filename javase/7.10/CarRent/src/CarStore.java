@@ -20,7 +20,6 @@ public class CarStore {
 
     try (BufferedWriter writer = new BufferedWriter(
             new FileWriter(file))) {
-
       writer.write(JSONObject.toJSONString(cars));
     } catch (IOException e) {
       e.printStackTrace();
@@ -30,7 +29,6 @@ public class CarStore {
   public Car addCar(String model, int factoryYear, String factory, String code, String maintenanceDate) {
     Car car = new Car(model, factoryYear, factory, code, maintenanceDate);
     cars.add(car);
-    store();
     return car;
   }
 
@@ -44,6 +42,7 @@ public class CarStore {
           car.isRanting(true);
           car.setCustomerCode(customerCode);
           car.setStartMaintainedDate(startRantTime);
+          car.rantRecord.add(startRantTime);
           car.setRantTime(rantingTime);
         }
       } else {
@@ -59,6 +58,7 @@ public class CarStore {
         if(car.isRanting) {
           car.isRanting(false);
           car.setReturnTime(returnTime);
+          car.rantRecord.add(returnTime);
         }
       }
     }

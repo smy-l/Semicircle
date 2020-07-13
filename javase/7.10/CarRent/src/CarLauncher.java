@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.Scanner;
 
 public class CarLauncher {
@@ -11,14 +12,13 @@ public class CarLauncher {
 
     while (true) {
       System.out.println("****租车系统菜单****");
-      System.out.println();
       System.out.println("1.添加汽车");
       System.out.println("2.出租汽车");
       System.out.println("3.归还汽车");
       System.out.println("4.汽车保养");
       System.out.println("5.结束保养");
       System.out.println("6.查询信息");
-      System.out.println("7.退出系统");
+      System.out.println("0.退出系统");
 
       String input = scanner.nextLine();
       switch (input) {
@@ -40,48 +40,74 @@ public class CarLauncher {
         case "6":
           printInfo();
           break;
-        case "7":
+        case "0":
           System.out.println("谢谢使用");
           return;
 
       }
     }
-
   }
 
   private static void addCars() {
     String model = inputModel();
+    if (!model.equalsIgnoreCase("Car") && !model.equalsIgnoreCase("Van")) {
+      System.out.println("输入类型不合法！");
+      model = inputModel();
+    }
+
     int factoryYear = inputFactoryYear();
     String factory = inputFactory();
     String code = inputCode(model);
     int seatNum = inputSeatNum(model);
     String fuelType = inputFuelType(model);
-    String maintainDate = intputMaintainDate();
+    String maintainDate = inputMaintainDate();
 
-    Car car = carStore.addCar(model, factoryYear, factory, code, maintainDate);
-    if (car instanceof LittleCar) {
-      ((LittleCar) car).setSeatNum(seatNum);
+    if (model.equals("Car")) {
+      Car car = new LittleCar(model, factoryYear, factory, code, maintainDate, seatNum);
+      carStore.cars.add(car);
       System.out.println(car);
+      carStore.store();
     }
-    if (car instanceof VanCar) {
-      ((VanCar) car).setFuelType(fuelType);
+
+    if (model.equals("Van")) {
+      Car car = new VanCar(model, factoryYear, factory, code, maintainDate, fuelType);
+      carStore.cars.add(car);
       System.out.println(car);
+      carStore.store();
     }
+
   }
 
-  private static String intputMaintainDate() {
+//  private static boolean isDate(String maintainDate) {
+//    char[] date = maintainDate.toCharArray();
+//    // 1998-12-13
+//    return false;
+//  }
+
+  private static String inputMaintainDate() {
     Scanner scanner = new Scanner(System.in);
     System.out.print("保养日期(年-月-日): ");
-    return scanner.nextLine();
+    String date = scanner.nextLine();
+    return date;
   }
 
   private static String inputFuelType(String model) {
     if ("Van".equals(model)) {
       Scanner scanner = new Scanner(System.in);
-      System.out.print("请输入燃油类型：");
+      System.out.println("请输入燃油类型：");
       System.out.println("1.汽油");
       System.out.println("2.柴油");
-      return scanner.nextLine();
+
+      String fuelType = scanner.nextLine();
+      if ("1".equals(fuelType)) {
+        fuelType = "汽油";
+      } else if ("2".equals(fuelType)) {
+        fuelType = "柴油";
+      } else {
+        System.out.println("非法输入！");
+        fuelType = inputFuelType(model);
+      }
+      return fuelType;
     }
     return null;
   }
@@ -89,8 +115,13 @@ public class CarLauncher {
   private static int inputSeatNum(String model) {
     if ("Car".equals(model)) {
       Scanner scanner = new Scanner(System.in);
-      System.out.print("输入轿车座数(4/7):");
-      return scanner.nextInt();
+      System.out.print("输入轿车座数(4/7): ");
+      int seatNum = scanner.nextInt();
+      if(seatNum > 7 || seatNum < 0){
+        System.out.println("非法输入: ");
+        seatNum = inputSeatNum(model);
+      }
+      return seatNum;
     }
     return -1;
   }
@@ -209,16 +240,16 @@ public class CarLauncher {
   private static void printInfo() {
     System.out.println("*********卡车**********");
     for (int i = 0; i < carStore.cars.size(); i++) {
-      if(carStore.cars.get(i).getModel().equals("Car")){
-        VanCar car = (VanCar)carStore.cars.get(i);
+      if (carStore.cars.get(i) instanceof VanCar) {
+        VanCar car = (VanCar) carStore.cars.get(i);
         System.out.println(car);
       }
     }
 
     System.out.println("*********轿车**********");
     for (int i = 0; i < carStore.cars.size(); i++) {
-      if(carStore.cars.get(i).getModel().equals("Van")){
-        LittleCar car = (LittleCar)carStore.cars.get(i);
+      if (carStore.cars.get(i) instanceof LittleCar) {
+        LittleCar car = (LittleCar) carStore.cars.get(i);
         System.out.println(car);
       }
     }
