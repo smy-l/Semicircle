@@ -44,9 +44,9 @@ public class UdpServer {
           }
           String[] inputStr = input.split(" ");
           if (inputStr.length == 3) {
-            if (ipIsCurrent(inputStr[0]) && connectorIsCurrent(inputStr[2])) {
+            if (ipIsCurrent(inputStr[0]) && connectorIsCurrent(inputStr[1])) {
               byte[] bytes = input.getBytes();
-              DatagramPacket packet = new DatagramPacket(bytes, bytes.length, InetAddress.getByName(inputStr[0]), Integer.parseInt(inputStr[2]));
+              DatagramPacket packet = new DatagramPacket(bytes, bytes.length, InetAddress.getByName(inputStr[0]), Integer.parseInt(inputStr[1]));
               socket.send(packet);
               socket.close();
             }

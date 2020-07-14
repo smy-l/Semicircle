@@ -37,7 +37,6 @@ public class TcpClient {
       }
 
 
-
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -46,7 +45,7 @@ public class TcpClient {
   private static String secretOrNot(Scanner scanner) {
     System.out.println("请输入加密还是解密");
     String code = scanner.nextLine();
-    if(!code.equals("加密") && !code.equals("解密")){
+    if (!code.equals("加密") && !code.equals("解密")) {
       System.out.println("输入不合法!");
       code = secretOrNot(scanner);
     }
