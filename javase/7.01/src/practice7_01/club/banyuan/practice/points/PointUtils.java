@@ -1,7 +1,5 @@
 package practice7_01.club.banyuan.practice.points;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Iterator;
