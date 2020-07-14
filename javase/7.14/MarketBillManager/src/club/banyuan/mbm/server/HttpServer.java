@@ -2,19 +2,18 @@ package club.banyuan.mbm.server;
 
 import club.banyuan.mbm.entity.User;
 import com.alibaba.fastjson.JSONObject;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 public class HttpServer extends Thread {
+
+  List<User> users = new ArrayList<>();
 
   private Socket socket;
 
@@ -68,6 +67,7 @@ public class HttpServer extends Thread {
             users.add(l);
 
             responseJson(outputStream, users);
+            writeToJson(users);
             break;
         }
       }
@@ -80,6 +80,18 @@ public class HttpServer extends Thread {
         e.printStackTrace();
       }
     }
+  }
+
+  private void writeToJson(Object o) throws IOException {
+//    Properties properties = new Properties();
+//    String path = properties.getProperty("path");
+    String path = "D:\\banyuan\\Semicircle\\javase\\7.14\\MarketBillManager\\User.json";
+    System.out.println(path);
+    String data = JSONObject.toJSONString(o);
+    File file = new File(path);
+    BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+    writer.write(data);
+    writer.close();
   }
 
   private void responseJson(DataOutputStream outputStream, Object o) throws IOException {
@@ -96,7 +108,7 @@ public class HttpServer extends Thread {
   }
 
   private void responseRedirect(DataOutputStream out, MbmRequest request, String path)
-      throws IOException {
+          throws IOException {
     out.writeBytes("HTTP/1.1 302 Found");
     out.writeBytes("\r\n");
     out.writeBytes("Location: " + "http://" + request.getHost() + path);
@@ -107,10 +119,10 @@ public class HttpServer extends Thread {
     InputStream resourceAsStream = null;
     try {
       resourceAsStream = HttpServer.class.getClassLoader()
-          .getResourceAsStream("pages" + path);
+              .getResourceAsStream("pages" + path);
       if (resourceAsStream == null) {
         resourceAsStream = HttpServer.class.getClassLoader()
-            .getResourceAsStream("pages/404.html");
+                .getResourceAsStream("pages/404.html");
       }
       String contentLength = "Content-Length: " + resourceAsStream.available();
       outputStream.writeBytes("HTTP/1.1 200 OK\r\n");
@@ -128,7 +140,7 @@ public class HttpServer extends Thread {
 
   private void responseFile(DataOutputStream outputStream, String path) throws IOException {
     InputStream resourceAsStream = HttpServer.class.getClassLoader()
-        .getResourceAsStream("pages" + path);
+            .getResourceAsStream("pages" + path);
     if (resourceAsStream == null) {
       // TODO Exception
       System.err.println("资源不存在");
