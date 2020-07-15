@@ -85,7 +85,8 @@ public class HttpServer extends Thread {
   private void writeToJson(Object o) throws IOException {
 //    Properties properties = new Properties();
 //    String path = properties.getProperty("path");
-    String path = "D:\\banyuan\\Semicircle\\javase\\7.14\\MarketBillManager\\User.json";
+    String path = "/Users/edz/Semicircle/javase/7.14/MarketBillManager/User.json";
+//    String path = "D:\\banyuan\\Semicircle\\javase\\7.14\\MarketBillManager\\User.json";
     System.out.println(path);
     String data = JSONObject.toJSONString(o);
     File file = new File(path);
