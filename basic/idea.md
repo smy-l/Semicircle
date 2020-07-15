@@ -32,6 +32,8 @@ git push | command + shift + K
 选中当前单词 | control + W 
 快速切换到单词的首尾 | alt + <-/-> 
 快速生成一些语句，如`if/else` `try/catch`等 | command + alt + T 
+撤销 | command + Z 
+反撤销 | command + shift + Z 
 
 ### 使用技巧
 ```
