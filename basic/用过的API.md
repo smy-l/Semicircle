@@ -27,6 +27,14 @@ System.arraycopy(原数组, 起始位置, 要复制到的数组, 起始位置, �
 System.currentTimeMillis(); //获取当前时间到1970年1月1日的毫秒值，返回Long类型的数字。
 ```
 
+### System.lineSeparator()
+
+```
+System.lineSeparator(); //不同系统通用的换行符
+```
+
+
+
 ## 3. String
 
 ### toStirng
