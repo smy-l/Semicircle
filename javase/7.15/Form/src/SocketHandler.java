@@ -85,15 +85,12 @@ public class SocketHandler extends Thread {
     }
 
     if (resourcePath.equals("welcome.html")) {
-      InputStream resourceAsStream = HttpServer.class.getClassLoader()
+      InputStream resourceAsStream = null;
+      resourceAsStream = HttpServer.class.getClassLoader()
               .getResourceAsStream(resourcePath);
 
-      if (resourceAsStream == null) {
-        resourceAsStream = HttpServer.class.getClassLoader()
-                .getResourceAsStream("404.html");
-      }
-
       OutputStream outputStream = clientSocket.getOutputStream();
+      BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream));
       outputStream.write("HTTP/1.1 200 OK\r\n".getBytes());
       if (resourcePath.contains(".html")) {
         outputStream.write("Content-Type: text/html; charset=utf-8\r\n".getBytes());
@@ -105,7 +102,6 @@ public class SocketHandler extends Thread {
       outputStream.write("\r\n".getBytes());
       outputStream.write("\r\n".getBytes());
 
-      BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream));
       String line = bufferedReader.readLine();
       while (line != null) {
         if (line.contains("$")) {
