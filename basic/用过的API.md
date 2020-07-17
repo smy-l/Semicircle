@@ -66,6 +66,14 @@ Arrays.toString(数组名)
 将A字符串转换成char数组
 ```
 
+### A.trim()
+
+```
+去除A字符串中首位空格
+```
+
+
+
 ### A.subString(int begin);
 
 ```
@@ -340,5 +348,15 @@ String
 Runnalbe,String // 线程类，线程名称
 ()
 Runnable
+```
+
+## 4. list
+
+```
+对象.stream().filter(new Predicate\<User\>() {
+		public boolean test(User user){
+		 return Integer.parseInt(id) == user.getId;
+		}
+})
 ```
 

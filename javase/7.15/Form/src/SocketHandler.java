@@ -38,6 +38,7 @@ public class SocketHandler extends Thread {
         line = bufferedReader.readLine();
       }
 
+      //login.html
       if (mbmRequest.getContentLength() > 0) {
         char[] chars = new char[mbmRequest.getContentLength()];
         bufferedReader.read(chars);
@@ -73,12 +74,12 @@ public class SocketHandler extends Thread {
       }
 
 
-
+      // welcome.html
       if (resourcePath.equals("welcome.html")) {
         InputStream resourceAsStream;
         resourceAsStream = HttpServer.class.getClassLoader()
                 .getResourceAsStream(resourcePath);
-        System.out.println(resourcePath + " 222");
+        System.out.println(resourcePath);
 
         OutputStream outputStream = clientSocket.getOutputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
@@ -87,45 +88,50 @@ public class SocketHandler extends Thread {
           outputStream.write("Content-Type: text/html; charset=utf-8\r\n".getBytes());
         }
 
+//        StringBuilder stringBuilder = new StringBuilder();
+//        String line1 = reader.readLine();
+//        while (line1 != null) {
+//          if (line1.contains("$")) {
+//            //replace并不会改变原来的字符串而是传给一个新的字符串
+//            line1 = line1.replace("${name}", );
+//            line1 = line1.replace("${pwd}", );
+////            System.out.println(line1);
+//          }
+//          outputStream.write(line.getBytes());
+//          line = bufferedReader.readLine();
+//        }
+
         String contentLength = "Content-Length: " + resourceAsStream.available();
         outputStream.write(contentLength.getBytes());
         outputStream.write("\r\n".getBytes());
         outputStream.write("\r\n".getBytes());
 
-        String line1 = reader.readLine();
-        while (line1 != null) {
-          if (line1.contains("$")) {
-            //replace并不会改变原来的字符串而是传给一个新的字符串
-            line1 = line1.replace("${name}", "u1");
-            line1 = line1.replace("${pwd}", "123");
-            System.out.println(line1);
-          }
-          outputStream.write(line.getBytes());
-          line = bufferedReader.readLine();
-        }
         outputStream.write(resourceAsStream.readAllBytes());
         clientSocket.close();
       }
 
+      // server/login
       if (resourcePath.equals("server/login")) {
-        resourcePath = "welcome.html";
-        InputStream resourceAsStream =  HttpServer.class.getClassLoader()
-                .getResourceAsStream(resourcePath);
+        resourcePath = "/welcome.html";
         OutputStream outputStream = clientSocket.getOutputStream();
         outputStream.write("HTTP/1.1 302 Found".getBytes());
         outputStream.write("\r\n".getBytes());
+        // http://127.0.0.1:5000/welcome.html
         outputStream.write(("Location: " + "http://" + mbmRequest.getHost() + resourcePath).getBytes());
         outputStream.write("\r\n".getBytes());
-        outputStream.write(resourceAsStream.readAllBytes());
         clientSocket.close();
       }
-
-
     } catch (IOException e) {
       e.printStackTrace();
     }
+//    finally{
+//      try {
+//        clientSocket.close();
+//      } catch (IOException e) {
+//        e.printStackTrace();
+//      }
+//    }
   }
-
 //  private void responseRedirect(MbmRequest request, String path)
 //          throws IOException {
 //    OutputStream outputStream = clientSocket.getOutputStream();
