@@ -34,6 +34,7 @@ git push | command + shift + K
 快速生成一些语句，如`if/else` `try/catch`等 | command + alt + T 
 撤销 | command + Z 
 反撤销 | command + shift + Z 
+查看方法在哪调用 | control + alt + H 
 
 ### 使用技巧
 ```
