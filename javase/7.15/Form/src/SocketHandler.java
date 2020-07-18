@@ -2,6 +2,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.URLDecoder;
 import java.sql.ClientInfoStatus;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -34,15 +35,12 @@ public class SocketHandler extends Thread {
         if (line.startsWith("Content-Length:")) {
           mbmRequest.setContentLength(Integer.parseInt(line.replace("Content-Length: ", "")));
         }
-//        System.out.println(line);
         line = bufferedReader.readLine();
       }
 
-      //login.html
       if (mbmRequest.getContentLength() > 0) {
         char[] chars = new char[mbmRequest.getContentLength()];
         bufferedReader.read(chars);
-
         mbmRequest.setPayload(URLDecoder.decode(new String(chars), "utf-8"));
       }
 
@@ -53,9 +51,10 @@ public class SocketHandler extends Thread {
         resourcePath = resourcePath.substring(1);
       }
 
+      //login.html
       if (resourcePath.length() == 0) {
         resourcePath = "login.html";
-        InputStream resourceAsStream =  HttpServer.class.getClassLoader()
+        InputStream resourceAsStream = HttpServer.class.getClassLoader()
                 .getResourceAsStream(resourcePath);
 
         OutputStream outputStream = clientSocket.getOutputStream();
@@ -83,30 +82,40 @@ public class SocketHandler extends Thread {
 
         OutputStream outputStream = clientSocket.getOutputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
+        Map<String, String> formData = new HashMap<>();
+        StringTokenizer tokenizer1 = new StringTokenizer(mbmRequest.getPayload(), "&|=");
+        formData.put(tokenizer1.nextToken(), tokenizer1.nextToken());
+        formData.put(tokenizer1.nextToken(), tokenizer1.nextToken());
         outputStream.write("HTTP/1.1 200 OK\r\n".getBytes());
         if (resourcePath.contains(".html")) {
           outputStream.write("Content-Type: text/html; charset=utf-8\r\n".getBytes());
         }
 
-//        StringBuilder stringBuilder = new StringBuilder();
-//        String line1 = reader.readLine();
-//        while (line1 != null) {
-//          if (line1.contains("$")) {
-//            //replace并不会改变原来的字符串而是传给一个新的字符串
-//            line1 = line1.replace("${name}", );
-//            line1 = line1.replace("${pwd}", );
-////            System.out.println(line1);
-//          }
-//          outputStream.write(line.getBytes());
-//          line = bufferedReader.readLine();
-//        }
+        //
+        StringBuilder stringBuilder = new StringBuilder();
+        String line1 = reader.readLine();
+        int len = 0;
+        while (line1 != null) {
+          if (line1.contains("$")) {
+            line1 = line1.replace("${name}", formData.get("name"));
+            line1 = line1.replace("${pwd}", formData.get("pwd"));
+//            System.out.println(line1);
+          }
+          stringBuilder.append(line1);
+          stringBuilder.append(System.lineSeparator());
+//          len += line1.length();
+          line1 = reader.readLine();
+        }
+        len = stringBuilder.toString().getBytes().length;
 
-        String contentLength = "Content-Length: " + resourceAsStream.available();
+        String contentLength = "Content-Length: " + len;
+//        System.out.println(contentLength);
         outputStream.write(contentLength.getBytes());
         outputStream.write("\r\n".getBytes());
         outputStream.write("\r\n".getBytes());
 
-        outputStream.write(resourceAsStream.readAllBytes());
+//        outputStream.write(resourceAsStream.readAllBytes());
+        outputStream.write(stringBuilder.toString().getBytes());
         clientSocket.close();
       }
 
@@ -116,7 +125,6 @@ public class SocketHandler extends Thread {
         OutputStream outputStream = clientSocket.getOutputStream();
         outputStream.write("HTTP/1.1 302 Found".getBytes());
         outputStream.write("\r\n".getBytes());
-        // http://127.0.0.1:5000/welcome.html
         outputStream.write(("Location: " + "http://" + mbmRequest.getHost() + resourcePath).getBytes());
         outputStream.write("\r\n".getBytes());
         clientSocket.close();

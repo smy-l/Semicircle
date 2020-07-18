@@ -85,10 +85,12 @@ public class MbmRequest {
   @Override
   public String toString() {
     return "MbmRequest{" +
-        "method='" + method + '\'' +
-        ", path='" + path + '\'' +
-        ", host='" + host + '\'' +
-        '}';
+            "method='" + method + '\'' +
+            ", path='" + path + '\'' +
+            ", host='" + host + '\'' +
+            ", contentLength=" + contentLength +
+            ", payload='" + payload + '\'' +
+            '}';
   }
 
   // payload = name=123&pwd=123
