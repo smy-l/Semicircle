@@ -213,7 +213,6 @@ public class SocketHandler extends Thread {
       }
       break;
       case "/server/provider/delete": {
-//        System.out.println(mbmRequest.getPayload());
         String payload = mbmRequest.getPayload();
         Supplier supplier = JSONObject.parseObject(payload, Supplier.class);
         supplierService.deleteSupplier(supplier.getId());
@@ -221,17 +220,26 @@ public class SocketHandler extends Thread {
       }
       break;
       case "/server/bill/modify": {
+        System.out.println("modify: " + mbmRequest.getPayload());
         Map<String, String> formData = mbmRequest.getFormData();
         String data = JSONObject.toJSONString(formData);
-        Bill bill = JSONObject.parseObject(data, Bill.class);
+        Bill bill;
+        try {
+          bill = JSONObject.parseObject(data, Bill.class);
+        } catch (Exception e) {
+          throw new FormPostException("用户金额错误");
+        }
+        System.out.println("bill:" + bill);
         if (bill.getId() == 0) {
           billService.addBill(bill);
         } else {
           billService.modifyBill(bill);
         }
+        responseRedirect(mbmRequest, "/bill_list.html");
       }
       break;
       case "/server/bill/list": {
+        System.out.println("list: " + mbmRequest.getPayload());
         List<Bill> billList;
         String payload = mbmRequest.getPayload();
         if (payload == null) {
@@ -243,8 +251,18 @@ public class SocketHandler extends Thread {
         responseJson(billList);
       }
       break;
-      case "/server/bill/get":{
-        
+      case "/server/bill/get": {
+        String payload = mbmRequest.getPayload();
+        Bill billId = JSONObject.parseObject(payload, Bill.class);
+        Bill bill = billService.getBillById(billId.getId());
+        responseJson(bill);
+      }
+      break;
+      case "/server/bill/delete": {
+        String payload = mbmRequest.getPayload();
+        Bill bill = JSONObject.parseObject(payload, Bill.class);
+        billService.deleteBill(bill.getId());
+        responseOk();
       }
       break;
     }

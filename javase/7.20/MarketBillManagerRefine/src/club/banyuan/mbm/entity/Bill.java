@@ -1,22 +1,25 @@
 package club.banyuan.mbm.entity;
 
-import club.banyuan.mbm.uti.PropUtil;
-
-import java.util.List;
-
 import static com.alibaba.fastjson.JSON.parseArray;
 
 public class Bill {
   private int id;
-  @Validation(regex = "[^!@#$%^&*()_+-=]{}",msg = "账单名称错误")
   private int providerId;
-  private String productDescription;
+  private String providerName;
   private String product;
-  @Validation(regex = "[0-9]{0,}", msg = "账单金额错误")
-  private long money;
   private int isPay;
-  private String time;
+  private String updateTime;
   private String isPayStr;
+  @Validation(regex = "\\d", msg = "账单金额不合法")
+  private int money;
+
+  public String getProviderName() {
+    return providerName;
+  }
+
+  public void setProviderName(String providerName) {
+    this.providerName = providerName;
+  }
 
   public int getId() {
     return id;
@@ -34,37 +37,20 @@ public class Bill {
     this.providerId = providerId;
   }
 
-  public String getProductDescription() {
-    return productDescription;
-  }
-
-  public void setProductDescription(String productDescription) {
-    this.productDescription = productDescription;
-  }
-
-  public long getMoney() {
+  public int getMoney() {
     return money;
   }
 
-  public void setMoney(long money) {
+  public void setMoney(int money) {
     this.money = money;
   }
 
-  public int isPay() {
-    return isPay;
+  public String getUpdateTime() {
+    return updateTime;
   }
 
-  public void setPay(int pay) {
-    isPay = pay;
-    setIsPayStr();
-  }
-
-  public String getTime() {
-    return time;
-  }
-
-  public void setTime(String time) {
-    this.time = time;
+  public void setUpdateTime(String updateTime) {
+    this.updateTime = updateTime;
   }
 
   public String getProduct() {
@@ -79,11 +65,29 @@ public class Bill {
     return isPayStr;
   }
 
-  public void setIsPayStr() {
-    if(isPay == 1){
-      isPayStr = "是";
-    }else if(isPay == 0){
-      isPayStr = "否";
-    }
+  public void setIsPayStr(String isPayStr) {
+    this.isPayStr = isPayStr;
+  }
+
+  public int getIsPay() {
+    return isPay;
+  }
+
+  public void setIsPay(int isPay) {
+    this.isPay = isPay;
+  }
+
+  @Override
+  public String toString() {
+    return "Bill{" +
+            "id=" + id +
+            ", providerId=" + providerId +
+            ", providerName='" + providerName + '\'' +
+            ", product='" + product + '\'' +
+            ", money=" + money +
+            ", isPay=" + isPay +
+            ", updateTime='" + updateTime + '\'' +
+            ", isPayStr='" + isPayStr + '\'' +
+            '}';
   }
 }

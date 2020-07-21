@@ -49,4 +49,15 @@ public class Supplier {
   public void setDesc(String desc) {
     this.desc = desc;
   }
+
+  @Override
+  public String toString() {
+    return "Supplier{" +
+            "id=" + id +
+            ", desc='" + desc + '\'' +
+            ", name='" + name + '\'' +
+            ", phone='" + phone + '\'' +
+            ", contactPerson='" + contactPerson + '\'' +
+            '}';
+  }
 }

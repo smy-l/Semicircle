@@ -1,6 +1,7 @@
 package club.banyuan.mbm.service;
 
 import club.banyuan.mbm.entity.Supplier;
+import club.banyuan.mbm.exception.FormPostException;
 import club.banyuan.mbm.uti.PropUtil;
 import club.banyuan.mbm.uti.ValidationUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -46,7 +47,7 @@ public class SupplierService {
   //得到
 
   //保存供应商
-  public static void save() {
+  private static void save() {
     try (FileOutputStream fileOutputStream = new FileOutputStream(PropUtil.getProp(SUPPLIER_STORE_PATH))) {
       String jsonStr = JSONObject.toJSONString(supplierList);
       byte[] bytes = jsonStr.getBytes();
@@ -58,7 +59,11 @@ public class SupplierService {
 
   //增：增加一个供应商
   public void addSupplier(Supplier supplier) {
-    validate(supplier);
+    try {
+      ValidationUtil.validate(supplier);
+    } catch (Exception e) {
+      throw new FormPostException(e.getMessage());
+    }
     synchronized (supplierList) {
       supplier.setId(supplierId++);
       supplierList.add(supplier);
@@ -122,10 +127,6 @@ public class SupplierService {
 
   public List<Supplier> getSupplierList() {
     return supplierList;
-  }
-
-  public static void setSupplierList(List<Supplier> supplierList) {
-    SupplierService.supplierList = supplierList;
   }
 
   public List<Supplier> getSupplierList(Supplier supplier) {

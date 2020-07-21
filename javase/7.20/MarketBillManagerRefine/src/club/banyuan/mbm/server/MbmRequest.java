@@ -111,10 +111,7 @@ public class MbmRequest {
     while (stringTokenizer.hasMoreTokens()) {
       rlt.put(stringTokenizer.nextToken(), stringTokenizer.nextToken());
     }
+    System.out.println("formData: " + rlt);
     return rlt;
   }
-
-  // public <T> T getFormData(Class<T> cls) {
-  //
-  // }
 }
