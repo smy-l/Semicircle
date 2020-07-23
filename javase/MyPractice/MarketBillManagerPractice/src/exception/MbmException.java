@@ -1,6 +1,6 @@
 package exception;
 
-public class MbmException extends Exception{
+public class MbmException extends RuntimeException{
   public MbmException() {
   }
 

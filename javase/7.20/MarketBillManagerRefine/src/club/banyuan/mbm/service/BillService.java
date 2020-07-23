@@ -20,7 +20,7 @@ public class BillService {
   private static final String BILL_STORE_PATH = "bill.store.path";
   private final String SUPPLIER_STORE_PATH = "supplier.store.path";
   private static List<Bill> billList;
-  private SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  private SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
   static {
     load();
@@ -118,7 +118,7 @@ public class BillService {
     String product = productStr.trim();
 
     for (Bill bill : billList) {
-      if (bill.getProduct().contains(product) || bill.getProduct().length() == 0) {
+      if (bill.getProduct().contains(product) || product.length() == 0) {
         if (isPay != -1) {
           if (bill.getIsPay() == isPay) {
             list.add(bill);

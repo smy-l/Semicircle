@@ -25,7 +25,7 @@ public class MbmRequest {
   }
 
   public void setPath(String path) {
-    if (method.equals("GET") && path.contains("\\?")) {
+    if (method.equals("GET") && path.contains("?")) {
       String[] split = path.split("\\?");
       this.path = split[0];
       payload = split[1];

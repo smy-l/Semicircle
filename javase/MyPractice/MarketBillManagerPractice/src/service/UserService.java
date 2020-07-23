@@ -1,7 +1,10 @@
 package service;
 
+import exception.FormPostException;
+import myUtil.ValidationUtil;
 import com.alibaba.fastjson.JSONObject;
 import entity.User;
+import exception.*;
 import myUtil.PropUtil;
 
 import java.io.*;
@@ -52,8 +55,7 @@ public class UserService {
     File file = new File(PropUtil.getProp(USER_STORE_PATH));
     try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
       String jsonStr = JSONObject.toJSONString(userList);
-      byte[] bytes = jsonStr.getBytes();
-      fileOutputStream.write(bytes);
+      fileOutputStream.write(jsonStr.getBytes());
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -62,7 +64,9 @@ public class UserService {
   //核实用户名以及密码是否正确
   public boolean login(String userName, String pwd) {
     for (User user1 : userList) {
-      if (user1.getName().equals(userName) && user1.getPwd() == pwd) {
+      System.out.println(user1);
+      System.out.println("userName: " + userName + "pwd: " + pwd);
+      if (user1.getName().equals(userName) && user1.getPwd().equals(pwd)) {
         return true;
       }
     }
@@ -71,6 +75,7 @@ public class UserService {
 
   //增
   public void addUser(User user) {
+    validate(user);
     synchronized (userList) {
       user.setId(userId++);
       userList.add(user);
@@ -80,26 +85,63 @@ public class UserService {
 
   //删
   public void deleteUser(User user) {
-    User userById = getUserById(user.getId());
-    userList.remove(userById);
-    save();
+    synchronized (userList) {
+      User userById = getUserById(user.getId());
+      userList.remove(userById);
+      save();
+    }
   }
 
   //改
   public void modifyUser(User user) {
-
+    synchronized (userList) {
+      User userById = getUserById(user.getId());
+      userById.setName(user.getName());
+      userById.setPwd(user.getPwd());
+      userById.setPwdConfirm(user.getPwdConfirm());
+      userById.setUserType(user.getUserType());
+    }
   }
 
   //查
   //根据id获取user对象
   public User getUserById(int id) {
-    for (User user : userList) {
-      if (user.getId() == id) {
-        return user;
+    for (User userId : userList) {
+      if (userId.getId() == id) {
+        return userId;
       }
     }
     return null;
   }
 
+  //获取用户列表
+  public List<User> getUserList() {
+    return userList;
+  }
 
+  public List<User> getUserList(User user) {
+    if (user.getName() == null || user.getName().trim().length() == 0) {
+      return userList;
+    }
+
+    List<User> list = new ArrayList<>();
+    for (User user1 : userList) {
+      if (user1.getName().contains(user.getName().trim())) {
+        list.add(user1);
+      }
+    }
+    return list;
+  }
+
+  //校验用户名和密码
+  private void validate(User user) {
+    if (!user.getPwd().equals(user.getPwdConfirm())) {
+      throw new FormPostException("密码不一致");
+    }
+    try {
+      ValidationUtil.validate(user);
+    } catch (Exception e) {
+      throw new FormPostException(e.getMessage());
+    }
+  }
 }

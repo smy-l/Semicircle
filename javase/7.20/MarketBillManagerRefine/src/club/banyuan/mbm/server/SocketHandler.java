@@ -135,7 +135,6 @@ public class SocketHandler extends Thread {
         String payload = mbmRequest.getPayload();
         if (payload == null) {
           userList = userService.getUserList();
-
         } else {
           // 将待检索的用户名转换为user对象
           User user = JSONObject.parseObject(payload, User.class);
@@ -159,8 +158,6 @@ public class SocketHandler extends Thread {
       break;
       case "/server/user/get": {
         String payload = mbmRequest.getPayload();
-        System.out.println("/server/user/get");
-        System.out.println(payload);
         User userId = JSONObject.parseObject(payload, User.class);
         User user = userService.getUserById(userId.getId());
         responseJson(user);

@@ -3,7 +3,9 @@ package entity;
 public class User {
 
   private int id;
+  @Validation(regex = "[^!@#$%^&*()-_+=]{2,10}", msg = "用户名不合法")
   private String name;
+  @Validation(regex = "\\w{3,15}", msg = "密码不合法")
   private String pwd;
   private String pwdConfirm;
   private int userType;
@@ -50,18 +52,14 @@ public class User {
 
   public void setUserType(int userType) {
     this.userType = userType;
-    if (userType == 0) {
-      userTypeStr = "普通用户";
-    } else {
-      userTypeStr = "经理";
-    }
+    setUserTypeStr(userType == 0 ? "普通用户" : "经理");
   }
 
   public String getUserTypeStr() {
     return userTypeStr;
   }
 
-  public void setUserTypeStr(String userTypeStr) {
+  private void setUserTypeStr(String userTypeStr) {
     this.userTypeStr = userTypeStr;
   }
 

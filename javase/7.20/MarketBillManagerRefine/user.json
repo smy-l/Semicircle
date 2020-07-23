@@ -1,1 +1,9 @@
-[{"id":1,"name":"u1","pwd":"123456","userType":1,"userTypeStr":"经理"}]
+[
+  {
+    "id": 1,
+    "name": "u1",
+    "pwd": "123456",
+    "userType": 1,
+    "userTypeStr": "经理"
+  }
+]

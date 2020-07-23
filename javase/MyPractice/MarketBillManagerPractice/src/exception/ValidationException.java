@@ -1,6 +1,6 @@
 package exception;
 
-public class ValidationException extends Exception {
+public class ValidationException extends MbmException {
   public ValidationException() {
   }
 
