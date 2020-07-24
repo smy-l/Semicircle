@@ -94,6 +94,7 @@ public class UserService {
 
   //改
   public void modifyUser(User user) {
+    validate(user);
     synchronized (userList) {
       User userById = getUserById(user.getId());
       userById.setName(user.getName());

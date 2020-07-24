@@ -95,7 +95,7 @@ public class SocketHandler extends Thread {
       }
     } catch (Exception e) {
       e.printStackTrace();
-    }  finally {
+    } finally {
       try {
         clientSocket.close();
       } catch (IOException e) {

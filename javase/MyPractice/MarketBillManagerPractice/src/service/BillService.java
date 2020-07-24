@@ -52,8 +52,8 @@ public class BillService {
   }
 
   //增
-  public void addBill(Bill bill){
-    synchronized (billList){
+  public void addBill(Bill bill) {
+    synchronized (billList) {
       bill.setId(billId++);
       bill.setUpdateTime(time.format(new Date()));
       bill.setIsPay(bill.getIsPay());
@@ -64,8 +64,8 @@ public class BillService {
   }
 
   //删
-  public void deleteBill(Bill bill){
-    synchronized (billList){
+  public void deleteBill(Bill bill) {
+    synchronized (billList) {
       Bill billId = getBillById(bill.getId());
       billList.remove(billId);
     }
@@ -73,8 +73,8 @@ public class BillService {
   }
 
   //改
-  public void modifyBill(Bill bill){
-    synchronized (billList){
+  public void modifyBill(Bill bill) {
+    synchronized (billList) {
       Bill modifyBill = getBillById(bill.getId());
       modifyBill.setProviderName(getProviderName(bill));
       modifyBill.setUpdateTime(time.format(new Date()));
@@ -87,15 +87,15 @@ public class BillService {
   }
 
   //查：根据product(商品描述)进行模糊查找，isPay进行排查
-  public List<Bill> findBill(String product, int isPay){
+  public List<Bill> findBill(String product, int isPay) {
     List<Bill> list = new ArrayList<>();
     for (Bill bill : billList) {
-      if(bill.getProduct().contains(product.trim()) || product.trim().length()== 0){
-        if(isPay != -1){
-          if(bill.getIsPay() == isPay){
+      if (bill.getProduct().contains(product.trim()) || product.trim().length() == 0) {
+        if (isPay != -1) {
+          if (bill.getIsPay() == isPay) {
             list.add(bill);
           }
-        }else{
+        } else {
           list.add(bill);
         }
       }
@@ -105,7 +105,7 @@ public class BillService {
 
   public Bill getBillById(int id) {
     for (Bill bill : billList) {
-      if(bill.getId() == id){
+      if (bill.getId() == id) {
         return bill;
       }
     }
@@ -115,11 +115,11 @@ public class BillService {
 
   private String getProviderName(Bill bill) {
     File file = new File(PropUtil.getProp(SUPPLIER_STORE_PATH));
-    try ( FileInputStream fileInputStream = new FileInputStream(file)){
+    try (FileInputStream fileInputStream = new FileInputStream(file)) {
       byte[] bytes = fileInputStream.readAllBytes();
       List<Supplier> suppliers = JSONObject.parseArray(new String(bytes), Supplier.class);
       for (Supplier supplier : suppliers) {
-        if(supplier.getId() == bill.getProviderId()){
+        if (supplier.getId() == bill.getProviderId()) {
           return supplier.getName();
         }
       }
@@ -129,11 +129,11 @@ public class BillService {
     return null;
   }
 
-  public List<Bill> getBillList(){
+  public List<Bill> getBillList() {
     return billList;
   }
 
-  public List<Bill> getBillList(Bill bill){
+  public List<Bill> getBillList(Bill bill) {
     return findBill(bill.getProduct(), bill.getIsPay());
   }
 

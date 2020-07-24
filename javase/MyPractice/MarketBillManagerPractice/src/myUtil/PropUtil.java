@@ -21,7 +21,7 @@ public class PropUtil {
 
   }
 
-  public static String getProp(String key){
+  public static String getProp(String key) {
     return properties.getProperty(key);
   }
 

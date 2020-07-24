@@ -3,7 +3,7 @@ package entity;
 public class User {
 
   private int id;
-  @Validation(regex = "[^!@#$%^&*()-_+=]{2,10}", msg = "用户名不合法")
+  @Validation(regex = "[^!@#$%^&*()]{2,10}", msg = "用户名不合法")
   private String name;
   @Validation(regex = "\\w{3,15}", msg = "密码不合法")
   private String pwd;

@@ -41,9 +41,9 @@ public class SupplierService {
   }
 
   //保存
-  public static void save(){
-   File file = new File(PropUtil.getProp(SUPPLIER_STORE_PATH));
-    try(FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+  public static void save() {
+    File file = new File(PropUtil.getProp(SUPPLIER_STORE_PATH));
+    try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
       String jsonStr = JSONObject.toJSONString(supplierList);
       fileOutputStream.write(jsonStr.getBytes());
     } catch (IOException e) {
@@ -52,13 +52,13 @@ public class SupplierService {
   }
 
   //增
-  public void addSupplier(Supplier supplier){
+  public void addSupplier(Supplier supplier) {
     try {
       ValidationUtil.validate(supplier);
     } catch (Exception e) {
       throw new FormPostException(e.getMessage());
     }
-    synchronized (supplierList){
+    synchronized (supplierList) {
       supplier.setId(supplierId++);
       supplierList.add(supplier);
     }
@@ -66,8 +66,8 @@ public class SupplierService {
   }
 
   //删
-  public void deleteSupplier(Supplier supplier){
-    synchronized (supplierList){
+  public void deleteSupplier(Supplier supplier) {
+    synchronized (supplierList) {
       Supplier supplierId = getSupplierById(supplier.getId());
       supplierList.remove(supplierId);
     }
@@ -75,8 +75,8 @@ public class SupplierService {
   }
 
   //改
-  public void modifySupplier(Supplier supplier){
-    synchronized (supplierList){
+  public void modifySupplier(Supplier supplier) {
+    synchronized (supplierList) {
       Supplier newSupplier = getSupplierById(supplier.getId());
       newSupplier.setPhone(supplier.getPhone());
       newSupplier.setName(supplier.getName());
@@ -86,30 +86,30 @@ public class SupplierService {
   }
 
   //查(组合查询)，根据name和desc查询
-  public List<Supplier> findSupplier(String name, String desc){
+  public List<Supplier> findSupplier(String name, String desc) {
     List<Supplier> list = new ArrayList<>();
     for (Supplier supplier : supplierList) {
-      if(supplier.getName().contains(name.trim()) && supplier.getDesc().contains(desc.trim())){
+      if (supplier.getName().contains(name.trim()) && supplier.getDesc().contains(desc.trim())) {
         list.add(supplier);
       }
     }
     return list;
   }
 
-  public Supplier getSupplierById(int id){
+  public Supplier getSupplierById(int id) {
     for (Supplier supplier : supplierList) {
-      if(supplier.getId() == id){
+      if (supplier.getId() == id) {
         return supplier;
       }
     }
     return null;
   }
 
-  public List<Supplier> getSupplierList(){
+  public List<Supplier> getSupplierList() {
     return supplierList;
   }
 
-  public List<Supplier> getSupplierList(Supplier supplier){
+  public List<Supplier> getSupplierList(Supplier supplier) {
     return findSupplier(supplier.getName(), supplier.getDesc());
   }
 
