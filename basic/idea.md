@@ -35,6 +35,7 @@ git push | command + shift + K
 撤销 | command + Z 
 反撤销 | command + shift + Z 
 查看方法在哪调用 | control + alt + H 
+回到括号首位 | command + M 
 
 ### 使用技巧
 ```
