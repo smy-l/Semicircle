@@ -1,4 +1,4 @@
-package myUtil;
+package util;
 
 import entity.Validation;
 import exception.*;

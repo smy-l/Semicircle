@@ -3,8 +3,8 @@ package service;
 import com.alibaba.fastjson.JSONObject;
 import entity.Supplier;
 import exception.FormPostException;
-import myUtil.PropUtil;
-import myUtil.ValidationUtil;
+import util.PropUtil;
+import util.ValidationUtil;
 
 import java.io.*;
 import java.util.ArrayList;

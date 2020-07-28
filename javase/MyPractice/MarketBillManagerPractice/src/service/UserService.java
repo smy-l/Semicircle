@@ -1,11 +1,10 @@
 package service;
 
 import exception.FormPostException;
-import myUtil.ValidationUtil;
+import util.ValidationUtil;
 import com.alibaba.fastjson.JSONObject;
 import entity.User;
-import exception.*;
-import myUtil.PropUtil;
+import util.PropUtil;
 
 import java.io.*;
 import java.util.ArrayList;

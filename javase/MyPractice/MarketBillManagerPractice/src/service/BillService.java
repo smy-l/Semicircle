@@ -3,7 +3,7 @@ package service;
 import com.alibaba.fastjson.JSONObject;
 import entity.Bill;
 import entity.Supplier;
-import myUtil.PropUtil;
+import util.PropUtil;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
