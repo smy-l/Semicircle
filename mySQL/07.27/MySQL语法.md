@@ -1,3 +1,4 @@
+```
 # 学生表
 create table student (
 	sno int not null AUTO_INCREMENT,
@@ -133,3 +134,5 @@ from student s
 	INNER JOIN score sc ON ( s.sno = sc.sno)
 WHERE classNo = '90301'
 GROUP BY sc.cno;
+```
+
