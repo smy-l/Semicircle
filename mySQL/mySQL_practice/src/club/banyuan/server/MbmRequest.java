@@ -60,9 +60,14 @@ public class MbmRequest {
 
   public Map<String, String> getFormData() {
     Map<String, String> formData = new HashMap<>();
-    StringTokenizer stringTokenizer = new StringTokenizer(getPayload(), "&|=");
-    while (stringTokenizer.hasMoreTokens()) {
-      formData.put(stringTokenizer.nextToken(), stringTokenizer.nextToken());
+    String[] strings = getPayload().split("&");
+    for (String string : strings) {
+      String[] split = string.split("=");
+      if (split.length == 2) {
+        formData.put(split[0], split[1]);
+      } else {
+        formData.put(split[0], "");
+      }
     }
     return formData;
   }

@@ -46,6 +46,7 @@ public class UserService {
 
   // 更新用户信息
   public void updateUser(User user) {
+    checkUser(user);
     // SQL 语句
     String sql = "update user set name = ?, pwd = ?, userType = ?, userTypeStr = ?, pwdConfirm = ? where id = ?";
     String userTypeStr = user.getUserType() == 1 ? "经理" : "普通用户";
@@ -54,7 +55,7 @@ public class UserService {
 
   // 新增用户信息
   public void insertUser(User user) {
-    check(user);
+    checkUserName(user);
     // SQL 语句
     String sql = "insert into user(name, pwd, userType, userTypeStr, pwdConfirm) values (?, ?, ?, ?, ?)";
     String userTypeStr = user.getUserType() == 0 ? "普通用户" : "经理";
@@ -68,12 +69,19 @@ public class UserService {
     JdbcUtil.update(sql, user.getId());
   }
 
-  private void check(User user) {
+  private void checkUserName(User user) {
     // SQL 语句
     String sql = "select * from user where name = ?";
     Map<String, Object> u = JdbcUtil.queryOne(sql, user.getName());
     if (u.size() != 0) {
       throw new FormPostException("用户名已存在");
+    }
+    checkUser(user);
+  }
+
+  private void checkUser(User user) {
+    if (!user.getPwd().equals(user.getPwdConfirm())) {
+      throw new FormPostException("密码不一致");
     }
     try {
       ValidationUtil.validate(user);

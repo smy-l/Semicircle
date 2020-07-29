@@ -8,7 +8,6 @@ public class Bill {
   private int isPay;
   private String updateTime;
   private String isPayStr;
-  @Validation(regex = "\\d", msg = "账单金额不合法")
   private double money;
 
   public int getId() {

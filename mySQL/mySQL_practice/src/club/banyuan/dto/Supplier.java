@@ -5,9 +5,9 @@ public class Supplier {
   private String description;
   @Validation(regex = "[^!@#$%^&*()]{2,10}", msg = "供应商名称不合法")
   private String name;
-  @Validation(regex = "1[358][05][0-9]{8}", msg = "供应商电话有误")
+  @Validation(regex = "[1[358][05][0-9]{8}]?", msg = "供应商电话有误")
   private String phone;
-  @Validation(regex = "[^!@#$%^&*()]{2,10}", msg = "联系人姓名不合法")
+  @Validation(regex = "[[^!@#$%^&*()]{2,10}]?", msg = "联系人姓名不合法")
   private String contactPerson;
 
   public int getId() {
