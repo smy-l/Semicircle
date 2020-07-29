@@ -9,7 +9,7 @@ public class Bill {
   private String updateTime;
   private String isPayStr;
   @Validation(regex = "\\d", msg = "账单金额不合法")
-  private int money;
+  private double money;
 
   public int getId() {
     return id;
@@ -68,11 +68,11 @@ public class Bill {
     this.isPayStr = isPayStr;
   }
 
-  public int getMoney() {
+  public double getMoney() {
     return money;
   }
 
-  public void setMoney(int money) {
+  public void setMoney(double money) {
     this.money = money;
   }
 }

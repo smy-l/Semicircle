@@ -14,7 +14,6 @@ public class HttpServer {
       SocketHandler socketHandler = new SocketHandler(clientSocket);
       socketHandler.start();
     }
-
   }
 
 }

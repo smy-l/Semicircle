@@ -1,10 +1,11 @@
 package club.banyuan.service;
 
 import club.banyuan.dto.User;
+import club.banyuan.exception.FormPostException;
 import club.banyuan.util.JdbcUtil;
+import club.banyuan.util.ValidationUtil;
 import com.alibaba.fastjson.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ public class UserService {
   // 根据用户id获取用户信息
   public User getUserById(int id) {
     // SQL 语句
-    String sql = "select name, pwd, pwdConfirm, userType, userTypeStr from user where id = ?";
+    String sql = "select * from user where id = ?";
     Map<String, Object> map = JdbcUtil.queryOne(sql, id);
     return JSONObject.parseObject(JSONObject.toJSONString(map), User.class);
   }
@@ -21,55 +22,39 @@ public class UserService {
   // 获取用户列表
   public List<User> getUserList() {
     // SQL 语句
-    String sql = "select id, name, pwd, pwdConfirm, userType, userTypeStr from user";
+    String sql = "select * from user";
     List<Map<String, Object>> list = JdbcUtil.queryAll(sql);
     return JSONObject.parseArray(JSONObject.toJSONString(list), User.class);
   }
 
   // 获取指定信息的用户列表
   public List<User> getUserList(User user) {
-    List<User> userList = getUserList();
-    List<User> list = new ArrayList<>();
-    for (User u1 : userList) {
-      if (u1.getName().contains(user.getName().trim())) {
-        list.add(u1);
-      }
-    }
-    return list;
+    // 查询包含指定信息用户的 SQL 语句
+    String sql = "select * from user where name like ?";
+    String like = "%" + user.getName().trim() + "%";
+    List<Map<String, Object>> list = JdbcUtil.queryAll(sql, like);
+    return JSONObject.parseArray(JSONObject.toJSONString(list), User.class);
   }
-
 
   //核实用户名以及密码是否正确
   public boolean login(String userName, String pwd) {
-    List<User> userList = getUserList();
-    for (User user1 : userList) {
-      System.out.println(user1);
-      System.out.println("userName: " + userName + "pwd: " + pwd);
-      if (user1.getName().equals(userName) && user1.getPwd().equals(pwd)) {
-        return true;
-      }
-    }
-    return false;
+    // SQL 语句
+    String sql = "select * from user where name = ? and pwd = ?";
+    Map<String, Object> user = JdbcUtil.queryOne(sql, userName, pwd);
+    return user.size() != 0;
   }
 
   // 更新用户信息
   public void updateUser(User user) {
-    //根据用户id获取用户信息
-    User u1 = getUserById(user.getId());
-    if (u1 != null) {
-      u1.setName(user.getName());
-      u1.setPwd(user.getPwd());
-      u1.setUserType(user.getUserType());
-      u1.setUserTypeStr(user.getUserType() == 0 ? "普通用户" : "经理");
-      u1.setPwdConfirm(user.getPwdConfirm());
-      // SQL 语句
-      String sql = "update user set name = ?, pwd = ?, userType = ?, userTypeStr = ?, pwdConfirm = ?";
-      JdbcUtil.update(sql, u1.getName(), u1.getPwd(), u1.getUserType(), u1.getUserTypeStr(), u1.getPwdConfirm());
-    }
+    // SQL 语句
+    String sql = "update user set name = ?, pwd = ?, userType = ?, userTypeStr = ?, pwdConfirm = ? where id = ?";
+    String userTypeStr = user.getUserType() == 1 ? "经理" : "普通用户";
+    JdbcUtil.update(sql, user.getName(), user.getPwd(), user.getUserType(), userTypeStr, user.getPwdConfirm(), user.getId());
   }
 
   // 新增用户信息
   public void insertUser(User user) {
+    check(user);
     // SQL 语句
     String sql = "insert into user(name, pwd, userType, userTypeStr, pwdConfirm) values (?, ?, ?, ?, ?)";
     String userTypeStr = user.getUserType() == 0 ? "普通用户" : "经理";
@@ -81,5 +66,19 @@ public class UserService {
     // SQL
     String sql = "delete from user where id = ?";
     JdbcUtil.update(sql, user.getId());
+  }
+
+  private void check(User user) {
+    // SQL 语句
+    String sql = "select * from user where name = ?";
+    Map<String, Object> u = JdbcUtil.queryOne(sql, user.getName());
+    if (u.size() != 0) {
+      throw new FormPostException("用户名已存在");
+    }
+    try {
+      ValidationUtil.validate(user);
+    } catch (Exception e) {
+      throw new FormPostException(e.getMessage());
+    }
   }
 }

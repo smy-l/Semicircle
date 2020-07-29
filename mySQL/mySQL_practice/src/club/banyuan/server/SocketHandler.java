@@ -284,49 +284,49 @@ public class SocketHandler extends Thread {
         responseOK();
       }
       break;
-//      case "/server/bill/modify": {
-//        Map<String, String> formData = mbmRequest.getFormData();
-//        String data = JSONObject.toJSONString(formData);
-//        Bill bill;
-//        try {
-//          bill = JSONObject.parseObject(data, Bill.class);
-//        } catch (Exception e) {
-//          throw new FormPostException("金额错误");
-//        }
-//        if (bill.getId() == 0) {
-//          billService.addBill(bill);
-//        } else {
-//          billService.modifyBill(bill);
-//        }
-//        responseRedirect(mbmRequest, "/bill_list.html");
-//      }
-//      break;
-//      case "/server/bill/list": {
-//        List<Bill> billList;
-//        String payload = mbmRequest.getPayload();
-//        if (payload == null) {
-//          billList = billService.getBillList();
-//        } else {
-//          Bill bill = JSONObject.parseObject(payload, Bill.class);
-//          billList = billService.getBillList(bill);
-//        }
-//        responseJson(billList);
-//      }
-//      break;
-//      case "/server/bill/get": {
-//        String payload = mbmRequest.getPayload();
-//        Bill billId = JSONObject.parseObject(payload, Bill.class);
-//        Bill bill = billService.getBillById(billId.getId());
-//        responseJson(bill);
-//      }
-//      break;
-//      case "/server/bill/delete": {
-//        String payload = mbmRequest.getPayload();
-//        Bill bill = JSONObject.parseObject(payload, Bill.class);
-//        billService.deleteBill(bill);
-//        responseOK();
-//      }
-//      break;
+      case "/server/bill/modify": {
+        Map<String, String> formData = mbmRequest.getFormData();
+        String data = JSONObject.toJSONString(formData);
+        Bill bill;
+        try {
+          bill = JSONObject.parseObject(data, Bill.class);
+        } catch (Exception e) {
+          throw new FormPostException("金额错误");
+        }
+        if (bill.getId() == 0) {
+          billService.insertBill(bill);
+        } else {
+          billService.updateBill(bill);
+        }
+        responseRedirect(mbmRequest, "/bill_list.html");
+      }
+      break;
+      case "/server/bill/list": {
+        List<Bill> billList;
+        String payload = mbmRequest.getPayload();
+        if (payload == null) {
+          billList = billService.getBillList();
+        } else {
+          Bill bill = JSONObject.parseObject(payload, Bill.class);
+          billList = billService.getBillList(bill);
+        }
+        responseJson(billList);
+      }
+      break;
+      case "/server/bill/get": {
+        String payload = mbmRequest.getPayload();
+        Bill billId = JSONObject.parseObject(payload, Bill.class);
+        Bill bill = billService.getBillById(billId.getId());
+        responseJson(bill);
+      }
+      break;
+      case "/server/bill/delete": {
+        String payload = mbmRequest.getPayload();
+        Bill bill = JSONObject.parseObject(payload, Bill.class);
+        billService.deleteBill(bill);
+        responseOK();
+      }
+      break;
     }
   }
 
