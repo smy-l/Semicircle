@@ -70,6 +70,9 @@ public class UserService {
   }
 
   private void checkUserName(User user) {
+    if (user.getName().equals("")) {
+      throw new FormPostException("用户名不为空");
+    }
     // SQL 语句
     String sql = "select * from user where name = ?";
     Map<String, Object> u = JdbcUtil.queryOne(sql, user.getName());
@@ -80,6 +83,9 @@ public class UserService {
   }
 
   private void checkUser(User user) {
+    if (user.getPwd().equals("")) {
+      throw new FormPostException("密码不为空");
+    }
     if (!user.getPwd().equals(user.getPwdConfirm())) {
       throw new FormPostException("密码不一致");
     }

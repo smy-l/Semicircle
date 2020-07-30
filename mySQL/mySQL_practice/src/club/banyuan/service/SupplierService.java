@@ -48,6 +48,9 @@ public class SupplierService {
 
   // 新增供应商信息
   public void insertSupplier(Supplier supplier) {
+    if (supplier.getName().equals("")) {
+      throw new FormPostException("供应商名字不为空");
+    }
     try {
       ValidationUtil.validate(supplier);
     } catch (Exception e) {
