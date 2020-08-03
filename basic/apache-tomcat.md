@@ -9,3 +9,4 @@ Mac,linux运行startup.sh
 ***http://localhost:8080/***
 若运行成功，则会显示界面
 
+![tomcat启动成功界面](/Users/edz/Desktop/tomcat启动成功界面.jpg)
