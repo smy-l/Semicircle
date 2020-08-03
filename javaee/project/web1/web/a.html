@@ -2,24 +2,135 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>初识前端</title>
 </head>
 <body>
 放置出现在页面中的内容
+
+<h1>示例</h1>
+
+<!--段落-->
+<h2>段落</h2>
 <p>第一段内容</p>
 <p>第二段内容</p>
+<p>段落间距(p)比行间距(br/)大</p>
 
-<h1>h1h1h1h1</h1>
-<h2>h2h2h2h2</h2>
-
+<!--超链接-->
+<h2>超链接</h2>
 <a href="http://baidu.com">百度，绝对路径(带ip，域名，访问外部网站资源)</a>
+<br/>
+<a href="http://www.baidu.com" target="_blank">百度(新标签页)</a>
 <br/>
 <a href="b.html">a和b在同一级目录下，地址写文件名，相对路径(访问站内资源，不需要写ip，域名)</a>
 <br/>
 
+<!--插入图片-->
+<h2>插入图片</h2>
 图片是在当前页面中的子目录中，地址：子目录/文件名   子目录/.../文件名
 <br/>
-<img src="images/picture.png " width="384" height="216">
+alt="信息"  当图片无法正常显示的时候，将显示"信息",告诉用户缺失了什么信息
 <br/>
+<img src="images/picture.png" width="384" height="216" alt="夜景">
+<br/>
+
+<!--水平线-->
+<h2>水平线</h2>
+<hr/>
+水平线
+<hr/>
+
+<!--注释-->
+<h2>HTML注释</h2>
+HTML注释(生成页面的时候会将注释删除)
+<!-- This is a comment -->
+
+<!--锚链接-->
+<h2>锚链接</h2>
+<a href="b.html">锚链接界面(该网页下)</a>
+<br/>
+<a href="c.html">锚链接界面(不同网页)</a>
+<br>
+
+<!--多级目录-->
+<h2>d/e.html</h2>
+<a href="folder1/d.html">d.html</a> <br/>
+<a href="folder1/folder2/e.html">e.html</a>
+
+<!--表格-->
+<h2>表格</h2>
+<p>详细内容<a href="table.html">table.html</a></p>
+<p>使用&nbsp可以使表格内容为空，如2行1列</p>
+<table border="1">
+    <tr>
+        <td>row1, cell1</td>
+        <td>row1, cell2</td>
+    </tr>
+    <tr>
+        <td>&nbsp</td>
+        <td>row2, cell2</td>
+    </tr>
+</table>
+
+<!--列表-->
+<h2>列表</h2>
+<!--无序表--> <!--使用较少-->
+<h3>无序表</h3>
+<ul>
+    <li>coffee</li>
+    <li>milk</li>
+</ul>
+<!--有序表-->
+<h3>有序表</h3>
+<ol>
+    <li>coffee</li>
+    <li>milk</li>
+</ol>
+
+<!--定义列表-->
+<h2>定义列表</h2>
+<dl>
+    <dt>标题</dt>
+        <dd>描述1</dd>
+        <dd>描述2</dd>
+    <dt>牛奶(示例)</dt>
+        <dd>品牌：蒙牛</dd>
+        <dd>生产日期：2020/8/3</dd>
+</dl>
+
+<!--块-->
+<h2>块--具体到样式学习</h2>
+<div>设置出一个模块，常用于文档布局</div>
+<span>span</span>
+
+<!--iframe-->
+<h2>iframe</h2>
+一个页面嵌套另一个页面 <br/>
+<a href="iframe.html">iframe.html</a>
+<dl>
+    <dt>frameborder</dt>
+        <dd>使用该命令删除边框</dd>
+        <dd>frameborder="0"</dd>
+    <dt>name</dt>
+        <dd>给iframe命名</dd>
+</dl>
+
+<!--meta-->
+<h2>meta</h2>
+<p>暂时不学</p>
+<meta name="" content="" />
+
+<!--表单-->
+<h2>表单</h2>
+<p>
+    示例：<a href="form.html">form</a> <br/>
+    表单元素一定要放在form中，否则用户输入的数据无法读取<br/>
+    示例在form.html中<br/>
+</p>
+<form>
+    example: <br/>
+    <input type="text" name="example">
+</form>
+
+
 </body>
 </html>

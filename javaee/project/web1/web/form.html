@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form</title>
+</head>
+<body>
+<form action="服务器端地址，一段java代码，用来处理表单数据(value属性)"
+      method="post/get 表单数据提交到服务器的方式方法">
+    <fieldset>
+        <p>将数据存储到value中，将value发送给服务器端</p>
+        <p>readonly 表示只读属性</p>
+        用户名：<input type="text" name="username" value="默认值" readonly/>
+        <br/>
+
+        密码：<input type="password" name="password"/>
+        <br/>
+
+        <p>多选一：同一组的单选按钮name属性保持一致</p>
+        性别：<input type="radio" name="sex" value="male"/>男
+        <input type="radio" name="sex" value="female"/> 女
+        <br/>
+
+        <p>多选：同一组的多选按钮name属性也要保持一致</p>
+        兴趣(多选)：
+        <input type="checkbox" name="fav" value=""/>球类
+        <input type="checkbox" name="fav" value=""/>阅读
+        <input type="checkbox" name="fav" value=""/>影视
+        <br/>
+
+        <p>select</p>
+        <select name="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab" selected>Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+        </select>
+        <br/>
+
+        <p>用户描述(textarea)</p>
+        <textarea name="message" rows="10" cols="30">
+        The cat was playing in the garden.
+        </textarea>
+        <br/>
+
+        <input type="submit" value="按钮显示的文本"/>
+        <input type="button" value="默认无用处，需要编写代码(js)，给它一个指定任务"/>
+    </fieldset>
+</form>
+
+</body>
+</html>
