@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        table {
+            width: 600px;
+        }
+
+        table, th, td {
+            /*边框 3像素 实线 绿色*/
+            /*固定顺序*/
+            border: 3px solid green;
+        }
+
+        td {
+            width: 150px;
+            text-align: center;
+            /*下边框对齐*/
+            vertical-align: center;
+            height: 40px;
+            /*?边距?个像素*/
+            /*padding-left: 25px;*/
+            /*padding-right: 25px;*/
+            /*padding-top: 25px;*/
+            /*padding-bottom: 25px;*/
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th>第一列</th>
+        <th>第二列</th>
+        <th>第三列</th>
+        <th>第四列</th>
+    </tr>
+    <tr>
+        <td colspan="3">1,1/1,2/1,3 跨列合并</td>
+        <!--        <td>1,2</td>-->
+        <!--        <td>1,3</td>-->
+        <td rowspan="2">1,4/2,4 跨行合并</td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2">2,1/2,2/3,1/3,2合并</td>
+        <!--        <td>2,2</td>-->
+        <td>2,3</td>
+        <!--        <td>2,4</td>-->
+    </tr>
+    <tr>
+        <!--        <td>3,1</td>-->
+        <!--        <td>3,2</td>-->
+        <td>3,3</td>
+        <td>3,4</td>
+    </tr>
+</table>
+</body>
+</html>

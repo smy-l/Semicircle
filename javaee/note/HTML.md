@@ -23,7 +23,7 @@ HTML 标题（Heading）是通过 \<h1\> - \<h6\> 等标签进行定义的。
 <h6>h6h6h6h66hh6h6</h6>
 ```
 
-## HTML 段落
+## HTML \<p\>(段落)
 
 HTML 段落是通过 \<p\> 标签进行定义的。
 
@@ -33,7 +33,7 @@ HTML 段落是通过 \<p\> 标签进行定义的。
 <p>段落间距(p)比行间距(br/)大</p>
 ```
 
-## HTML 链接
+## HTML \<a\>(链接)
 
 HTML 链接是通过 \<a\> 标签进行定义的。
 
@@ -46,7 +46,7 @@ HTML 链接是通过 \<a\> 标签进行定义的。
 <br/>
 ```
 
-## HTML 图像
+## HTML \<img\>(图像)
 
 HTML 图像是通过 \<img\> 标签进行定义的。
 
@@ -59,7 +59,7 @@ alt="信息"  当图片无法正常显示的时候，将显示"信息",告诉用
 <img src="images/picture.png" width="384" height="216" alt="图片信息">
 ```
 
-## HTML 水平线
+## HTML \<hr/\>(水平线)
 
 使用\<hr/\>表示
 
@@ -67,7 +67,7 @@ alt="信息"  当图片无法正常显示的时候，将显示"信息",告诉用
 <hr/>
 ```
 
-## HTML 注释
+## HTML \<!-- --\>(注释)
 
 HTML注释(生成页面的时候会将注释删除)
 
@@ -75,7 +75,7 @@ HTML注释(生成页面的时候会将注释删除)
 <!-- This is a comment -->
 ```
 
-## HTML 锚链接
+## HTML href(锚链接)
 
 1. 在超链接\<a\>中使用`href="#关键字"`表示
 2. 在需要进行跳转的地方进行命名，命名语句`<a name="关键字"></a>`
@@ -107,7 +107,7 @@ HTML注释(生成页面的时候会将注释删除)
 <a href="folder1/folder2/e.html">e.html</a>
 ```
 
-## HTML 表格
+## HTML \<table\>(表格)
 
 1. 使用`<table></table>`进行表示
 2. `<tr></tr>`表示一行，`<td></td>`表示一列
@@ -216,6 +216,7 @@ HTML注释(生成页面的时候会将注释删除)
 5. `checkbox`表示多选按钮，同一组多选按钮name属性保持一致
 6. `submit`提交按钮
 7. `button`默认无用处，需要编写代码(js)，给它一个指定任务
+8. `reset` 重置按钮，清空我们输入元素里的内容
 
 ```html
 <form action="服务器端地址，一段java代码，用来处理表单数据(value属性)"
@@ -228,7 +229,8 @@ HTML注释(生成页面的时候会将注释删除)
     <br/>
 
     <p>多选一：同一组的单选按钮name属性保持一致</p>
-    性别：<input type="radio" name="sex" value="male"/>男
+  <p>checked 将某一属性值设置为默认</p>
+    性别：<input type="radio" name="sex" value="male" checked/>男
          <input type="radio" name="sex" value="female"/> 女
     <br/>
 
@@ -240,6 +242,7 @@ HTML注释(生成页面的时候会将注释删除)
     <br/>
     <input type="submit" value="按钮显示的文本" />
     <input type="button" value="默认无用处，需要编写代码(js)，给它一个指定任务"/>
+  	<input type="reset" value="重置，将所有元素状态恢复到默认值">
 </form>
 ```
 
@@ -267,11 +270,16 @@ HTML注释(生成页面的时候会将注释删除)
 
 1. 使用`<select></select>`表示
 2. 使用`<option></option>`来增加select的选项
-3. `<option>`中使用`selected`来定义预定义选项，即一开始的默认选项
+3. `<option>` 中使用`selected`来定义预定义选项，即一开始的默认选项
+
+### select中属性
+
+1. size: 页面中同时显示多少个选项
+2. multiple: 默认select是多选一的，加上multiple，就可以多选(需要配合command(mac)/ctrl(windows)键)
 
 ```html
 <form>
-<select name="cars">
+<select name="cars" size="5" multiple>
 <option value="volvo">Volvo</option>
 <option value="saab">Saab</option>
 <option value="fiat" selected>Fiat</option>
@@ -285,8 +293,9 @@ HTML注释(生成页面的时候会将注释删除)
 ## HTML textarea(文本域)
 
 1. 使用`<textarea></textarea>`表示
-2. `rows=""`表示行数
-3.  `cols=""`表示列数
+2. 和文本框的区别是：多行输入的，文本框只能是一行
+3. `rows=""`表示行数
+4. `cols=""`表示列数
 
 ```html
 <textarea name="message" rows="10" cols="30">
@@ -302,3 +311,4 @@ The cat was playing in the garden.
    2. 被禁用的元素不会被提交。
 3. *size* 属性规定输入字段的尺寸（以字符计）
 4. *maxlength* 属性规定输入字段允许的最大长度(以字符计)
+
