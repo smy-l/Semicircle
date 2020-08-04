@@ -44,16 +44,21 @@
             background-color: royalblue;
             color: white;
             border: none;
+            margin-top: 20px;
         }
         .redWord{
             color: red;
             font-size: 5px;
             text-align: left;
+            padding: 0;
+            margin-top: 0;
+            margin-bottom: 0;
         }
         p{
-            padding-top: 6px;
-            padding-bottom: 6px;
+            padding: 0;
             margin-right: 50px;
+            margin-top: 0;
+            margin-bottom: 0;
         }
         input{
             width: 150px;
@@ -66,21 +71,27 @@
 <div id="div1">
     <p id="title">用户注册</p>
     <div id="body">
-        <p>*用户名：<input type="text"/></p>
+        <p>*用户名：<input type="text"/>
 
         <p class="redWord">用户名要求不低于6个字符</p>
 
         <p>*密码：<input type="password"/></p>
 
+        <p class="redWord">密码要求不低于6个字符</p>
+
         <p>*身份证号：<input type="text"/></p>
 
+        <p class="redWord">身份证号必填</p>
+
         <p>*电话：<input type="text"/></p>
+
+        <p class="redWord">电话号码必填</p>
 
         <p>*住址：<input type="text"/></p>
 
         <p>*邮政编码：<input type="text"/></p>
 
-        <p style="margin-right: 6px">
+        <p style="margin-right: 14px">
             *验证码：<input id="check" type="text"/>
             <img src="images/img2.jpg"/>
             <a href="" id="doNotLook">看不清</a>
@@ -90,7 +101,6 @@
             <input id="agree" type="checkbox" value=""/>
             我同意<a href="">《服务条款》</a>
         </p>
-
         <p>
             <input id="submit" type="submit" value="立即注册"/>
         </p>
