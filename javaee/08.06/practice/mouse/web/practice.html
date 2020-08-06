@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .color {
+            text-decoration: none;
+        }
+
+        .color:hover {
+            color: orange;
+        }
+
+        #time {
+            width: 400px;
+            height: 200px;
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+<form>
+    <a class="color" href="http://www.baidu.com">百度</a>
+    <a id="test" style="text-decoration: none" onmouseover="int()" onmouseout="out()"
+       href="http://www.baidu.com">测试结果</a>
+</form>
+
+<img id="advImg" src="images/p1.jpg" width="180" height="135">
+
+<div id="time">
+
+</div>
+
+
+<script>
+    function int() {
+        document.getElementById("test").style.color = "red";
+        document.getElementById("test").style.backgroundColor = "blue";
+    }
+
+    function out() {
+        document.getElementById("test").style.color = "";
+        document.getElementById("test").style.backgroundColor = "";
+    }
+
+    function show() {
+        document.getElementById("advImg").src="images/p2.jpg";
+    }
+
+    function show1() {
+        document.getElementById("advImg").src="images/p1.jpg";
+    }
+
+    setInterval(show,2000);
+    setInterval(show1, 4000);
+
+    function time1() {
+        document.write();
+    }
+    setInterval(time1, 1000)
+
+
+
+</script>
+
+
+</body>
+</html>
