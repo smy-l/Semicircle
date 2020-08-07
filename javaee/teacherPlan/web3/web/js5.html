@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function btnClick() {
+            var n = "abc";
+            var m = parseInt(n); // NaN = Not a Number
+            alert(m);
+
+            alert("Hello World!!");
+
+            var x = "123";
+            var y = parseInt(x);
+            alert(typeof(y));
+            alert(++y);
+            var z = "123.321";
+            y = parseFloat(z);
+            y = parseInt(z);
+            alert(y);
+            alert(typeof(y));
+
+        }
+        function imgOver() {
+            alert("鼠标放上来了");
+        }
+        function imgOut() {
+            alert("鼠标移走了");
+        }
+        function keydown() {
+            alert("dfsf");
+        }
+    </script>
+</head>
+<body onload="btnClick()">
+<input type="button" onclick="btnClick()" value="点我"/>
+<img src="images/baidu.png" onclick="btnClick()"
+onmouseover="imgOver()" onmouseout="imgOut()"/>
+<select onchange="btnClick()">
+    <option>aaa</option>
+    <option>bbbb</option>
+    <option>cccccc</option>
+    <option>dddddddd</option>
+</select>
+<br/>
+<input type="text" onkeydown="keydown()"/>
+</body>
+</html>

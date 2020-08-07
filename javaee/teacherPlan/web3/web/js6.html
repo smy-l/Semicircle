@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var array = ["aaa","ccc","fff"];
+        // array.push(234);
+        array.push("gggg");
+        array.sort();
+        for(var i=0;i<array.length;i++){
+            document.write(array[i]+"   ");
+        }
+        document.write("<br />");
+        var array2 = [];
+        array2["aaa"]=1111;
+        array2["ccc"]=3333;
+        array2["hhh"]=9999;
+        for(item in array2){
+            document.write(item + " --- " + array2[item]+"<br/>");
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // 与Java区别：
+        // 1、 变量声明 var 变量名; 不考虑变量的类型
+        // 2、值得类型没有java的复杂：
+        //     原始类型：数值，字符串，布尔，数组
+        //     对象：Object 用{属性名1:值,属性名2:值}定义对象
+        // 3、undefined代表的是变量没有赋值的状态
+        // 4、函数定义
+        //     function 函数名(参数列表){
+        //         函数体;
+        //         return 值
+        //     }
+        //     js中函数定义的时候，是没有返回值类型
+        //     参数列表，也不需要写类型，只写参数名
+        //     函数有返回值的时候，写return，否则不写
+        var length = 7;                             // 数字
+        var lastName = "Gates";                      // 字符串
+        var cars = ["Porsche", "Volvo", "BMW"];         // 数组
+        var x = {firstName:"Bill", lastName:"Gates"};    // 对象
+
+        var d = new Date(); // 获取当前系统时间
+
+        var year = d.getFullYear();
+        var month = d.getMonth()+1;
+        var date = d.getDate();
+        var hour = d.getHours();
+        var minute = d.getMinutes()<10 ? "0"+d.getMinutes() : d.getMinutes();
+        var second = d.getSeconds();
+
+        document.write(year+"年"+month+"月"+date+"日 "
+        + hour +"时"+minute+"分"+second+"秒");
+        console.log("Hello World!");
+
+        function f(p1,p2) {
+            return p1+p2;
+        }
+        var result = f(10,20);
+        console.log(result);
+    </script>
+</head>
+<body>
+sdfsdfsdfsdfsdf
+</body>
+</html>

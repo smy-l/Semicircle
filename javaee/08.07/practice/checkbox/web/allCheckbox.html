@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#all").click(function () {
+                if ($("#all").prop("checked")) {
+                    // $("[name='c1']").prop("checked", true);
+                    $("[name='c']").prop("checked", true);
+                } else {
+                    // $("[name='c1']").prop("checked", false);
+                    $("[name='c']").prop("checked", false);
+                }
+            });
+
+            $("#sub").click(function () {
+                var proNumStr = $("#num").prop("value");
+                var proNum = parseInt(proNumStr) - 1;
+                if (proNum < 0){
+                    proNum = 0;
+                }
+                var priceStr = $("#price").prop("value");
+                var price = parseInt(priceStr) * proNum;
+                $("#num").attr("value", "" + proNum);
+                $("#allPrice").attr("value", "" + price);
+            });
+
+            $("#addNum").click(function () {
+                var proNumStr = $("#num").attr("value");
+                var proNum = parseInt(proNumStr) + 1;
+                var priceStr = $("#price").attr("value");
+                var price = parseInt(priceStr) * proNum;
+                $("#num").attr("value", proNum);
+                $("#allPrice").attr("value", "" + price);
+            });
+
+            $("#num").blur(function () {
+                var Num = $("#num").val();
+                alert(Num);
+                var proNum = $("#num").attr("value", Num);
+                var priceStr = $("#price").attr("value");
+                var price = parseInt(priceStr) * proNum;
+                $("#num").attr("value", proNum);
+                $("#allPrice").attr("value", "" + price);
+            });
+
+        });
+    </script>
+    <style>
+        div, p, input {
+            margin: 0;
+            padding: 0;
+        }
+
+        .d {
+            float: left;
+        }
+
+        #num {
+            width: 50px;
+            height: 26px;
+            text-align: center;
+        }
+
+        .changeNum {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+
+        #price {
+            width: 60px;
+            height: 26px;
+            text-align: center;
+        }
+
+        #allPrice {
+            width: 60px;
+            height: 26px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+
+<div>
+    <p><input type="checkbox" id="all">全选</p>
+    <p><input type="checkbox" name="c">c1</p>
+    <p><input type="checkbox" name="c">c2</p>
+    <p><input type="checkbox" name="c">c3</p>
+</div>
+
+<div style="width: 500px; height: 30px;">
+    <div class="d">
+        <input id="price" value="55.0" type="text" readonly>
+    </div>
+    <div class="d" style="margin-left: 10px">
+        <input class="changeNum" type="button" id="sub" value="-">
+    </div>
+    <div class="d">
+        <input type="text" id="num" value="0" >
+    </div>
+    <div class="d">
+        <input class="changeNum" type="button" id="addNum" value="+">
+    </div>
+    <div class="d" style="margin-left: 10px">
+        <input type="text" id="allPrice" value="0" readonly>
+    </div>
+</div>
+</body>
+</html>
