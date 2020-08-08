@@ -8,43 +8,38 @@
         $(document).ready(function () {
             $("#all").click(function () {
                 if ($("#all").prop("checked")) {
-                    // $("[name='c1']").prop("checked", true);
                     $("[name='c']").prop("checked", true);
                 } else {
-                    // $("[name='c1']").prop("checked", false);
                     $("[name='c']").prop("checked", false);
                 }
             });
 
+            var priceStr = $("#price").val();
             $("#sub").click(function () {
-                var proNumStr = $("#num").prop("value");
+                var proNumStr = $("#num").val();
                 var proNum = parseInt(proNumStr) - 1;
                 if (proNum < 0){
                     proNum = 0;
                 }
-                var priceStr = $("#price").prop("value");
                 var price = parseInt(priceStr) * proNum;
-                $("#num").attr("value", "" + proNum);
-                $("#allPrice").attr("value", "" + price);
+                $("#num").val(proNum);
+                $("#allPrice").val(price);
             });
 
             $("#addNum").click(function () {
-                var proNumStr = $("#num").attr("value");
+                var proNumStr = $("#num").val();
                 var proNum = parseInt(proNumStr) + 1;
-                var priceStr = $("#price").attr("value");
                 var price = parseInt(priceStr) * proNum;
-                $("#num").attr("value", proNum);
-                $("#allPrice").attr("value", "" + price);
+                $("#num").val(proNum);
+                $("#allPrice").val(price);
             });
 
             $("#num").blur(function () {
-                var Num = $("#num").val();
-                alert(Num);
-                var proNum = $("#num").attr("value", Num);
-                var priceStr = $("#price").attr("value");
+                var proNumStr = $("#num").val();
+                var proNum = parseInt(proNumStr);
                 var price = parseInt(priceStr) * proNum;
-                $("#num").attr("value", proNum);
-                $("#allPrice").attr("value", "" + price);
+                $("#num").val(proNum);
+                $("#allPrice").val(price);
             });
 
         });
