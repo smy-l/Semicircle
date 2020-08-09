@@ -8,127 +8,98 @@
         $(document).ready(function () {
             $("#all").click(function () {
                 if ($("#all").prop("checked")) {
-                    $("[name='c']").prop("checked", true);
+                    $("[name='box']").prop("checked", true);
                 } else {
-                    $("[name='c']").prop("checked", false);
+                    $("[name='box']").prop("checked", false);
                 }
+                f()
             });
 
+            var numArr = $("[name='num']");
+            for (i = 0; i < numArr.length; i++) {
+                $("#num" + (i + 1)).blur(function () {
+                    var clickNum = this.id.substring(3);
+                    var proNumStr = $("#num" + clickNum).val();
+                    var proNum = parseFloat(proNumStr);
+                    var priceStr = $("#price" + clickNum).val();
+                    var price = parseFloat(priceStr) * proNum;
+                    $("#num" + clickNum).val(proNum);
+                    $("#allPrice" + clickNum).val(price);
+                    f();
+                });
+            }
 
-            $("#sub").click(function () {
-                var proNumStr = $("#num").val();
-                var proNum = parseFloat(proNumStr) - 1.00;
-                if (proNum < 0){
-                    proNum = 0;
-                }
-                var priceStr = $("#price").val();
-                var price = parseFloat(priceStr) * proNum;
-                $("#num").val(proNum);
-                $("#allPrice").val(price);
-            });
+            var addArr = $("[name='addNum']");
+            for (i = 0; i < addArr.length; i++) {
+                $("#addNum" + (i + 1)).click(function () {
+                    var clickNum = this.id.substring(6);
+                    var proNumStr = $("#num" + clickNum).val();
+                    var proNum = parseFloat(proNumStr) + 1.00;//1
+                    var priceStr = $("#price" + clickNum).val();
+                    var price = parseFloat(priceStr) * proNum;
+                    $("#num" + clickNum).val(proNum);
+                    $("#allPrice" + clickNum).val(price);
+                    f();
+                });
+            }
 
-            $("#addNum").click(function () {
-                var proNumStr = $("#num").val();
-                var proNum = parseFloat(proNumStr) + 1.00;
-                var priceStr = $("#price").val();
-                var price = parseFloat(priceStr) * proNum;
-                $("#num").val(proNum);
-                $("#allPrice").val(price);
-            });
+            var subArr = $("[name='subNum']");
+            for (i = 0; i < subArr.length; i++) {
+                $("#subNum" + (i + 1)).click(function () {
+                    var clickNum = this.id.substring(6);
+                    var proNumStr = $("#num" + clickNum).val();
+                    var proNum = parseFloat(proNumStr) - 1.00;
+                    if (proNum < 0) {
+                        proNum = 0;
+                    }
+                    var priceStr = $("#price" + clickNum).val();
+                    var price = parseFloat(priceStr) * proNum;
+                    $("#num" + clickNum).val(proNum);
+                    $("#allPrice" + clickNum).val(price);
+                    f();
+                });
+            }
 
-            $("#num").blur(function () {
-                var proNumStr = $("#num").val();
-                var proNum = parseFloat(proNumStr);
-                var priceStr = $("#price").val();
-                var price = parseFloat(priceStr) * proNum;
-                $("#num").val(proNum);
-                $("#allPrice").val(price);
-            });
+            var delArr = $("[class='del']");
+            for (i = 0; i < delArr.length; i++) {
+                $("#del" + (i + 1)).click(function () {
+                    var clickNum = this.id.substring(3);
+                    $("#elem" + clickNum).remove();
+                    f();
+                });
+            }
 
-            $("#del").click(function () {
-                $("#elem").remove();
-            });
-
-            $("#sub1").click(function () {
-                var proNumStr = $("#num1").val();
-                var proNum = parseFloat(proNumStr) - 1.00;
-                if (proNum < 0){
-                    proNum = 0;
-                }
-                var priceStr = $("#price1").val();
-                var price = parseFloat(priceStr) * proNum;
-                $("#num1").val(proNum);
-                $("#allPrice1").val(price);
-            });
-
-            $("#addNum1").click(function () {
-                var proNumStr = $("#num1").val();
-                var proNum = parseFloat(proNumStr) + 1.00;
-                var priceStr = $("#price1").val();
-                var price = parseFloat(priceStr) * proNum;
-                $("#num1").val(proNum);
-                $("#allPrice1").val(price);
-            });
-
-            $("#num1").blur(function () {
-                var proNumStr = $("#num1").val();
-                var proNum = parseFloat(proNumStr);
-                var priceStr = $("#price1").val();
-                var price = parseFloat(priceStr) * proNum;
-                $("#num1").val(proNum);
-                $("#allPrice1").val(price);
-            });
-
-            $("#del1").click(function () {
-                $("#elem1").remove();
-            });
-
-
-            $("#sub2").click(function () {
-                var proNumStr = $("#num2").val();
-                var proNum = parseFloat(proNumStr) - 1.00;
-                if (proNum < 0){
-                    proNum = 0;
-                }
-                var priceStr = $("#price2").val();
-                var price = parseFloat(priceStr) * proNum;
-                $("#num2").val(proNum);
-                $("#allPrice2").val(price);
-            });
-
-            $("#addNum2").click(function () {
-                var proNumStr = $("#num2").val();
-                var proNum = parseFloat(proNumStr) + 1.00;
-                var priceStr = $("#price2").val();
-                var price = parseFloat(priceStr) * proNum;
-                $("#num2").val(proNum);
-                $("#allPrice2").val(price);
-            });
-
-            $("#num").blur(function () {
-                var proNumStr = $("#num2").val();
-                var proNum = parseFloat(proNumStr);
-                var priceStr = $("#price2").val();
-                var price = parseFloat(priceStr) * proNum;
-                $("#num2").val(proNum);
-                $("#allPrice2").val(price);
-            });
-
-            $("#del2").click(function () {
-                $("#elem2").remove();
-            });
+            var boxArr = $("[name='box']");
+            for (i = 0; i < boxArr.length; i++) {
+                $("#box" + (i + 1)).click(function () {
+                    f();
+                });
+            }
 
             $("#delAllPro").click(function () {
-                var elemArray = $("[class='listElem']");
+                var elemArray = $("[name='box']");
+                for (i = 0; i < elemArray.length; i++) {
+                    if (elemArray[i].checked) {
+                        var delNo = elemArray[i].id.substring(3);
+                        var delId = "elem" + delNo;
+                        $("#" + delId).remove();
+                    }
+                }
+                f();
+            });
 
-
-                $(".listElem").remove();
-
-            })
-
+            function f() {
+                var allPriceArr = $("[name='allPrice']");
+                var sum = 0;
+                for (i = 0; i < allPriceArr.length; i++) {
+                    temp = parseFloat($("#allPrice" + (i + 1)).val());
+                    if ($("#box" + (i + 1)).prop("checked")) {
+                        sum = sum + temp;
+                    }
+                }
+                $("#money").val(sum);
+            }
         });
-
-
     </script>
     <style>
         div, p, table, tr, td, th, hr {
@@ -259,25 +230,74 @@
         }
 
         #delAll {
-            clear: both;
-            margin-left: 55px;
+            float: left;
+            margin-top: 20px;
+            margin-left: 60px;
         }
 
+        #settlement {
+            clear: both;
+            height: 60px;
+            border: 1px solid #e9e9e9;
+        }
+
+        #moneyTittle {
+            float: left;
+            margin-top: 25px;
+            margin-left: 650px;
+            color: #666;
+            font-size: 10px;
+        }
+
+        .moneyTip {
+            float: left;
+            margin-top: 15px;
+            font-size: 20px;
+            text-align: left;
+            color: red;
+            /*background-color: blueviolet;*/
+        }
+
+        #money {
+            border: none;
+            text-align: left;
+            height: 30px;
+            padding-top: 0;
+            font-size: 20px;
+            color: red;
+            /*background-color: blue;*/
+        }
+
+        #submitDiv {
+            float: left;
+            width: 108px;
+            height: 100%;
+        }
+
+        #submitBut {
+            height: 100%;
+            width: 100%;
+            border: white;
+            font-size: 20px;
+            background-color: red;
+            border: none;
+            color: white;
+        }
 
     </style>
 </head>
 <body>
 <form>
-    <!--主体-->
+    <!-- 主体 -->
     <div id="b1">
         <div id="title">
             全部商品
         </div>
-        <!--水平线-->
+        <!-- 水平线 -->
         <div>
             <hr/>
         </div>
-        <!--list标题-->
+        <!-- list标题 -->
         <div id="listTitle">
             <!--复选框-->
             <div class="check">
@@ -311,61 +331,12 @@
         <!-- list主体 -->
         <div id="listContent">
             <!-- list元素 -->
-            <div class="listElem" name="elemValue" id="elem">
+            <div class="listElem" name="elemValue" id="elem1">
                 <div class="elemCheckbox">
-                    <input type="checkbox" name="c"/>
+                    <input type="checkbox" name="box" id="box1"/>
                 </div>
                 <div class="elemImg">
                     <img src="images/p1.jpg" style="width: 200px; height: 200px;"/>
-                </div>
-                <div class="elemDesc">
-                    <P class="desc">
-                        --------
-                    </P>
-                </div>
-                <!-- ￥ -->
-                <div style="border: none; float:left;
-                            margin-top: 31px;
-                            margin-left: 40px;">
-                    ￥
-                </div>
-                <!-- 单价 -->
-                <div class="elemPrice">
-                    <input type="text" id="price" class="priceCss" value="1888.00" readonly>
-                </div>
-
-                <!-- 数量 -->
-                <div class="numDiv">
-                    <div style="margin-left: 10px">
-                        <input class="changeNum sub" type="button" value="-">
-                    </div>
-
-                    <div>
-                        <input type="text" id="num" value="0" class="priceText">
-                    </div>
-
-                    <div>
-                        <input class="changeNum addNum" type="button" value="+">
-                    </div>
-                </div>
-
-                <!-- 总价 -->
-                <div class="allPriceDiv">
-                    <input type="text" id="allPrice" value="0" class="priceText"
-                           style="border: none; width: 90px" readonly/>
-                </div>
-
-                <div class="deleteProduct">
-                    <a href="#" class="del" id="del">删除</a>
-                </div>
-            </div>
-
-            <div class="listElem" name="elemValue" id="elem1">
-                <div class="elemCheckbox">
-                    <input type="checkbox" name="c"/>
-                </div>
-                <div class="elemImg">
-                    <img src="images/p3.jpg" style="width: 200px; height: 200px;"/>
                 </div>
                 <div class="elemDesc">
                     <P class="desc">
@@ -386,21 +357,21 @@
                 <!-- 数量 -->
                 <div class="numDiv">
                     <div style="margin-left: 10px">
-                        <input class="changeNum" type="button" id="sub1" value="-">
+                        <input class="changeNum" type="button" id="subNum1" name="subNum" value="-">
                     </div>
 
                     <div>
-                        <input type="text" id="num1" value="0" class="priceText">
+                        <input type="text" name="num" id="num1" value="0" class="priceText">
                     </div>
 
                     <div>
-                        <input class="changeNum" type="button" id="addNum1" value="+">
+                        <input class="changeNum" type="button" id="addNum1" name="addNum" value="+">
                     </div>
                 </div>
 
                 <!-- 总价 -->
                 <div class="allPriceDiv">
-                    <input type="text" id="allPrice1" value="0" class="priceText"
+                    <input type="text" id="allPrice1" value="0" class="priceText" name="allPrice"
                            style="border: none; width: 90px" readonly/>
                 </div>
 
@@ -411,7 +382,7 @@
 
             <div class="listElem" name="elemValue" id="elem2">
                 <div class="elemCheckbox">
-                    <input type="checkbox" name="c"/>
+                    <input type="checkbox" name="box" id="box2"/>
                 </div>
                 <div class="elemImg">
                     <img src="images/p2.jpg" style="width: 200px; height: 200px;"/>
@@ -435,21 +406,21 @@
                 <!-- 数量 -->
                 <div class="numDiv">
                     <div style="margin-left: 10px">
-                        <input class="changeNum" type="button" id="sub2" value="-">
+                        <input class="changeNum" type="button" id="subNum2" name="subNum" value="-">
                     </div>
 
                     <div>
-                        <input type="text" id="num2" value="0" class="priceText">
+                        <input type="text" id="num2" name="num" value="0" class="priceText">
                     </div>
 
                     <div>
-                        <input class="changeNum" type="button" id="addNum2" value="+">
+                        <input class="changeNum" type="button" id="addNum2" name="addNum" value="+">
                     </div>
                 </div>
 
                 <!-- 总价 -->
                 <div class="allPriceDiv">
-                    <input type="text" id="allPrice2" value="0" class="priceText"
+                    <input type="text" id="allPrice2" value="0" class="priceText" name="allPrice"
                            style="border: none; width: 90px" readonly/>
                 </div>
 
@@ -458,12 +429,73 @@
                 </div>
             </div>
 
+            <div class="listElem" name="elemValue" id="elem3">
+                <div class="elemCheckbox">
+                    <input type="checkbox" name="box" id="box3"/>
+                </div>
+                <div class="elemImg">
+                    <img src="images/p3.jpg" style="width: 200px; height: 200px;"/>
+                </div>
+                <div class="elemDesc">
+                    <P class="desc">
+                        --------
+                    </P>
+                </div>
+                <!-- ￥ -->
+                <div style="border: none; float:left;
+                            margin-top: 31px;
+                            margin-left: 40px;">
+                    ￥
+                </div>
+                <!-- 单价 -->
+                <div class="elemPrice">
+                    <input type="text" id="price3" class="priceCss" value="1888.00" readonly>
+                </div>
+
+                <!-- 数量 -->
+                <div class="numDiv">
+                    <div style="margin-left: 10px">
+                        <input class="changeNum" type="button" value="-" id="subNum3" name="subNum">
+                    </div>
+
+                    <div>
+                        <input type="text" id="num3" name="num" value="0" class="priceText">
+                    </div>
+
+                    <div>
+                        <input class="changeNum" type="button" value="+" id="addNum3" name="addNum">
+                    </div>
+                </div>
+
+                <!-- 总价 -->
+                <div class="allPriceDiv">
+                    <input type="text" id="allPrice3" value="0" class="priceText" name="allPrice"
+                           style="border: none; width: 90px" readonly/>
+                </div>
+
+                <div class="deleteProduct">
+                    <a href="#" class="del" id="del3">删除</a>
+                </div>
+            </div>
+        </div>
+        <!-- 删除、结算 -->
+        <div id="settlement">
             <div id="delAll">
                 <a href="#" class="del" id="delAllPro">删除选中商品</a>
             </div>
 
-
-
+            <div id="moneyTittle">
+                总价：
+            </div>
+            <div class="moneyTip">
+                ￥
+            </div>
+            <div class="moneyTip" style="width: 70px;">
+                <input id="money" value="0" style="width: 70px;" readonly/>
+            </div>
+            <div id="submitDiv">
+                <input id="submitBut" type="submit" value="结算"/>
+            </div>
 
         </div>
     </div>
