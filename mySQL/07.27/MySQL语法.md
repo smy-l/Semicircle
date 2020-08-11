@@ -1,4 +1,4 @@
-```
+```sql
 # 学生表
 create table student (
 	sno int not null AUTO_INCREMENT,
