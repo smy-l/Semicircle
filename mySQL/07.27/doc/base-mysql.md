@@ -17,7 +17,7 @@ MySQL 是最流行的关系型数据库管理系统
 + 行：一行（=元组，或记录）是一组相关的数据，例如一条用户订阅的数据。
 + 主键：主键是唯一的。一个数据表中只能包含一个主键。你可以使用主键来查询数据。
 
-## 语法
+## 01.基础语法以及CRUD操作
 ### 创建数据库
 ```sql
 CREATE DATABASE <数据库名>;
@@ -307,15 +307,175 @@ select * from student3 limit 0,4;
 select * from student3 limit 4,4;
 ```
 
+### 约束
+
+#### 主键约束
+
+用来唯一标识数据库中的每一条记录
+
+```sql
+-- 创建表 指定主键，并令其自增长
+create table 表名(
+列名 int primary key auto_increment
+)auto_increment = 起始值;
+
+-- 创建好后修改起始值
+alter table 表名 auto_increment = 起始值;
+```
+
+#### 唯一约束
+
+```sql
+-- 格式
+字段名 字段类型 unique
+
+-- 示例
+create tabel st7(
+	id int,
+	name varchar(20) unique
+)
+```
+
+#### 非空约束
+
+```sql
+-- 格式
+字段名 字段类型 not null
+
+-- 示例
+create tabel st8(
+	id int,
+	name varchar(20) not null,
+	gender char(1)
+)
+```
+
+***默认值***
+
+```sql
+-- 格式
+字段名 字段类型 default 默认值
+
+-- 示例
+create table st9 (
+id int,
+name varchar(20),
+address varchar(20) default '广州'
+)
+
+-- 添加一条记录，使用默认地址
+insert into st9 values(1,'李四',default);
+```
+
+#### 外键约束
+
+外键必须有一个和他关联的主键，并且其值一定在主键中存在
+
+**添加外键约束**
+
+```sql
+-- 新建表是增加外键
+constraint 外键约束名 foreign key
+
+--已有表增加外键
+alter table 从表 add constraint 外键约束名 foreign key (外键字段名) references 主表(主键字段名)；
+
+-- 示例
+create table employee(
+id int primary key auto_increment, name varchar(20),
+age int,
+dep_id int, -- 外键对应主表的主键 
+  -- 创建外键约束
+constraint emp_depid_fk foreign key (dep_id) references department(id) 
+);
+
+-- 在 employee 表情存在的情况下添加外键
+alter table employee add constraint emp_depid_fk foreign key (dep_id) references department(id);
+```
+
+**删除外键约束**
+
+alter table 从表 drop foreign key 外键名称;
+
+```sql
+-- 示例
+alter table employee drop foreign key emp_depid_fk;
+```
+
+**注：要先删除外键值，才能删除主键**
+
+
+
+## 02.表间关系与多表查询
+
+1. 一对多
+   
+2. 多对多
+   
+3. 一对一
+
+   
+
 ### 表连接的使用
 
 + INNER JOIN（内连接,或等值连接）：获取两个表中字段匹配关系的记录。
 + LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。
 + RIGHT JOIN（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。
 
-### 约束
+#### 内连接
 
-#### 主键约束
+1. 隐式内连接
 
-用来唯一标识数据库中的每一条记录
+   隐式内连接:看不到 JOIN 关键字，条件使用 WHERE 指定
+
+     SELECT 字段名 FROM 左表, 右表 WHERE 条件
+
+   ```sql
+   select * from emp,dept where emp.`dept_id` = dept.`id`;
+   ```
+
+2. 显式内连接
+
+   显示内连接:使用 INNER JOIN ... ON 语句, 可以省略 INNER
+
+   SELECT 字段名 FROM 左表 inner join 右表 on 条件
+
+   ```sql
+   select * from emp e inner join dept d on e.`dept_id` = d.`id`;
+   ```
+
+**注：内连查询查询结果需要在主外键都存在数据的情况下使用**
+
+### 外连接
+1. 左外连接：使用 LEFT OUTER JOIN ... ON，OUTER 可以省略
+
+   select 字段名 from 左表 left [out] join 右表 on 条件
+
+   ```sql
+   -- 使用内连接查询
+   select * from dept d inner join emp e on d.`id` = e.`dept_id`;
+   
+   -- 使用左外连接查询
+   select * from dept d left join emp e on d.`id` = e.`dept_id`;
+   ```
+
+   注：会将左边表中的所有数据都显现出来，如果右表有对应信息，显示相应信息，没有则显示null
+
+   ​	   左表一般放主键主表
+
+   ​	   习惯用左外连
+
+2. 右外连接：使用 RIGHT OUTER JOIN ... ON，OUTER 可以省略
+
+   select 字段名 from 左表 left [out] join 右表 on 条件
+
+   ```sql
+   -- 使用内连接查询
+   select * from dept d inner join emp e on d.`id` = e.`dept_id`;
+   
+   -- 使用右外连接查询
+   select * from dept d right join emp e on d.`id` = e.`dept_id`;
+   ```
+
+   同左外连
 
