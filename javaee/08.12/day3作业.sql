@@ -151,12 +151,10 @@ VALUES (30001, '2008-09-01', 10001),
        (30004, '2008-10-03', 10005),
        (30005, '2008-10-08', 10001);
 -- 查询供应f_id= ‘a1’的水果供应商提供的其他水果种类，内连接
-select f_id, f_name from fruits
-where s_id in (select s_id from fruits where f_id = 'a1');
+select f_id, f_name from fruits where s_id in (select s_id from fruits where f_id = 'a1');
 
 -- 在customers表和orders表中，查询所有客户，包括没有订单的客户，左连接
-select * from customers c
-left join orders o on c.c_id = o.c_id;
+select * from customers c left join orders o on c.c_id = o.c_id;
 
 -- 在customers表和orders表中，查询所有订单，包括没有客户的订单，右连接
 select * from orders o right join customers c on c.c_id = o.c_id;
@@ -165,13 +163,10 @@ select * from orders o right join customers c on c.c_id = o.c_id;
 select * from orders o inner join customers c on c.c_id = 10001;
 
 -- 查询fruits表所有信息附加一列suppliers的供应商名称，使用INNER JOIN语法进行内连接查询，并对查询结果排序
-select f.*, s.s_name from fruits f
-inner join suppliers s on f.s_id = s.s_id order by s_id asc;
+select f.*, s.s_name from fruits f inner join suppliers s on f.s_id = s.s_id order by s_id asc;
 
 -- 查询所有价格小于9的水果的信息，查询s_id等于101和103所有的水果的信息，使用UNION连接查询结果
-select * from fruits where f_price < 9
-union
-select * from fruits where s_id in (101,103);
+select * from fruits where f_price < 9 union select * from fruits where s_id in (101,103);
 
 -- 查询所有价格小于9的水果的信息，查询s_id等于101和103的所有水果的信息，使用UNION ALL连接查询结果
 select * from fruits where f_price < 9 union select * from fruits
@@ -181,8 +176,7 @@ select o.o_date from orders o where o_num = 30001;
 
 -- 查询fruits表，为f_name取别名fruit_name，f_price取别名fruit_price，
 -- 为fruits表取别名f1，查询表中f_price < 8的水果的名称
-select f1.f_name fruit_name, f1.f_price fruit_price
-from fruits f1 where f1.f_price < 8;
+select f1.f_name fruit_name, f1.f_price fruit_price from fruits f1 where f1.f_price < 8;
 
 -- 查询suppliers表中字段s_name和s_city，使用CONCAT函数连接这两个字段值，并取列别名为suppliers_title。
 select concat(s_name,s_city) suppliers_title from suppliers;
@@ -253,8 +247,7 @@ select c_name, avg(grade) 每科平均成绩 from score GROUP BY c_name;
 
 -- 查询计算机成绩低于95的学生信息
 select * from student st
-inner join score sc on st.id = sc.stu_id
-where sc.grade < 95 and sc.c_name = '计算机';
+inner join score sc on st.id = sc.stu_id where sc.grade < 95 and sc.c_name = '计算机';
 
 -- 查询同时参加计算机和英语考试的学生的信息
 select * from student where id in (
@@ -262,19 +255,14 @@ select * from student where id in (
  select stu_id from score where c_name ='英语'));
 
 -- 从student表和score表中查询出学生的学号，然后合并查询结果
-select distinct student.id
-from student
-inner join score where score.stu_id = student.id;
+select distinct student.id from student inner join score where score.stu_id = student.id;
 
 -- 查询姓张或者姓王的同学的姓名、院系和考试科目及成绩
-select st.name, st.department, sc.c_name, sc.grade
-from student st
-inner join score sc on sc.stu_id = st.id
-where st.name like '张%' or st.name like '王%';
+select st.name, st.department, sc.c_name, sc.grade from student st
+inner join score sc on sc.stu_id = st.id where st.name like '张%' or st.name like '王%';
 
 -- 查询都是湖南的学生的姓名、年龄、院系和考试科目及成绩
-select st.name, st.department, sc.c_name, sc.grade, YEAR(now()) - birth age
-from student st
+select st.name, st.department, sc.c_name, sc.grade, YEAR(now()) - birth age from student st
 inner join score sc on sc.stu_id = st.id where address like '%湖南%';
 
 -- No.4
@@ -339,21 +327,41 @@ VALUES (1, 700, 1200),
        (5, 3001, 9999);
 
 -- 取得每个部门最高薪水的人员名称
-select ename,deptno from emp
-where sal in (select MAX(sal) from emp group by deptno);
+select ename,deptno from emp where sal in (select MAX(sal) from emp group by deptno);
 
 -- 哪些人的薪水在部门的平均薪水之上
-select ename
-from emp, (select avg(sal) 平均工资,deptno from emp group by deptno) avgSal
+select avg(sal),deptno from emp group by deptno
+select ename from emp, (select avg(sal) 平均工资,deptno from emp group by deptno) avgSal
 where emp.sal > avgSal.平均工资 and emp.deptno = avgSal.deptno;
 
 -- 取得部门中(所有人)平均薪水的等级
-select avg(sal),deptno from emp group by deptno;
+select t.deptno, s.grade
+from salgrade s
+join in (select deptno, avg(sal) as avgsal from emp group by deptno) t
+on t.avgsal between s.losal and hisal;
 
 -- 取得部门中(所有人)薪水的平均等级
+select t.deptno, avg(t.grade) as avggrade
+from (select e.deptno, e.ename, s.grade from emp e join salgrade s on e.sal between s.losal and hisal) t
+group by t.deptno;
+
 -- 取得平均薪水最高的部门的编号
+select deptno
+from emp e
+group by deptno
+having avg(sal) = (select avg(sal) avgsal from emp group by deptno order by avgsal desc limit 1);
+
 -- 求平均薪水的等级最高的部门的部门名称
+SELECT d.dname FROM emp e
+JOIN in dept d ON e.deptno = d.deptno
+GROUP BY d.dname
+HAVING avg(e.sal) = (SELECT avg(sal) AS avgsal FROM emp GROUP BY deptno ORDER BY avgsal DESC LIMIT 1);
+
 -- 取得比普通员工的最高薪水还要高的领导人姓名
+SELECT ename FROM emp
+WHERE empno IN (SELECT DISTINCT mgr FROM emp WHERE mgr IS NOT NULL)
+AND sal > (SELECT sal FROM emp WHERE empno NOT IN (SELECT DISTINCT mgr FROM  emp WHERE mgr IS NOT NULL) ORDER BY sal DESC LIMIT 1);
+
 -- 取得每个薪水等级有多少员工
 -- 列出受雇日期早于其直接上级领导的所有员工编号，姓名、部门名称
 -- 列出部门名称和这些员工信息同时列出那些没有员工的部门
