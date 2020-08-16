@@ -18,8 +18,10 @@ public abstract class BaseDaoImpl implements IBaseDao {
         ResultSet rs=null;
         try {
             pstm = connection.prepareStatement(sql);
-            for(int i = 0; i < params.length; i++){
-                pstm.setObject(i+1, params[i]);
+            if(params!=null){
+                for(int i = 0; i < params.length; i++){
+                    pstm.setObject(i+1, params[i]);
+                }
             }
             rs = pstm.executeQuery();
         } catch (Exception e) {

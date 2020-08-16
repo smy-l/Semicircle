@@ -25,16 +25,18 @@ public class TestUserDao {
     public void testAddUser() throws SQLException {
         User user = new User();
         user.setLoginName("ABC");
-        user.setUserName("xxxx");
+        user.setUserName("XXXX");
         user.setType(1);
-        user.setMobile("1234567890");
-        user.setEmail("111@11.com");
-        user.setIdentityCode("123456789987654321");
+        user.setMobile("234242432");
+        user.setEmail("sdf@df.com");
+        user.setIdentityCode("2342423423423");
         user.setSex(1);
-        user.setPassword("123456");
+        user.setPassword("123321");
         Connection conn = DataSourceUtil.openConnection();
+        UserDao userDao = new UserDaoImpl(conn);
+        User newUser = userDao.addUser(user);
+        System.out.println(newUser);
 
-
+        DataSourceUtil.closeConnection(conn);
     }
-
 }

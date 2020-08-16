@@ -1,6 +1,5 @@
 package club.banyuan.test;
 
-
 import org.junit.Test;
 
 import java.io.IOException;

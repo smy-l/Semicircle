@@ -8,6 +8,7 @@ import exception.*;
 import service.BillService;
 import service.SupplierService;
 import service.UserService;
+import server.HttpServer;
 
 import java.io.*;
 import java.net.Socket;
@@ -145,7 +146,7 @@ public class SocketHandler extends Thread {
     // form_post_fail.html?msg=异常信息描述
     if (resourcePath.contains("form_post_fail.html")) {
       // 获取异常信息描述
-      InputStream resourceAsStream1 = club.banyuan.mbm.server.HttpServer.class.getClassLoader()
+      InputStream resourceAsStream1 = HttpServer.class.getClassLoader()
               .getResourceAsStream(resourcePath);
 
       BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream1));

@@ -4,9 +4,7 @@ import club.banyuan.dao.UserDao;
 import club.banyuan.pojo.User;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
@@ -27,20 +25,21 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
     }
 
     @Override
-    public User AddUser(User user) {
-        String sql = "insert into student values(?,?,?,?,?,?,?,?,?)";
-        Object[] parm = new Object[9];
-        parm[0] = null;
-        parm[1] = user.getLoginName();
-        parm[2] = user.getUserName();
-        parm[3] = user.getPassword();
-        parm[4] = user.getSex();
-        parm[5] = user.getIdentityCode();
-        parm[6] = user.getEmail();
-        parm[7] = user.getMobile();
-        parm[8] = user.getType();
-        int id = executeInsert(sql, parm);
+    public User addUser(User user) {
+        String sql = "insert into user values(?,?,?,?,?,?,?,?,?)";
+        Object[] param = new Object[9];
+        param[0]=null;
+        param[1]=user.getLoginName();
+        param[2]=user.getUserName();
+        param[3]=user.getPassword();
+        param[4]=user.getSex();
+        param[5]=user.getIdentityCode();
+        param[6]=user.getEmail();
+        param[7]=user.getMobile();
+        param[8]=user.getType();
+        int id = executeInsert(sql,param);
         user.setId(id);
+
         closeResource();
         return user;
     }
