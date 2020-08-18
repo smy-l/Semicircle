@@ -35,7 +35,7 @@ public class RegistServlet extends HttpServlet {
     try {
       if (password.equals(checkPwd)) {
         User newUser = userService.register(user);
-        response.sendRedirect("Login.html");
+        response.sendRedirect("Login.jsp");
       } else {
         response.sendRedirect("Regist.html");
       }

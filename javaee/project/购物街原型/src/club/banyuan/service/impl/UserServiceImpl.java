@@ -20,10 +20,10 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User checkLogin(User user) throws Exception {
+  public User login(String username, String password) throws Exception {
     Connection conn = DataSourceUtil.openConnection();
     UserDao userDao = new UserDaoImpl(conn);
-    User checkUser = userDao.getUserByUserNameAndPwd(user.getLoginName(), user.getPassword());
+    User checkUser = userDao.getUserByUserNameAndPwd(username, password);
     DataSourceUtil.closeConnection(conn);
     return checkUser;
   }

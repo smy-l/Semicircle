@@ -1,6 +1,5 @@
 package club.banyuan.servlet;
 
-import club.banyuan.dao.UserDao;
 import club.banyuan.pojo.User;
 import club.banyuan.service.UserService;
 import club.banyuan.service.impl.UserServiceImpl;
@@ -22,21 +21,19 @@ public class LoginServlet extends HttpServlet {
     String loginName = request.getParameter("loginName");
     String password = request.getParameter("password");
 
-    User user = new User();
-    user.setLoginName(loginName);
-    user.setPassword(password);
-
+    String url = "Login.jsp";
     UserService userService = new UserServiceImpl();
     try {
-      User checkUser = userService.checkLogin(user);
+      User checkUser = userService.login(loginName, password);
       if (checkUser != null) {
-        response.sendRedirect("Index.html");
+        request.setAttribute("user", checkUser);
+        url = "Index.html";
       } else {
-        response.sendRedirect("Login.html");
+        request.setAttribute("errorMsg", "用户名或者密码错误");
       }
     } catch (Exception e) {
-      response.sendRedirect("Login.html");
+      e.printStackTrace();
     }
-
+    request.getRequestDispatcher(url).forward(request,response);
   }
 }
