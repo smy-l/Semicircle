@@ -27,4 +27,15 @@ public class UserServiceImpl implements UserService {
     DataSourceUtil.closeConnection(conn);
     return checkUser;
   }
+
+  @Override
+  public User getUserInfoByLoginName(String loginName) throws Exception {
+    Connection connection = DataSourceUtil.openConnection();
+    UserDao userDao = new UserDaoImpl(connection);
+    User user = userDao.getUserByLoginName(loginName);
+    DataSourceUtil.closeConnection(connection);
+    return user;
+  }
+
+
 }

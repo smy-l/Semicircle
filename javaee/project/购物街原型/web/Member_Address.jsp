@@ -1,3 +1,5 @@
+<%@ page import="club.banyuan.pojo.User" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -99,7 +101,17 @@
         </span>
         <!--End 所在收货地区 End-->
         <span class="fr">
-        	<span class="fl">你好，请<a href="Login.jsp">登录</a>&nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+        	<span class="fl">你好，
+                <%
+//                    User user = (User) request.getAttribute("user");
+//                    if (user != null) {
+//                        out.println(user.getLoginName());
+//                    } else {
+//                        out.println("请<a href=\"Login.jsp\">登录</a>");
+//                    }
+                    out.println(request.getParameter("loginName"));
+                %>
+                &nbsp <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
         	<span class="ss">
             	<div class="ss_list">
                 	<a href="#">收藏夹</a>
@@ -147,7 +159,7 @@
 </div>
 <div class="m_top_bg">
     <div class="top">
-        <div class="m_logo"><a href="Index.html"><img src="images/logo1.png" /></a></div>
+        <div class="m_logo"><a href="index.jsp"><img src="images/logo1.png" /></a></div>
         <div class="m_search">
             <form>
                 <input type="text" value="" class="m_ipt" />
@@ -196,7 +208,7 @@
             	<div class="left_m_t t_bg1">订单中心</div>
                 <ul>
                 	<li><a href="Member_Order.html">我的订单</a></li>
-                    <li><a href="Member_Address.html" class="now">收货地址</a></li>
+                    <li><a href="Member_Address.jsp" class="now">收货地址</a></li>
                     <li><a href="#">缺货登记</a></li>
                     <li><a href="#">跟踪订单</a></li>
                 </ul>
@@ -236,7 +248,11 @@
             	<div class="a_close"><a href="#"><img src="images/a_close.png" /></a></div>
             	<table border="0" class="add_t" align="center" style="width:98%; margin:10px auto;" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td colspan="2" style="font-size:14px; color:#ff4e00;">杨杨公司</td>
+                    <td colspan="2" style="font-size:14px; color:#ff4e00;">
+                        <%
+                            out.println("111");
+                        %>
+                    </td>
                   </tr>
                   <tr>
                     <td align="right" width="80">收货人姓名：</td>

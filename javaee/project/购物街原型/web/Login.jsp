@@ -61,7 +61,7 @@
 <!--Begin Login Begin-->
 <div class="log_bg">	
     <div class="top">
-        <div class="logo"><a href="Index.html"><img src="images/logo.png" /></a></div>
+        <div class="logo"><a href="index.jsp"><img src="images/logo.png" /></a></div>
     </div>
 	<div class="login">
     	<div class="log_img"><img src="images/l_img.png" width="611" height="425" /></div>

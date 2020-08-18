@@ -11,29 +11,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/login.do")
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "ClickUserNameServlet", urlPatterns = "/clickUserName.do")
+public class ClickUserNameServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    doGet(request, response);
-  }
-
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String loginName = request.getParameter("loginName");
-    String password = request.getParameter("password");
-
-    String url = "Login.jsp";
+    System.out.println(loginName);
     UserService userService = new UserServiceImpl();
     try {
-      User checkUser = userService.login(loginName, password);
-      if (checkUser != null) {
-        request.setAttribute("user", checkUser);
-        url = "index.jsp";
-      } else {
-        request.setAttribute("errorMsg", "用户名或者密码错误");
-      }
+      User user = userService.getUserInfoByLoginName(loginName);
+      System.out.println(user);
+      request.setAttribute("user", user);
     } catch (Exception e) {
       e.printStackTrace();
     }
-    request.getRequestDispatcher(url).forward(request,response);
+    request.getRequestDispatcher("Member_Address.jsp").forward(request, response);
+  }
+
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    doPost(request, response);
   }
 }

@@ -18,4 +18,13 @@ public class ProductServiceImpl implements ProductService {
     DataSourceUtil.closeConnection(conn);
     return productList;
   }
+
+  @Override
+  public Product getProductById(int id) throws Exception {
+    Connection conn = DataSourceUtil.openConnection();
+    ProductDao productDao = new ProductDaoImpl(conn);
+    Product product = productDao.getProductById(id);
+    DataSourceUtil.closeConnection(conn);
+    return product;
+  }
 }
