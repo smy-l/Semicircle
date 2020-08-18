@@ -40,6 +40,7 @@ public class RegistServlet extends HttpServlet {
         response.sendRedirect("Regist.html");
       }
     } catch (Exception e) {
+      e.printStackTrace();
       response.sendRedirect("Regist.html");
     }
   }
