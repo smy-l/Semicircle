@@ -24,21 +24,16 @@ public class UserDaoImpl extends IBaseDaoImpl implements UserDao {
   }
 
   @Override
-  public User getUserByLoginName(String loginName) throws Exception {
-    User user =  null;
-    String sql = "select * from user where loginName = ?";
-    ResultSet rs = executeQuery(sql, new Object[]{loginName});
-    if (rs.next()) {
+  public User getUserById(int id) throws Exception {
+    User user = null;
+    String sql = "select * from user where id = ?";
+    ResultSet rs = executeQuery(sql, new Object[]{id});
+    if(rs.next()) {
       user = tableToClass(rs);
     }
     this.closeResource();
     return user;
   }
-
-//  private User getInformation(User user) throws Exception {
-//    String sql = "select u.*, uAd.address, uAd.remark from user_address uAd INNER JOIN user u on uAd.userId = u.id where u.id = ?;";
-//
-//  }
 
 
   @Override

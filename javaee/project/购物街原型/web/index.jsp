@@ -117,16 +117,15 @@
         <span class="fr">
         	<span class="fl">你好，
                 <%
-                    User user = (User) request.getAttribute("user");
+                    User user = (User) session.getAttribute("user");
                     if (user != null) {
                       String userLoginName = user.getLoginName();
-                      int id = user.getId();
-                      out.println("<a href=\"Member_Address.jsp?loginName=" + userLoginName + "\">" + userLoginName + "</a>");
+                      out.println("<a href=\"clickUserName.do\">" + userLoginName + "</a>");
                     } else {
-                      out.println("请<a href=\"Login.jsp\">登录</a>");
+                      out.println("请<a href=\"Login.jsp\">登录</a> <a href=\"Regist.html\" style=\"color:#ff4e00;\">免费注册</a>");
                     }
                 %>
-                &nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+                &nbsp; &nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
         	<span class="ss">
             	<div class="ss_list">
                 	<a href="#">收藏夹</a>

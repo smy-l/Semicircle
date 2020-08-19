@@ -21,7 +21,7 @@ public class SearchServlet extends HttpServlet {
       List<Product> productList = productService.getProductByKeyWords(keyWords);
       System.out.println(productList.size());
       request.setAttribute("productList", productList);
-      request.getRequestDispatcher("result.jsp").forward(request, response);
+      request.getRequestDispatcher("searchList.jsp").forward(request, response);
     } catch (Exception e) {
       e.printStackTrace();
     }

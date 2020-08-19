@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login.do")
@@ -26,7 +27,10 @@ public class LoginServlet extends HttpServlet {
     try {
       User checkUser = userService.login(loginName, password);
       if (checkUser != null) {
-        request.setAttribute("user", checkUser);
+//        request.setAttribute("user", checkUser);
+        HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(1000);
+        session.setAttribute("user", checkUser);
         url = "index.jsp";
       } else {
         request.setAttribute("errorMsg", "用户名或者密码错误");

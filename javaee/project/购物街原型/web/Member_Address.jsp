@@ -1,4 +1,6 @@
 <%@ page import="club.banyuan.pojo.User" %>
+<%@ page import="club.banyuan.pojo.User_address" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -103,15 +105,14 @@
         <span class="fr">
         	<span class="fl">你好，
                 <%
-//                    User user = (User) request.getAttribute("user");
-//                    if (user != null) {
-//                        out.println(user.getLoginName());
-//                    } else {
-//                        out.println("请<a href=\"Login.jsp\">登录</a>");
-//                    }
-                    out.println(request.getParameter("loginName"));
+                    User user = (User) session.getAttribute("user");
+                    if (user != null) {
+                        out.println(user.getLoginName());
+                    } else {
+                        out.println("请<a href=\"Login.jsp\">登录</a> &nbsp <a href=\"Regist.html\" style=\"color:#ff4e00;\">免费注册</a>&nbsp;");
+                    }
                 %>
-                &nbsp <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+                |&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
         	<span class="ss">
             	<div class="ss_list">
                 	<a href="#">收藏夹</a>
@@ -250,13 +251,26 @@
                   <tr>
                     <td colspan="2" style="font-size:14px; color:#ff4e00;">
                         <%
-                            out.println("111");
+                            List<User_address> addressList = (List<User_address>) session.getAttribute("addressList");
+                            out.println(addressList.get(0).getRemark());
+//                            if (addressList != null) {
+//                                String remark = addressList.get(0).getRemark();;
+//                                for (User_address address : addressList) {
+//                                    if (address.getIsDefault() != 0) {
+//                                        remark = address.getRemark();
+//                                        out.println(remark);
+//                                    }
+//                                }
+//                            } else {
+//                              out.println("null");
+//                            }
                         %>
                     </td>
                   </tr>
                   <tr>
                     <td align="right" width="80">收货人姓名：</td>
-                    <td>杨杨</td>
+                    <td><%=user.getUserName()%></td>
+<%--                    <td>杨洋</td>--%>
                   </tr>
                   <tr>
                     <td align="right">配送区域：</td>
@@ -264,11 +278,11 @@
                   </tr>
                   <tr>
                     <td align="right">详细地址：</td>
-                    <td>科华北路66号世外桃源写字楼3楼</td>
+                    <td><%=addressList.get(0).getAddress()%></td>
                   </tr>
                   <tr>
                     <td align="right">手机：</td>
-                    <td>12345678998</td>
+                    <td><%=user.getMobile()%></td>
                   </tr>
                   <tr>
                     <td align="right">电话：</td>
@@ -276,7 +290,7 @@
                   </tr>
                   <tr>
                     <td align="right">电子邮箱：</td>
-                    <td>123456789@qq.com</td>
+                    <td><%=user.getEmail()%></td>
                   </tr>
                   <tr>
                     <td align="right">标志建筑：</td>
@@ -330,19 +344,19 @@
               </tr>
               <tr>
                 <td align="right">收货人姓名</td>
-                <td style="font-family:'宋体';"><input type="text" value="姓名" class="add_ipt" />（必填）</td>
+                <td style="font-family:'宋体';"><input type="text" value="<%=user.getUserName()%>" class="add_ipt" />（必填）</td>
                 <td align="right">电子邮箱</td>
-                <td style="font-family:'宋体';"><input type="text" value="12345678@qq.com" class="add_ipt" />（必填）</td>
+                <td style="font-family:'宋体';"><input type="text" value="<%=user.getEmail()%>" class="add_ipt" />（必填）</td>
               </tr>
               <tr>
                 <td align="right">详细地址</td>
-                <td style="font-family:'宋体';"><input type="text" value="世外桃源" class="add_ipt" />（必填）</td>
+                <td style="font-family:'宋体';"><input type="text" value="<%=addressList.get(0).getAddress()  %>" class="add_ipt" />（必填）</td>
                 <td align="right">邮政编码</td>
                 <td style="font-family:'宋体';"><input type="text" value="610000" class="add_ipt" /></td>
               </tr>
               <tr>
                 <td align="right">手机</td>
-                <td style="font-family:'宋体';"><input type="text" value="1361234587" class="add_ipt" />（必填）</td>
+                <td style="font-family:'宋体';"><input type="text" value="<%=user.getMobile()%>" class="add_ipt" />（必填）</td>
                 <td align="right">电话</td>
                 <td style="font-family:'宋体';"><input type="text" value="028-12345678" class="add_ipt" /></td>
               </tr>

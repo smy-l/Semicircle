@@ -29,11 +29,11 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User getUserInfoByLoginName(String loginName) throws Exception {
-    Connection connection = DataSourceUtil.openConnection();
-    UserDao userDao = new UserDaoImpl(connection);
-    User user = userDao.getUserByLoginName(loginName);
-    DataSourceUtil.closeConnection(connection);
+  public User getUserById(int id) throws Exception {
+    Connection conn = DataSourceUtil.openConnection();
+    UserDao userDao = new UserDaoImpl(conn);
+    User user = userDao.getUserById(id);
+    DataSourceUtil.closeConnection(conn);
     return user;
   }
 
