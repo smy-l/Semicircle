@@ -120,6 +120,7 @@
                     User user = (User) request.getAttribute("user");
                     if (user != null) {
                       String userLoginName = user.getLoginName();
+                      int id = user.getId();
                       out.println("<a href=\"Member_Address.jsp?loginName=" + userLoginName + "\">" + userLoginName + "</a>");
                     } else {
                       out.println("请<a href=\"Login.jsp\">登录</a>");
