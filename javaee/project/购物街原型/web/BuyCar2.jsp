@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -473,39 +475,21 @@
                 <td class="car_th" width="130">小计</td>
                 <td class="car_th" width="140">返还积分</td>
               </tr>
+                <c:forEach items="${sessionScope.cart}" var="item">
               <tr>
                 <td>
                     <div class="c_s_img"><img src="images/c_1.jpg" width="73" height="73" /></div>
-                    Rio 锐澳 水蜜桃味白兰地鸡尾酒（预调酒） 275ml
+                    ${item.key.name}
                 </td>
                 <td align="center">颜色：灰色</td>
                 <td align="center">1</td>
-                <td align="center" style="color:#ff4e00;">￥620.00</td>
+                <td align="center" style="color:#ff4e00;">￥${item.key.price}</td>
                 <td align="center">26R</td>
               </tr>
-              <tr class="car_tr">
-                <td>
-                    <div class="c_s_img"><img src="images/c_2.jpg" width="73" height="73" /></div>
-                    Rio 锐澳 水蜜桃味白兰地鸡尾酒（预调酒） 275ml
-                </td>
-                <td align="center">颜色：灰色</td>
-                <td align="center">1</td>
-                <td align="center" style="color:#ff4e00;">￥620.00</td>
-                <td align="center">26R</td>
-              </tr>
-              <tr>
-                <td>
-                    <div class="c_s_img"><img src="images/c_3.jpg" width="73" height="73" /></div>
-                    Rio 锐澳 水蜜桃味白兰地鸡尾酒（预调酒） 275ml
-                </td>
-                <td align="center">颜色：灰色</td>
-                <td align="center">1</td>
-                <td align="center" style="color:#ff4e00;">￥620.00</td>
-                <td align="center">26R</td>
-              </tr>
+                </c:forEach>
               <tr>
                 <td colspan="5" align="right" style="font-family:'Microsoft YaHei';">
-                    商品总价：￥1899.00 ； 返还积分 56R  
+                    商品总价：￥${requestScope.sum} ； 返还积分 56R
                 </td>
               </tr>
             </table>
@@ -693,16 +677,16 @@
               <tr>
                 <td align="right">
                 	该订单完成后，您将获得 <font color="#ff4e00">1815</font> 积分 ，以及价值 <font color="#ff4e00">￥0.00</font> 的红包 <br />
-                    商品总价: <font color="#ff4e00">￥1815.00</font>  + 配送费用: <font color="#ff4e00">￥15.00</font>
+                    商品总价: <font color="#ff4e00">￥${requestScope.sum}</font>  + 配送费用: <font color="#ff4e00">￥15.00</font>
                 </td>
               </tr>
               <tr height="70">
                 <td align="right">
-                	<b style="font-size:14px;">应付款金额：<span style="font-size:22px; color:#ff4e00;">￥2899</span></b>
+                	<b style="font-size:14px;">应付款金额：<span style="font-size:22px; color:#ff4e00;">￥${requestScope.sum}</span></b>
                 </td>
               </tr>
               <tr height="70">
-                <td align="right"><a href="#"><img src="images/btn_sure.gif" /></a></td>
+                <td align="right"><a href="confirm.do"><img src="images/btn_sure.gif" /></a></td>
               </tr>
             </table>
 

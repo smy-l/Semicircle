@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -461,16 +463,17 @@
     <div class="content mar_20">
     	
         <!--Begin 银行卡支付 Begin -->
-    	<div class="warning">        	
+        <c:forEach items="${requestScope.orderDetailList}" var="item">
+        <div class="warning">
             <table border="0" style="width:1000px; text-align:center;" cellspacing="0" cellpadding="0">
               <tr height="35">
                 <td style="font-size:18px;">
-                	感谢您在本店购物！您的订单已提交成功，请记住您的订单号: <font color="#ff4e00">2015092598275</font>
+                	感谢您在本店购物！您的订单已提交成功，请记住您的订单号: <font color="#ff4e00">${item.id}</font>
                 </td>
               </tr>
               <tr>
                 <td style="font-size:14px; font-family:'宋体'; padding:10px 0 20px 0; border-bottom:1px solid #b6b6b6;">
-                	您选定的配送方式为: <font color="#ff4e00">申通快递</font>； &nbsp; &nbsp;您选定的支付方式为: <font color="#ff4e00">支付宝</font>； &nbsp; &nbsp;您的应付款金额为: <font color="#ff4e00">￥888.00</font>
+                	您选定的配送方式为: <font color="#ff4e00">申通快递</font>； &nbsp; &nbsp;您选定的支付方式为: <font color="#ff4e00">支付宝</font>； &nbsp; &nbsp;您的应付款金额为: <font color="#ff4e00">￥${item.cost}</font>
                 </td>
               </tr>
               <tr>
@@ -484,8 +487,9 @@
                 	<a href="#">首页</a> &nbsp; &nbsp; <a href="#">用户中心</a>
                 </td>
               </tr>
-            </table>        	
+            </table>
         </div>
+        </c:forEach>
         <!--Begin 银行卡支付 Begin -->
         
         <!--Begin 支付宝支付 Begin -->
