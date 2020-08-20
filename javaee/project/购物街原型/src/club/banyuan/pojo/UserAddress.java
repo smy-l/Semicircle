@@ -1,12 +1,12 @@
 package club.banyuan.pojo;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
 
-public class User_address {
+public class UserAddress {
   private Integer id;
   private Integer userId;
   private String address;
-  private Data createTime;
+  private Date createTime;
   private Integer isDefault;
   private String remark;
 
@@ -34,11 +34,11 @@ public class User_address {
     this.address = address;
   }
 
-  public Data getCreateTime() {
+  public Date getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Data createTime) {
+  public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
 

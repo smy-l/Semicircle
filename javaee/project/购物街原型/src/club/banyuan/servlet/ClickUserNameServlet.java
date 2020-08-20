@@ -1,11 +1,9 @@
 package club.banyuan.servlet;
 
 import club.banyuan.pojo.User;
-import club.banyuan.pojo.User_address;
-import club.banyuan.service.UserService;
-import club.banyuan.service.User_addressService;
-import club.banyuan.service.impl.UserServiceImpl;
-import club.banyuan.service.impl.User_addressServiceImpl;
+import club.banyuan.pojo.UserAddress;
+import club.banyuan.service.UserAddressService;
+import club.banyuan.service.impl.UserAddressServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +18,10 @@ import java.util.List;
 public class ClickUserNameServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     HttpSession session = request.getSession();
-    User_addressService user_addressService = new User_addressServiceImpl();
+    UserAddressService userAddressService = new UserAddressServiceImpl();
     try {
       User user = (User) session.getAttribute("user");
-      List<User_address> addressList = user_addressService.getAdListByUserId(user.getId());
+      List<UserAddress> addressList = userAddressService.getAdListByUserId(user.getId());
       session.setAttribute("addressList", addressList);
     } catch (Exception e) {
       e.printStackTrace();

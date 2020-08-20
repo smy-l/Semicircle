@@ -122,7 +122,18 @@
                       String userLoginName = user.getLoginName();
                       out.println("<a href=\"clickUserName.do\">" + userLoginName + "</a>");
                     } else {
-                      out.println("请<a href=\"Login.jsp\">登录</a> <a href=\"Regist.html\" style=\"color:#ff4e00;\">免费注册</a>");
+                      Cookie[] cookies = request.getCookies();
+                      boolean flag = false;
+                        for (Cookie cookie : cookies) {
+                            if (cookie.getName().equals("loginName")) {
+                                out.println("<span class=\"fl\">你好，" + cookie.getValue()
+                                        + "请<a href=\"login.jsp\">登录</a>&nbsp; <a href=\"regist.html\" style=\"color:#ff4e00;\">免费注册</a>");
+                                flag = true;
+                            }
+                        }
+                        if (flag == false) {
+                            out.println("请<a href=\"Login.jsp\">登录</a> <a href=\"Regist.html\" style=\"color:#ff4e00;\">免费注册</a>");
+                        }
                     }
                 %>
                 &nbsp; &nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>

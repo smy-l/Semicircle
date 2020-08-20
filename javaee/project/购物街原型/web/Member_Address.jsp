@@ -1,5 +1,5 @@
 <%@ page import="club.banyuan.pojo.User" %>
-<%@ page import="club.banyuan.pojo.User_address" %>
+<%@ page import="club.banyuan.pojo.UserAddress" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -251,7 +251,7 @@
                   <tr>
                     <td colspan="2" style="font-size:14px; color:#ff4e00;">
                         <%
-                            List<User_address> addressList = (List<User_address>) session.getAttribute("addressList");
+                            List<UserAddress> addressList = (List<UserAddress>) session.getAttribute("addressList");
                             out.println(addressList.get(0).getRemark());
 //                            if (addressList != null) {
 //                                String remark = addressList.get(0).getRemark();;

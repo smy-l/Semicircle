@@ -1,6 +1,7 @@
 <%@ page import="club.banyuan.pojo.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -547,24 +548,26 @@
             <div class="list_c">
 
                 <ul class="cate_list">
-                    <%
-                        List<Product> productList = (List<Product>) request.getAttribute("productList");
-                        for(Product product : productList){
-                    %>
+<%--                    <%--%>
+<%--                        List<Product> productList = (List<Product>) request.getAttribute("productList");--%>
+<%--                        for(Product product : productList){--%>
+<%--                    %>--%>
+                    <c:forEach items="${requestScope.productList}" var="item">
                     <li>
-                        <div class="img"><a href="detail.do?id=<%=product.getId()%>"><img src="images/per_1.jpg" width="210" height="185" /></a></div>
+                        <div class="img"><a href="detail.do?id=${item.id}"><img src="images/per_1.jpg" width="210" height="185" /></a></div>
                         <div class="price">
-                            <font>￥<span><%=product.getPrice()%></span></font> &nbsp; 26R
+                            <font>￥<span>${item.price}</span></font> &nbsp; 26R
                         </div>
-                        <div class="name"><a href="#"><%=product.getName()%></a></div>
+                        <div class="name"><a href="#">${item.name}</a></div>
                         <div class="carbg">
                             <a href="#" class="ss">收藏</a>
-                            <a href="addCart.do?id=<%=product.getId()%>" class="j_car">加入购物车</a>
+                            <a href="addCart.do?id=${item.id}" class="j_car">加入购物车</a>
                         </div>
                     </li>
-                    <%
-                        }
-                    %>
+                    </c:forEach>
+<%--                    <%--%>
+<%--                        }--%>
+<%--                    %>--%>
                 </ul>
 
                 <div class="pages">

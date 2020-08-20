@@ -1,35 +1,34 @@
 package club.banyuan.dao.impl;
 
-import club.banyuan.dao.User_addressDao;
-import club.banyuan.dao.util.DataSourceUtil;
-import club.banyuan.pojo.User_address;
+import club.banyuan.dao.UserAddressDao;
+import club.banyuan.pojo.UserAddress;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class User_addressDaoImpl extends IBaseDaoImpl implements User_addressDao {
-  public User_addressDaoImpl(Connection connection) {
+public class UserAddressDaoImpl extends IBaseDaoImpl implements UserAddressDao {
+  public UserAddressDaoImpl(Connection connection) {
     super(connection);
   }
 
   @Override
-  public User_address tableToClass(ResultSet rs) throws Exception {
-    User_address user_address = new User_address();
+  public UserAddress tableToClass(ResultSet rs) throws Exception {
+    UserAddress user_address = new UserAddress();
     user_address.setId(rs.getInt(1));
     user_address.setUserId(rs.getInt(2));
     user_address.setAddress(rs.getString(3));
-    user_address.setCreateTime((Data) rs.getTime(4));
+    user_address.setCreateTime((Date) rs.getObject(4));
     user_address.setIsDefault(rs.getInt(5));
     user_address.setRemark(rs.getString(6));
     return user_address;
   }
 
   @Override
-  public User_address getUser_addressByUserId(int id) throws Exception {
-    User_address user_address = null;
+  public UserAddress getUserAddressByUserId(int id) throws Exception {
+    UserAddress user_address = null;
     String sql = "select * from user_address where userId = ?";
     ResultSet rs = executeQuery(sql, new Object[]{id});
     while (rs.next()) {
@@ -40,12 +39,12 @@ public class User_addressDaoImpl extends IBaseDaoImpl implements User_addressDao
   }
 
   @Override
-  public List<User_address> getUser_addressListByUserId(int id) throws Exception {
-    List<User_address> addressList = new ArrayList<>();
+  public List<UserAddress> getUserAddressListByUserId(int id) throws Exception {
+    List<UserAddress> addressList = new ArrayList<>();
     String sql = "select * from user_address where userId = ?";
     ResultSet rs = executeQuery(sql, new Object[]{id});
     while (rs.next()) {
-      User_address address = tableToClass(rs);
+      UserAddress address = tableToClass(rs);
       addressList.add(address);
     }
     this.closeResource();
