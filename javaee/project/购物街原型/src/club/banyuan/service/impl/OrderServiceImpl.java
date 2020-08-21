@@ -16,15 +16,31 @@ import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
   @Override
-  public Order createOrder(Order order, List<OrderDetail> orderDetailList) throws SQLException {
-    Connection conn = DataSourceUtil.openConnection();
-    OrderDao orderDao = new OrderDaoImpl(conn);
-    OrderDetailDao orderDetailDao = new OrderDetailDaoImpl(conn);
-    Order o1 = orderDao.addOrder(order);
-    int orderId = o1.getId();
-    for (OrderDetail orderDetail : orderDetailList) {
-      OrderDetail orderDe1 = orderDetailDao.addOrderDetail(orderDetail);
+  public Order createOrder(Order order, List<OrderDetail> orderDetailList) {
+    Connection conn = null;
+    try {
+      conn = DataSourceUtil.openConnection();
+      conn.setAutoCommit(false);
+      OrderDao orderDao = new OrderDaoImpl(conn);
+      OrderDetailDao orderDetailDao = new OrderDetailDaoImpl(conn);
+      order = orderDao.addOrder(order);
+      for (OrderDetail orderDetail : orderDetailList) {
+        orderDetail.setOrderId(order.getId());
+        orderDetailDao.addOrderDetail(orderDetail);
+      }
+
+      conn.commit();
+    } catch (SQLException throwables) {
+      try {
+        conn.rollback();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        if (conn != null) {
+          DataSourceUtil.closeConnection(conn);
+        }
+      }
     }
-    return o1;
+    return order;
   }
 }

@@ -24,7 +24,7 @@ import java.util.Map;
 public class ConfirmOrderServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     HttpSession session = request.getSession();
-    Map<Product,Integer> cart = (Map<Product, Integer>) session.getAttribute("cart");
+    Map<Product, Integer> cart = (Map<Product, Integer>) session.getAttribute("cart");
     User user = (User) session.getAttribute("user");
 
     // 查询用户默认地址
@@ -38,7 +38,7 @@ public class ConfirmOrderServlet extends HttpServlet {
 
     List<OrderDetail> orderDetailList = new ArrayList<>();
     double sum = 0;
-    for(Product product1 : cart.keySet()){
+    for (Product product1 : cart.keySet()) {
       sum += product1.getPrice() * cart.get(product1);
       OrderDetail orderDetail = new OrderDetail();
       orderDetail.setCost(product1.getPrice());
@@ -51,18 +51,14 @@ public class ConfirmOrderServlet extends HttpServlet {
 
     OrderService orderService = new OrderServiceImpl();
 
-    try {
-      orderService.createOrder(order,orderDetailList);
-    } catch (SQLException throwables) {
-      throwables.printStackTrace();
-    }
+    orderService.createOrder(order, orderDetailList);
 
     request.setAttribute("orderDetailList", orderDetailList);
 
-    request.getRequestDispatcher("BuyCar3.jsp").forward(request,response);
+    request.getRequestDispatcher("BuyCar3.jsp").forward(request, response);
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    doPost(request,response);
+    doPost(request, response);
   }
 }

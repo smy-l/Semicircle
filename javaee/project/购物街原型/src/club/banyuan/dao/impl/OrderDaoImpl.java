@@ -13,7 +13,7 @@ public class OrderDaoImpl extends IBaseDaoImpl implements OrderDao {
 
   @Override
   public Order addOrder(Order order) {
-    String sql = "insert into order values(?, ?, ?, ?, ?, ?, ?)";
+    String sql = "insert into `order` values(?, ?, ?, ?, ?, ?, ?)";
     Object[] param = new Object[7];
     param[0] = null;
     param[1] = order.getUserId();
