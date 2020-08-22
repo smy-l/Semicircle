@@ -37,11 +37,11 @@ public class RegistServlet extends HttpServlet {
         User newUser = userService.register(user);
         response.sendRedirect("Login.jsp");
       } else {
-        response.sendRedirect("Regist.html");
+        response.sendRedirect("Regist.jsp");
       }
     } catch (Exception e) {
       e.printStackTrace();
-      response.sendRedirect("Regist.html");
+      response.sendRedirect("Regist.jsp");
     }
   }
 }

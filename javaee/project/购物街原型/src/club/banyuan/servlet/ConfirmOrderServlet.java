@@ -54,7 +54,9 @@ public class ConfirmOrderServlet extends HttpServlet {
     orderService.createOrder(order, orderDetailList);
 
     request.setAttribute("orderDetailList", orderDetailList);
-
+    for (OrderDetail orderDetail : orderDetailList) {
+      System.out.println(orderDetail);
+    }
     request.getRequestDispatcher("BuyCar3.jsp").forward(request, response);
   }
 

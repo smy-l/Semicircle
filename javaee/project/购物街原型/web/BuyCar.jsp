@@ -22,6 +22,21 @@
     </script>     
     
     <script type="text/javascript" src="js/shade.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".car_btn_1,.car_btn_2").click(function () {
+                var proNum = $(".car_ipt").val();
+                var proId = $("#proId").val();
+                $.post("checkStock.do","proNum=" + proNum + "proId=" + proId,function (result) {
+                    if (result) {
+                        $("#stockNotEnough").show();
+                    } else {
+                        $("#stockNotEnough").hide();
+                    }
+                })
+            })
+        });
+    </script>
     
 <title>购物街</title>
 </head>
@@ -106,7 +121,7 @@
         </span>
         <!--End 所在收货地区 End-->
         <span class="fr">
-        	<span class="fl">你好，请<a href="Login.jsp">登录</a>&nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+        	<span class="fl">你好，请<a href="Login.jsp">登录</a>&nbsp; <a href="Regist.jsp" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
         	<span class="ss">
             	<div class="ss_list">
                 	<a href="#">收藏夹</a>
@@ -458,7 +473,7 @@
     <div class="content mar_20">
     	<img src="images/img1.jpg" />
     </div>
-    
+
     <!--Begin 第一步：查看购物车 Begin -->
     <div class="content mar_20">
     	<table border="0" class="car_tab" style="width:1200px; margin-bottom:50px;" cellspacing="0" cellpadding="0">
@@ -479,9 +494,14 @@
             <td align="center">颜色：灰色</td>
             <td align="center">
             	<div class="c_num">
+                    <input id="proId" type="text" style="display: none" value="${item.key.id}"/>
                     <input type="button" value="" onclick="jianUpdate1(jq(this));" class="car_btn_1" />
-                	<input type="text" value="1" name="" class="car_ipt" />  
+                	<input type="text" value="1" name="" class="car_ipt" />
                     <input type="button" value="" onclick="addUpdate1(jq(this));" class="car_btn_2" />
+                    <span id="stockNotEnough"
+                       style="display: none; color: red; font-size: 10px;">
+                        库存不足！
+                    </span>
                 </div>
             </td>
             <td align="center" style="color:#ff4e00;">￥${item.key.price}</td>
@@ -501,9 +521,9 @@
             </td>
           </tr>
         </table>
-        
+
     </div>
-	<!--End 第一步：查看购物车 End--> 
+	<!--End 第一步：查看购物车 End-->
     
     
     <!--Begin 弹出层-删除商品 Begin-->

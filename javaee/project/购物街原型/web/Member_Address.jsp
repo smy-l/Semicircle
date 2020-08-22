@@ -109,7 +109,7 @@
                     if (user != null) {
                         out.println(user.getLoginName());
                     } else {
-                        out.println("请<a href=\"Login.jsp\">登录</a> &nbsp <a href=\"Regist.html\" style=\"color:#ff4e00;\">免费注册</a>&nbsp;");
+                        out.println("请<a href=\"Login.jsp\">登录</a> &nbsp <a href=\"Regist.jsp\" style=\"color:#ff4e00;\">免费注册</a>&nbsp;");
                     }
                 %>
                 |&nbsp;<a href="#">我的订单</a>&nbsp;|</span>

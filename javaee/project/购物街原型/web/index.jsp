@@ -132,11 +132,11 @@
                             }
                         }
                         if (flag == false) {
-                            out.println("请<a href=\"Login.jsp\">登录</a> <a href=\"Regist.html\" style=\"color:#ff4e00;\">免费注册</a>");
+                            out.println("请<a href=\"Login.jsp\">登录</a> <a href=\"Regist.jsp\" style=\"color:#ff4e00;\">免费注册</a>");
                         }
                     }
                 %>
-                &nbsp; &nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+                |&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
         	<span class="ss">
             	<div class="ss_list">
                 	<a href="#">收藏夹</a>

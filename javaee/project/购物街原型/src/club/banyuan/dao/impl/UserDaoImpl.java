@@ -35,6 +35,18 @@ public class UserDaoImpl extends IBaseDaoImpl implements UserDao {
     return user;
   }
 
+  @Override
+  public User checkLoginName(String loginName) throws Exception {
+    String sql = "select * from user where loginName = ?";
+    ResultSet rs = executeQuery(sql, new Object[]{loginName});
+    User user = null;
+    if(rs.next()) {
+      user = tableToClass(rs);
+    }
+    this.closeResource();
+    return user;
+  }
+
 
   @Override
   public User addUser(User user) {

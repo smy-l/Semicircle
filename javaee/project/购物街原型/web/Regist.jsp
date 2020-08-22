@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,17 +10,17 @@
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a');
     </script>
-    <![endif]-->    
+    <![endif]-->
     <script type="text/javascript" src="js/jquery-1.11.1.min_044d0927.js"></script>
 	<script type="text/javascript" src="js/jquery.bxslider_e88acd1b.js"></script>
-    
+
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
-        
+
 	<script type="text/javascript" src="js/select.js"></script>
-    
+
 	<script type="text/javascript" src="js/lrscroll.js"></script>
-    
+
     <script type="text/javascript" src="js/iban.js"></script>
     <script type="text/javascript" src="js/fban.js"></script>
     <script type="text/javascript" src="js/f_ban.js"></script>
@@ -26,27 +28,41 @@
     <script type="text/javascript" src="js/bban.js"></script>
     <script type="text/javascript" src="js/hban.js"></script>
     <script type="text/javascript" src="js/tban.js"></script>
-    
+
 	<script type="text/javascript" src="js/lrscroll_1.js"></script>
-    
-    
+    <script type="text/javascript">
+        $(function () {
+            $("#loginName").blur(function () {
+                var loginName = $("#loginName").val();
+                $.post("checkLoginName.do","loginName=" + loginName,function (result) {
+                    if (result) {
+                        $("#userRepeatMsgTr").show();
+                    } else {
+                        $("#userRepeatMsgTr").hide();
+                    }
+                });
+            });
+        });
+    </script>
+
+
 <title>购物街</title>
 </head>
-<body>  
+<body>
 <!--Begin Header Begin-->
 <div class="soubg">
 	<div class="sou">
         <span class="fr">
-        	<span class="fl">你好，请<a href="Login.jsp">登录</a>&nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp; </span>
+        	<span class="fl">你好，请<a href="Login.jsp">登录</a>&nbsp; <a href="Regist.jsp" style="color:#ff4e00;">免费注册</a>&nbsp; </span>
             <span class="fl">|&nbsp;关注我们：</span>
             <span class="s_sh"><a href="#" class="sh1">新浪</a><a href="#" class="sh2">微信</a></span>
             <span class="fr">|&nbsp;<a href="#">手机版&nbsp;<img src="images/s_tel.png" align="absmiddle" /></a></span>
         </span>
     </div>
 </div>
-<!--End Header End--> 
+<!--End Header End-->
 <!--Begin Login Begin-->
-<div class="log_bg">	
+<div class="log_bg">
     <div class="top">
         <div class="logo"><a href="index.jsp"><img src="images/logo.png" /></a></div>
     </div>
@@ -64,8 +80,12 @@
               </tr>
               <tr height="50">
                 <td align="right"><font color="#ff4e00">*</font>&nbsp;用户名 &nbsp;</td>
-                <td><input name="loginName" type="text" value="" class="l_user" /></td>
+                <td><input id="loginName" name="loginName" type="text" value="" class="l_user" /></td>
               </tr>
+                <tr height="15" id="userRepeatMsgTr" style="display: none">
+                    <td align="right"></td>
+                    <td style="border: none;color: red;font-size:10px;">用户名已存在！</td>
+                </tr>
               <tr height="50">
                 <td align="right"><font color="#ff4e00">*</font>&nbsp;密码 &nbsp;</td>
                 <td><input name="password" type="password" value="" class="l_pwd" /></td>
@@ -114,15 +134,15 @@
         </div>
     </div>
 </div>
-<!--End Login End--> 
+<!--End Login End-->
 <!--Begin Footer Begin-->
 <div class="btmbg">
 		<div class="btm">
         	备案/许可证编号：京ICP备070360号   Copyright © 2016-2019 购物街 All Rights Reserved. 复制必究 , Technical Support: ICT Group <br />
             <img src="images/b_1.gif" width="98" height="33" /><img src="images/b_2.gif" width="98" height="33" /><img src="images/b_3.gif" width="98" height="33" /><img src="images/b_4.gif" width="98" height="33" /><img src="images/b_5.gif" width="98" height="33" /><img src="images/b_6.gif" width="98" height="33" />
-        </div>   	
+        </div>
 </div>
-<!--End Footer End -->    
+<!--End Footer End -->
 
 </body>
 
