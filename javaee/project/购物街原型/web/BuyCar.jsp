@@ -11,10 +11,10 @@
         EvPNG.fix('div, ul, img, li, input, a');
     </script>
     <![endif]-->
-    
+
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
-                
+
 	<script type="text/javascript" src="js/n_nav.js"></script>
     
     <script type="text/javascript" src="js/num.js">
@@ -22,22 +22,33 @@
     </script>     
     
     <script type="text/javascript" src="js/shade.js"></script>
+
     <script type="text/javascript">
-        $(function () {
-            $(".car_btn_1,.car_btn_2").click(function () {
-                var proNum = $(".car_ipt").val();
+        jQuery(function ($) {
+            $("#addNum, #delNum").click(function () {
+                checkNum();
+            });
+
+            $("#numText").blur(function () {
+                checkNum();
+            });
+
+            function checkNum() {
+                var proNum = $("#numText").val();
                 var proId = $("#proId").val();
-                $.post("checkStock.do","proNum=" + proNum + "proId=" + proId,function (result) {
-                    if (result) {
-                        $("#stockNotEnough").show();
-                    } else {
+                $.post("checkStock.do","proNum=" + proNum + "&" + "proId=" + proId,function (result) {
+                    // alert(result);
+                    // alert(typeof (result));
+                    if (result == 1) {
                         $("#stockNotEnough").hide();
+                    } else {
+                        $("#stockNotEnough").show();
                     }
-                })
-            })
+                });
+            };
         });
     </script>
-    
+
 <title>购物街</title>
 </head>
 <body>  
@@ -495,13 +506,12 @@
             <td align="center">
             	<div class="c_num">
                     <input id="proId" type="text" style="display: none" value="${item.key.id}"/>
-                    <input type="button" value="" onclick="jianUpdate1(jq(this));" class="car_btn_1" />
-                	<input type="text" value="1" name="" class="car_ipt" />
-                    <input type="button" value="" onclick="addUpdate1(jq(this));" class="car_btn_2" />
-                    <span id="stockNotEnough"
-                       style="display: none; color: red; font-size: 10px;">
-                        库存不足！
-                    </span>
+                    <input id="delNum" type="button" value="" onclick="jianUpdate1(jq(this));" class="car_btn_1" />
+                	<input id="numText" type="text" value="1" name="" class="car_ipt" />
+                    <input id="addNum" type="button" value="" onclick="addUpdate1(jq(this));" class="car_btn_2" />
+                </div>
+                <div id="stockNotEnough" style="color: red; font-size:10px; display: none">
+                    库存不足！
                 </div>
             </td>
             <td align="center" style="color:#ff4e00;">￥${item.key.price}</td>

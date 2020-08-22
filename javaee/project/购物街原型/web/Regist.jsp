@@ -31,7 +31,8 @@
 
 	<script type="text/javascript" src="js/lrscroll_1.js"></script>
     <script type="text/javascript">
-        $(function () {
+        // $(function () {
+        jQuery(function ($) {
             $("#loginName").blur(function () {
                 var loginName = $("#loginName").val();
                 $.post("checkLoginName.do","loginName=" + loginName,function (result) {
