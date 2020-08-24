@@ -43,6 +43,18 @@
                     }
                 });
             });
+
+            $("#checkPwd").blur(function () {
+                var checkPwd = $("#checkPwd").val();
+                var pwd = $("#pwd").val();
+                $.post("checkPwdAndCheckPwd.do", "pwd=" + pwd + "&" + "checkPwd=" + checkPwd, function (result) {
+                    if (result == 0) {
+                        $("#pwdMsgTr").show();
+                    } else {
+                        $("#pwdMsgTr").hide();
+                    }
+                });
+            });
         });
     </script>
 
@@ -89,12 +101,16 @@
                 </tr>
               <tr height="50">
                 <td align="right"><font color="#ff4e00">*</font>&nbsp;密码 &nbsp;</td>
-                <td><input name="password" type="password" value="" class="l_pwd" /></td>
+                <td><input id="pwd" name="password" type="password" value="" class="l_pwd" /></td>
               </tr>
               <tr height="50">
                 <td align="right"><font color="#ff4e00">*</font>&nbsp;确认密码 &nbsp;</td>
-                <td><input name="checkPwd" type="password" value="" class="l_pwd" /></td>
+                <td><input id="checkPwd" name="checkPwd" type="password" value="" class="l_pwd" /></td>
               </tr>
+                <tr height="15" id="pwdMsgTr" style="display: none">
+                    <td align="right"></td>
+                    <td style="border: none;color: red;font-size:10px;">两次输入的密码不一致！</td>
+                </tr>
               <tr height="50">
                 <td align="right"><font color="#ff4e00">*</font>&nbsp;邮箱 &nbsp;</td>
                 <td><input name="email" type="text" value="" class="l_email" /></td>

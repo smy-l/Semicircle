@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "IsLoginFilter", urlPatterns = "")
+@WebFilter(filterName = "IsLoginFilter", urlPatterns = "/isLoginFilter.do")
 public class IsLoginFilter implements Filter {
   public void destroy() {
   }
@@ -23,7 +23,7 @@ public class IsLoginFilter implements Filter {
   }
 
   public void init(FilterConfig config) throws ServletException {
-
+  
   }
 
 }
