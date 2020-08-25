@@ -20,12 +20,12 @@ MySQL 是最流行的关系型数据库管理系统
 ## 01.基础语法以及CRUD操作
 ### 创建数据库
 ```sql
-CREATE DATABASE <数据库名>;
+create database <数据库名>;
 ```
 
 ### 删除数据库
 ```sql
-DROP DATABASE <数据库名>;
+drop database <数据库名>;
 ```
 
 ### 数据类型
@@ -66,36 +66,36 @@ DROP DATABASE <数据库名>;
 
 ### 创建数据表
 ```sql
-CREATE TABLE table_name (column_name column_type);
+create table table_name (column_name column_type);
 ```
 
 ### 删除数据表
 ```sql
-DROP TABLE table_name;
+drop table table_name;
 ```
 
 ### 插入数据
 ```sql
-INSERT INTO table_name ( field1, field2,...fieldN ) VALUES ( value1, value2,...valueN );
+insert into table_name ( field1, field2,...fieldN ) values ( value1, value2,...valueN );
 ```
 
 ### 查询数据
 ```sql
-SELECT column_name, column_name
-FROM table_name
-[WHERE Clause]
-[LIMIT N][ OFFSET M]
+select column_name, column_name
+from table_name
+[where Clause]
+[limit N][ OFFSET M]
 ```
 
 ### 修改数据
 ```sql
-UPDATE table_name SET field1=new-value1, field2=new-value2
-[WHERE Clause]
+update table_name set field1=new-value1, field2=new-value2
+[where Clause]
 ```
 
 ### 删除数据
 ```sql
-DELETE FROM table_name [WHERE Clause]
+delete from table_name [where Clause]
 ```
 
 ### 别名
@@ -113,8 +113,8 @@ select math,english, math + english as 总成绩 from student3;
 ### WHERE 子句
 
 ```sql
-SELECT field1, field2,...fieldN FROM table_name1, table_name2...
-[WHERE condition1 [AND [OR]] condition2.....
+select field1, field2,...fieldN from table_name1, table_name2...
+[where condition1 [and [or]] condition2.....
 ```
 
 #### 操作符
@@ -159,9 +159,9 @@ select * from student3 where age between 30 and 50;
 #### LIKE 子句
 
 ```sql
-SELECT field1, field2,...fieldN 
-FROM table_name
-WHERE field1 LIKE condition1 [AND [OR]] filed2 = 'somevalue'
+select field1, field2,...fieldN 
+from table_name
+where field1 like condition1 [and [or]] filed2 = 'somevalue'
 ```
 
 #### 通配符
@@ -190,8 +190,8 @@ select * from student3 where name like '马_';
 ### 排序
 
 ```sql
-SELECT field1, field2,...fieldN FROM table_name1, table_name2...
-ORDER BY field1 [ASC [DESC][默认 ASC]], [field2...] [ASC [DESC][默认 ASC]]
+select field1, field2,...fieldN from table_name1, table_name2...
+order by field1 [asc [desc][默认 asc]], [field2...] [asc [desc][默认 asc]]
 ```
 
 ```sql
@@ -214,10 +214,10 @@ select * from student3 where sex='男' order by age desc;
 ### 分组
 
 ```sql
-SELECT column_name, function(column_name)
-FROM table_name
-WHERE column_name operator value
-GROUP BY column_name;
+select column_name, function(column_name)
+from table_name
+where column_name operator value
+group by column_name;
 ```
 
 ### 聚合函数
@@ -364,7 +364,7 @@ address varchar(20) default '广州'
 )
 
 -- 添加一条记录，使用默认地址
-insert into st9 values(1,'李四',default);
+insert into st9 values(1, '李四', default);
 ```
 
 #### 外键约束
@@ -379,6 +379,8 @@ constraint 外键约束名 foreign key
 
 --已有表增加外键
 alter table 从表 add constraint 外键约束名 foreign key (外键字段名) references 主表(主键字段名)；
+注：外键名一般命名规范  主表_从表_字段名_FK 
+
 
 -- 示例
 create table employee(
@@ -418,17 +420,17 @@ alter table employee drop foreign key emp_depid_fk;
 
 ### 表连接的使用
 
-+ INNER JOIN（内连接,或等值连接）：获取两个表中字段匹配关系的记录。
-+ LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。
-+ RIGHT JOIN（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。
++ inner join（内连接,或等值连接）：获取两个表中字段匹配关系的记录。
++ left join（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。
++ right join（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。
 
 #### 内连接
 
 1. 隐式内连接
 
-   隐式内连接:看不到 JOIN 关键字，条件使用 WHERE 指定
+   隐式内连接:看不到 join 关键字，条件使用 WHERE 指定
 
-     SELECT 字段名 FROM 左表, 右表 WHERE 条件
+     select 字段名 from 左表, 右表 where 条件
 
    ```sql
    select * from emp,dept where emp.`dept_id` = dept.`id`;
@@ -436,9 +438,9 @@ alter table employee drop foreign key emp_depid_fk;
 
 2. 显式内连接
 
-   显示内连接:使用 INNER JOIN ... ON 语句, 可以省略 INNER
+   显示内连接:使用 inner join ... on 语句, 可以省略 inner
 
-   SELECT 字段名 FROM 左表 inner join 右表 on 条件
+   select 字段名 from 左表 inner join 右表 on 条件
 
    ```sql
    select * from emp e inner join dept d on e.`dept_id` = d.`id`;
@@ -447,7 +449,7 @@ alter table employee drop foreign key emp_depid_fk;
 **注：内连查询查询结果需要在主外键都存在数据的情况下使用**
 
 ### 外连接
-1. 左外连接：使用 LEFT OUTER JOIN ... ON，OUTER 可以省略
+1. 左外连接：使用 left outer join ... on，outer 可以省略
 
    select 字段名 from 左表 left [out] join 右表 on 条件
 
@@ -532,7 +534,16 @@ select @@autocommit;
 
 
 
+## 遇到的一些问题
 
+1. 出现问题：一个数字 + null 结果为null。
+   解决方法：使用ifnull函数
+   注：ifnull是在MySQL中的函数，其他数据库不一定是这个函数
+
+```sql
+-- ifnull(列名, 替换值)
+sal + ifnull(comm, 0) from emp;
+```
 
 
 
