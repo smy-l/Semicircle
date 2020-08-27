@@ -57,4 +57,16 @@ public class UserAddress {
   public void setRemark(String remark) {
     this.remark = remark;
   }
+
+  @Override
+  public String toString() {
+    return "UserAddress{" +
+            "id=" + id +
+            ", userId=" + userId +
+            ", address='" + address + '\'' +
+            ", createTime=" + createTime +
+            ", isDefault=" + isDefault +
+            ", remark='" + remark + '\'' +
+            '}';
+  }
 }

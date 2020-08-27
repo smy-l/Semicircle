@@ -2,5 +2,12 @@
 <!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="club.banyuan.dao.ProductDao">
+    <select id="getProductById" parameterType="int" resultType="Product">
+        select * from product where id = #{id};
+    </select>
+
+    <select id="getProductByKeyWords" parameterType="String" resultType="Product">
+        select * from product where name like #{key} or description like #{key};
+    </select>
 
 </mapper>

@@ -66,4 +66,17 @@ public class Order {
   public void setSerialNumber(String serialNumber) {
     this.serialNumber = serialNumber;
   }
+
+  @Override
+  public String toString() {
+    return "Order{" +
+            "id=" + id +
+            ", userId=" + userId +
+            ", loginName='" + loginName + '\'' +
+            ", userAddress='" + userAddress + '\'' +
+            ", createTime=" + createTime +
+            ", cost=" + cost +
+            ", serialNumber='" + serialNumber + '\'' +
+            '}';
+  }
 }

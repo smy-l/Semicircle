@@ -22,10 +22,10 @@
 
     <mappers>
         <mapper resource="club/banyuan/dao/UserDao.xml"/>
-<!--        <mapper resource="club/banyuan/dao/UserAddressDao.xml"/>-->
-<!--        <mapper resource="club/banyuan/dao/ProductDao.xml"/>-->
-<!--        <mapper resource="club/banyuan/dao/OrderDao.xml"/>-->
-<!--        <mapper resource="club/banyuan/dao/OrderDetailDao.xml"/>-->
+        <mapper resource="club/banyuan/dao/UserAddressDao.xml"/>
+        <mapper resource="club/banyuan/dao/ProductDao.xml"/>
+        <mapper resource="club/banyuan/dao/OrderDao.xml"/>
+        <mapper resource="club/banyuan/dao/OrderDetailDao.xml"/>
     </mappers>
 
 </configuration>
