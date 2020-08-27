@@ -1,21 +1,41 @@
 # mybatis创建流程
 
 1. 创建maven工程，groupId，artifactId，version，packaging (jar)
-
 2. 在pom.xml添加MyBatis框架坐标，JDBC坐标
-
 3. 编写Mybatis的核心文件配置文件(SqlMapConfig.xml)，在resources目录下连接数据库信息 (4个参数dirver、url、username、password) Mapper文件路径
-
 4. 编写实体类，dao接口
-
 5. 编写Mapper文件，文件的路径配置到SqlMapConfig.xml中，放在resources目录下，路径和dao接口路径一致，文件名和接口一致
    示例：
    UserDao  --> UserMapper
    配置sql语句
-
 6. 测试
 
-## 各种文件配置
+### parameterType：
+
+1. 方法的参数是多个，但已经封装在类中 (都是来源于一个类)  parameterType = 类名 sql中参数就是#{属性名}
+2. 方法的参数是一个 (基本数据类型 + String)  parameterType = 方法的参数类型，sql中的参数${方法的参数名}
+3. 方法的参数是多个，但不是来源于一个类
+   1. 将这些参数封装到一个map集合 parameterType = map sql中的参数 #{map的key}
+   2. 定义一个VO类，将参数放到对应的VO类的属性中 paramterType = VO类，sql中的参数#{VO类的属性}
+4. 方法的参数是多个，但已经封装到一个数组/List中，只出现在in查询
+
+### resultType：
+
+1. 查询结果中的每一行都可以封装到某个类的对象中 (多行/一行 多列)，resultType为类的类型
+2. 查询结果是一行一列和多行一列，resultType为对应的java类型
+3. 查询结果中的每一行不能封装到某个类的对象中 (多行/一行 多列)
+       定义一个vo类，将查询结果中的写入到vo类中的属性
+4. 增删改sql的返回值都是int，所以不用写resultType
+
+### 查询结果封装的时候，列名和java中的属性名不一致
+
+1. 将列名取别名，让别名与类名的属性名保持一致
+
+2. 定义ResultMap，让列名和类的属性名对应上，
+
+    注意：在select中，把resultType换成resultMap
+
+## 各种文件配置示例
 
 ###    SqlMapConfig.xml文件
 
@@ -24,7 +44,7 @@
    <!DOCTYPE configuration     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
            "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--    作用：可以让mapper文件中(Dao)type只写类名不用写包名-->
-<!-- 注：只可以让resultType不写包名 -->
+<!-- 注：只可以让resultType -->
     <typeAliases>
         <package name="club.banyuan.pojo"/>
     </typeAliases>
@@ -71,12 +91,58 @@
    <!-- Mapper文件 dao接口-->
    <!-- mapper中的namespace属性：填写dao接口-->
    <mapper namespace="club.banyuan.dao.UserDao">
-     <!-- select：针对select的sql语句 -->
-     		<!-- id: dao接口中方法名 -->
-     		<!-- resultType: 查询结果每一行的封装后的Java类型 -->
-       <select id="getAll" resultType="club.banyuan.pojo.User">
-           select * from user;
-       </select>
+     <!-- select：针对select的sql语句
+        		id: dao接口中方法名
+     				resultType: 查询结果每一行的封装后的Java类型 -->
+      <select id="getAll" resultType="club.banyuan.pojo.User">
+        select * from user;
+     	</select>
+     
+     <!-- insert: 针对sql中的insert语句 -->
+<!--  	返回值都是int类型，不需要再配置resultType，对数据表操作了多少行
+    		parameterType：
+					如果参数只有一个，是实体类类型，保持和方法的参数类型一致
+   			sql语句中的参数值是从ParameterType中的getXXX方法中得到的
+            sql中的参数名要和类型的属性一致，#{类型属性名，注意大小写}
+-->     
+     	<insert id="addUser" parameterType="User">
+        insert into User values(
+                                null,
+                                #{loginName},
+                                #{userName},
+                                #{password},
+                                #{sex},
+                                #{identityCode},
+                                #{email},
+                                #{mobile},
+                                #{type}
+                             );
+     	</insert>
+
+    	<update id="updateUser" parameterType="User">
+      	update user set loginName = #{loginName},
+                        userName = #{userName},
+                        password = #{password},
+                        sex = #{sex},
+                        identityCode = #{identityCode},
+                        email = #{email},
+                        mobile = #{mobile},
+                        type = #{type}
+                    where id = #{id}
+    	</update>
+
+     <!-- parameterType：
+ 				如果参数只有一个，是基本数据类型+String，保持和方法的参数类型一致
+     			sql语句中的参数值是从方法的参数中获取
+              sql中的参数名可以随便，但是一般写方法的参数名  
+							即：#{方法的参数名}
+-->
+    	<delete id="delUser" parameterType="int">
+        	delete from user where id=#{id}
+    	</delete>
+     
+     
+     
    </mapper>
    ```
 
