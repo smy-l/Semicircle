@@ -5,5 +5,8 @@ import club.banyuan.pojo.User;
 import java.util.List;
 
 public interface UserDao {
-    public List<User> getAll();
+    List<User> getAll();
+    int addUser(User user);
+    int updateUser(User user);
+    int delUser(int id);
 }

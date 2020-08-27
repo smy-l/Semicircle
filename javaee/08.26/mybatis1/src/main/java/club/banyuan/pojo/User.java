@@ -8,6 +8,8 @@ public class User {
     private Integer sex;
     private String email;
     private String mobile;
+    private String identityCode;
+    private Integer type;
 
     public User() {
     }
@@ -49,6 +51,22 @@ public class User {
     public String getMobile() { return mobile; } 
 
     public void setMobile(String mobile) { this.mobile = mobile; }
+
+    public String getIdentityCode() {
+        return identityCode;
+    }
+
+    public void setIdentityCode(String identityCode) {
+        this.identityCode = identityCode;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
     @Override
     public String toString() {
