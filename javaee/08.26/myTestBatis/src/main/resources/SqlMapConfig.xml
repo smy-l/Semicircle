@@ -15,7 +15,7 @@
     </environments>
 
     <mappers>
-        <mapper resource="club.banyuan.dao.UserDao"/>
+        <mapper resource="club/banyuan/dao/UserDao.xml"/>
     </mappers>
 
 </configuration>
