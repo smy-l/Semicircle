@@ -2,60 +2,42 @@
 ## mac
 ### 快捷键
 
-|         命令         |            代码            |
-| :------------------: | :------------------------: |
-|      git commit      |        command + K         |
-|       git push       |    command + shift + K     |
-| 快速对齐(格式化代码) |    option + command + L    |
-|         翻译         |   control + command + O    |
-|      删除当前行      |      command + delete      |
-|      复制当前行      |        command + D         |
-|      大小写转换      |    command + shift + U     |
-|     开始新的一行     |   shift + enter(return)    |
-|   删除到当前单词首   |      option + delete       |
-|   删除到当前单词尾   |    fn + option + delete    |
-|                      |                            |
-|     代码来回切换     | shift + option + "[" / "]" |
-|                      |                            |
-
-
-
-命令 | 代码
-:-:|:-: 
-git commit | command + K
-git push | command + shift + K
-快速对齐(格式化代码) | option + command + L
-翻译 | control + command + O
-删除当前行 | command + delete
-复制当前行 | command + D
-大小写转换 | command + shift + U
-开始新的一行 | shift + enter(return)
-删除到当前单词首 | option + delete
-删除到当前单词尾 | fn + option + delete
- | 
-代码来回切换 | shift + option + "[" / "]"
-标签页来回切换 | command + shift + "[" / "]"
-切换到光标上/下个位置  | command + alt + <- / ->
-光标移动到行首/尾 | command + <-/->
- | 
-批量替换 | (选中后)command + R
-批量重新命名 | fn + shift + F6 
- |  
-代码上下移动 | command + shift + 上下键
-提示如何修改 |   option + enter(return)
-快速建立get/set |command + N
-快速起名  | command + alt + v
- |  
-显示解决方法 | option + enter 
-快速到出现问题到地方 | shift + F2 
-选中当前单词 | control + W 
-快速切换到单词的首尾 | alt + <-/-> 
-快速生成一些语句，如`if/else` `try/catch`等 | command + alt + T 
-撤销 | command + Z 
-反撤销 | command + shift + Z 
-查看方法在哪调用 | control + alt + H 
-回到括号首位 | command + M 
-快速展开/合上方法 | command + > 
+|                    命令                     |            代码             |
+| :-----------------------------------------: | :-------------------------: |
+|                 git commit                  |         command + K         |
+|                  git push                   |     command + shift + K     |
+|            快速对齐(格式化代码)             |    option + command + L     |
+|                    翻译                     |    control + command + O    |
+|                 删除当前行                  |      command + delete       |
+|                 复制当前行                  |         command + D         |
+|                 大小写转换                  |     command + shift + U     |
+|                开始新的一行                 |    shift + enter(return)    |
+|              删除到当前单词首               |       option + delete       |
+|              删除到当前单词尾               |    fn + option + delete     |
+|                                             |                             |
+|                代码来回切换                 | shift + option + "[" / "]"  |
+|               标签页来回切换                | command + shift + "[" / "]" |
+|            切换到光标上/下个位置            |   command + alt + <- / ->   |
+|              光标移动到行首/尾              |       command + <-/->       |
+|                                             |                             |
+|                  批量替换                   |     (选中后)command + R     |
+|                批量重新命名                 |       fn + shift + F6       |
+|                                             |                             |
+|                代码上下移动                 |  command + shift + 上下键   |
+|                提示如何修改                 |   option + enter(return)    |
+|               快速建立get/set               |         command + N         |
+|                  快速起名                   |      command + alt + v      |
+|                                             |                             |
+|                显示解决方法                 |       option + enter        |
+|            快速到出现问题到地方             |         shift + F2          |
+|                选中当前单词                 |         control + W         |
+|            快速切换到单词的首尾             |         alt + <-/->         |
+| 快速生成一些语句，如`if/else` `try/catch`等 |      command + alt + T      |
+|                    撤销                     |         command + Z         |
+|                   反撤销                    |     command + shift + Z     |
+|              查看方法在哪调用               |      control + alt + H      |
+|                回到括号首位                 |         command + M         |
+|              快速展开/合上方法              |         command + >         |
 
 ### 使用技巧
 ```
