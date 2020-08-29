@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.banyuan.dao.UserDao">
+    <resultMap id="userMap" type="User">
+        <id column="id" property="id" />
+        <result column="loginName" property="loginName"/>
+        <result column="userName" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="sex" property="sex"/>
+        <result column="email" property="email"/>
+        <result column="mobile" property="mobile"/>
+        <result column="identitycode" property="identitycode"/>
+        <result column="type" property="type"/>
+        <collection property="orderList" ofType="Order">
+            <id column="oid" property="id" />
+            <result column="userId" property="userId"/>
+            <result column="userAddress" property="userAddress"/>
+            <result column="createTime" property="createTime"/>
+            <result column="cost" property="cost"/>
+            <result column="serialNumber" property="serialNumber"/>
+            <result column="ologinName" property="loginName"/>
+        </collection>
+    </resultMap>
+
+    <sql id="selUser">
+        select * from user
+    </sql>
+
+    <select id="getAll" resultType="User">
+        <include refid="selUser"></include>
+    </select>
+
+    <select id="getUserByNameAndPwd" parameterType="Object" resultType="User">
+        <include refid="selUser"></include>
+        where loginname = #{loginname} and password=#{password}
+    </select>
+
+    <select id="getUserAndOrder" resultMap="userMap" parameterType="int">
+        select
+            user.*,
+            o.id oid,o.userId,o.userAddress,
+            o.createTime,o.cost,o.serialNumber,
+            o.loginName ologinName
+        from shoppingstreet.order o,user
+        where o.userId = user.id and o.userId=#{userId}
+    </select>
+
+</mapper>
