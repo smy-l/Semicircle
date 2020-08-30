@@ -10,74 +10,25 @@
    配置sql语句
 6. 测试
 
-### parameterType：
+## 持久层接口(UserDao)
 
-1. 方法的参数是多个，但已经封装在类中 (都是来源于一个类)  parameterType = 类名 sql中参数就是#{属性名}
-2. 方法的参数是一个 (基本数据类型 + String)  parameterType = 方法的参数类型，sql中的参数${方法的参数名}
-3. 方法的参数是多个，但不是来源于一个类
-   1. 将这些参数封装到一个map集合 parameterType = map sql中的参数 #{map的key}
-   2. 定义一个VO类，将参数放到对应的VO类的属性中 paramterType = VO类，sql中的参数#{VO类的属性}
-4. 方法的参数是多个，但已经封装到一个数组/List中，只出现在in查询
+```java
+package club.banyuan.dao;
 
-### resultType：
+import club.banyuan.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
-1. 查询结果中的每一行都可以封装到某个类的对象中 (多行/一行 多列)，resultType为类的类型
-2. 查询结果是一行一列和多行一列，resultType为对应的java类型
-3. 查询结果中的每一行不能封装到某个类的对象中 (多行/一行 多列)
-       定义一个vo类，将查询结果中的写入到vo类中的属性
-4. 增删改sql的返回值都是int，所以不用写resultType
+import java.util.List;
 
-### 查询结果封装的时候，列名和java中的属性名不一致
+public interface UserDao {
+  List<User> getAll();
+  User getUserByNameAndPwd(@Param("loginname") String loginname, @Param("password") String password);
+  User getUserAndOrder(int userId);
+}
 
-1. 将列名取别名，让别名与类名的属性名保持一致
+```
 
-2. 定义ResultMap，让列名和类的属性名对应上，
-
-    注意：在select中，把resultType换成resultMap
-
-## 各种文件配置示例
-
-###    SqlMapConfig.xml文件
-
-   ```xml
-   <?xml version="1.0" encoding="UTF-8"?>
-   <!DOCTYPE configuration     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-           "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<!--    作用：可以让mapper文件中(Dao)type只写类名不用写包名-->
-<!-- 注：只可以让resultType -->
-    <typeAliases>
-        <package name="club.banyuan.pojo"/>
-    </typeAliases>
-
-   <configuration>
-     <!-- 
-		environments: 可以包含多个数据库配置信息
-    	default：默认情况下，使用哪个数据库配置，内容是environment的id属性
-    environment: 配置一个数据库信息，id属性就是这个数据库配置的标识
-    	transactionManger: 数据库事务管理器交个JDBC处理数据库事务，默认把自动提交事务关闭了，手动提交和回滚
-     	dataSource: 配置数据源，数据库连接信息
-     		type: POOLED，使用的数据库连接管理工具是采用MyBatis自带的数据库连接池 			-->
-     
-       <environments default="mysql">
-           <environment id="mysql">
-               <transactionManager type="JDBC"></transactionManager>
-               <dataSource type="POOLED">
-                   <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                   <property name="url" value="jdbc:mysql://localhost:3306/db_shoppingStreet?&amp;useSSL=false&amp;serverTimezone=UTC"/>
-                   <property name="username" value="root"/>
-                   <property name="password" value="12345678"/>
-               </dataSource>
-           </environment>
-       </environments>
-   
-       <mappers>
-           <mapper resource="club/banyuan/dao/UserDao.xml"/>
-       </mappers>
-   
-   </configuration>
-   
-   
-   ```
+## 持久成接口映射文件(UserDao.xml)
 
 ###    Mapper文件
 
@@ -140,13 +91,52 @@
     	<delete id="delUser" parameterType="int">
         	delete from user where id=#{id}
     	</delete>
-     
-     
-     
    </mapper>
    ```
 
-###    Test文件
+##    SqlMapConfig.xml文件
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE configuration     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+           "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--    作用：可以让mapper文件中(Dao)type只写类名不用写包名-->
+<!-- 注：只可以让resultType -->
+    <typeAliases>
+        <package name="club.banyuan.pojo"/>
+    </typeAliases>
+
+   <configuration>
+     <!-- 
+		environments: 可以包含多个数据库配置信息
+    	default：默认情况下，使用哪个数据库配置，内容是environment的id属性
+    environment: 配置一个数据库信息，id属性就是这个数据库配置的标识
+    	transactionManger: 数据库事务管理器交个JDBC处理数据库事务，默认把自动提交事务关闭了，手动提交和回滚
+     	dataSource: 配置数据源，数据库连接信息
+     		type: POOLED，使用的数据库连接管理工具是采用MyBatis自带的数据库连接池 			-->
+     
+       <environments default="mysql">
+           <environment id="mysql">
+               <transactionManager type="JDBC"></transactionManager>
+               <dataSource type="POOLED">
+                   <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                   <property name="url" value="jdbc:mysql://localhost:3306/db_shoppingStreet?&amp;useSSL=false&amp;serverTimezone=UTC"/>
+                   <property name="username" value="root"/>
+                   <property name="password" value="12345678"/>
+               </dataSource>
+           </environment>
+       </environments>
+   
+       <mappers>
+           <mapper resource="club/banyuan/dao/UserDao.xml"/>
+       </mappers>
+   
+   </configuration>
+   
+   
+   ```
+
+##    Test文件
 
    示例：TestUserDao.java
 
@@ -194,4 +184,44 @@ public class TestUserDao {
 }
 
 ```
+
+## 总结
+
+- 持久层接口和持久层接口的映射配置必须在相同的包下
+- 持久层映射配置中 mapper 标签的 namespace 属性取值必须是持久层接口的全限
+
+定类名
+
+- SQL 语句的配置标签\<select\>,\<insert\>,\<delete\>,\<update\>的 id 属性必须和持久层接口的 方法名相同。
+
+## parameterType：
+
+1. 方法的参数是多个，但已经封装在类中 (都是来源于一个类)  parameterType = 类名 sql中参数就是#{属性名}
+2. 方法的参数是一个 (基本数据类型 + String)  parameterType = 方法的参数类型，sql中的参数${方法的参数名}
+3. 方法的参数是多个，但不是来源于一个类
+   1. 将这些参数封装到一个map集合 parameterType = map sql中的参数 #{map的key}
+   2. 定义一个VO类，将参数放到对应的VO类的属性中 paramterType = VO类，sql中的参数#{VO类的属性}
+4. 方法的参数是多个，但已经封装到一个数组/List中，只出现在in查询
+
+## resultType：
+
+1. 查询结果中的每一行都可以封装到某个类的对象中 (多行/一行 多列)，resultType为类的类型
+2. 查询结果是一行一列和多行一列，resultType为对应的java类型
+3. 查询结果中的每一行不能封装到某个类的对象中 (多行/一行 多列)
+       定义一个vo类，将查询结果中的写入到vo类中的属性
+4. 增删改sql的返回值都是int，所以不用写resultType
+
+## 查询结果封装的时候，列名和java中的属性名不一致
+
+1. 将列名取别名，让别名与类名的属性名保持一致
+
+2. 定义ResultMap，让列名和类的属性名对应上，
+
+   注意：在select中，把resultType换成resultMap
+
+## sql 语句中使用#{}字符
+
+它代表占位符，相当于原来 jdbc 部分所学的?, 用于执行语句是替换实际的数据
+
+**#{}中的内容的写法**：由于数据类型是基本类型，所以此处可以随意写
 
