@@ -2,7 +2,6 @@
 <!DOCTYPE configuration     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <!--    让mapper文件中的type属性只写类名，不用写包名-->
     <typeAliases>
         <package name="club.banyuan.pojo"/>
         <package name="club.banyuan.vo"/>
@@ -22,7 +21,6 @@
 
     <mappers>
         <mapper resource="club/banyuan/dao/UserDao.xml"/>
-        <mapper resource="club/banyuan/dao/ProductDao.xml"/>
         <mapper resource="club/banyuan/dao/OrderDao.xml"/>
     </mappers>
 
