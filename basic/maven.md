@@ -38,3 +38,17 @@
 3. 保存文件，执行如下命令使配置生效： `source~/.bash_profile`
 
 4. 检验配置是否正确，在终端中输入`mvn -v`，如果出现maven版本信息，则配置成功，否则，配置失败
+
+### 配置镜像文件
+
+找到maven所在位置，打开`conf`文件夹，打开`settings.xml`文件，在`<mirrors></mirrors>`中添加以下代码
+
+```
+    <mirror> 
+		<id>alimaven</id>
+		<mirrorOf>central</mirrorOf>
+		<name>aliyunmaven</name>
+		<url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+	</mirror>
+```
+
