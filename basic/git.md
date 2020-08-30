@@ -12,6 +12,14 @@
 2. `D:\Gitmingw64libexec\git-core`
 3. `D:\Git\mingw32\bin`
 
+### 生成SSH密钥
+
+1. 打开Git Bash软件
+2. 键入命令：`ssh-keygen -t rsa -C "xxx@email.com"` "xxx@email.com"即当前githab中包含的用户email
+3. 显示内容让你输入key的名称，默认回车即可，可以输入名称如id_rsa等，一般默认就行（一直回车）；
+4. 在C:\Users\管理员用户\.ssh\下产生两个文件：id_rsa和id_rsa.pub
+5. 用记事本打开id_rsa.pub文件，复制内容，粘贴在公司的git库的ssh密钥管理界面，添加新公钥，内容粘贴内容粘贴刚才复制的内容，github也同样适用。
+
 ## 下载
 
 `git clone`+git仓库的SSH地址<br>
