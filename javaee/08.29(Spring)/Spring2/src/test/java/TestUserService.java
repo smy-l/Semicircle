@@ -10,9 +10,7 @@ public class TestUserService {
     UserService userService = new UserServiceImpl();
     userService.getAll();
   }
-
-
-
+  
   @Test
   public void testGetAllWitSpring(){
 //        加载Spring配置文件
