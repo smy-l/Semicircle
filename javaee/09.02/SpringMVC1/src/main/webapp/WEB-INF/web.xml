@@ -3,15 +3,19 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-
+    <!-- 编码过滤器 -->
     <filter>
         <filter-name>characterEncoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <!-- 过滤器属性 -->
         <init-param>
             <param-name>encoding</param-name>
             <param-value>utf-8</param-value>
         </init-param>
     </filter>
+    <!-- 过滤所有请求 -->
+    <!-- 但是不能过滤所有请求，请求静态资源时不过滤 -->
+    <!-- 在 SpringMVC.xml 中配置文件 -->
     <filter-mapping>
         <filter-name>characterEncoding</filter-name>
         <url-pattern>/*</url-pattern>

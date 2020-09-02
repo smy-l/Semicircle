@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+<!-- enctype="multipart/form-data为上传文档内容的编码方式 -->
 <form action="/upload" method="post" enctype="multipart/form-data">
     选择文件：<input type="file" name="uploadFile"/>
     <br/>
