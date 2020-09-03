@@ -44,7 +44,7 @@
 找到maven所在位置，打开`conf`文件夹，打开`settings.xml`文件，在`<mirrors></mirrors>`中添加以下代码
 
 ```
-    <mirror> 
+  <mirror> 
 		<id>alimaven</id>
 		<mirrorOf>central</mirrorOf>
 		<name>aliyunmaven</name>
