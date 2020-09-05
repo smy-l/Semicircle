@@ -1,7 +1,5 @@
 package club.banyuan.pojo;
 
-import java.util.Date;
-
 public class Employee {
   private Integer id;
   private String name;
@@ -10,10 +8,10 @@ public class Employee {
   private String email;
   private String address;
   private String education;
-  private Date birthday;
+  private String birthday;
   private String department;
-  private String position;
-  private String password;
+  private Integer positionId;
+  private Integer passwordId;
 
   public Integer getId() {
     return id;
@@ -71,11 +69,11 @@ public class Employee {
     this.education = education;
   }
 
-  public Date getBirthday() {
+  public String getBirthday() {
     return birthday;
   }
 
-  public void setBirthday(Date birthday) {
+  public void setBirthday(String birthday) {
     this.birthday = birthday;
   }
 
@@ -87,19 +85,36 @@ public class Employee {
     this.department = department;
   }
 
-  public String getPosition() {
-    return position;
+  public Integer getPositionId() {
+    return positionId;
   }
 
-  public void setPosition(String position) {
-    this.position = position;
+  public void setPositionId(Integer positionId) {
+    this.positionId = positionId;
   }
 
-  public String getPassword() {
-    return password;
+  public Integer getPasswordId() {
+    return passwordId;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public void setPasswordId(Integer passwordId) {
+    this.passwordId = passwordId;
+  }
+
+  @Override
+  public String toString() {
+    return "Employee{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", sex='" + sex + '\'' +
+            ", phone='" + phone + '\'' +
+            ", email='" + email + '\'' +
+            ", address='" + address + '\'' +
+            ", education='" + education + '\'' +
+            ", birthday=" + birthday +
+            ", department='" + department + '\'' +
+            ", positionId=" + positionId +
+            ", passwordId=" + passwordId +
+            '}';
   }
 }

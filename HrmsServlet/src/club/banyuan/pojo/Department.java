@@ -1,6 +1,7 @@
 package club.banyuan.pojo;
 
 public class Department {
+  private Integer id;
   private String name;
   private String description;
 
@@ -19,4 +20,22 @@ public class Department {
   public void setDescription(String description) {
     this.description = description;
   }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  @Override
+  public String toString() {
+    return "Department{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", description='" + description + '\'' +
+            '}';
+  }
 }
+

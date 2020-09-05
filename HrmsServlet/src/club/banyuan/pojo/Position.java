@@ -1,8 +1,17 @@
 package club.banyuan.pojo;
 
 public class Position {
+  private Integer id;
   private String name;
   private String description;
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
   public String getName() {
     return name;
@@ -18,5 +27,14 @@ public class Position {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  @Override
+  public String toString() {
+    return "Position{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", description='" + description + '\'' +
+            '}';
   }
 }
