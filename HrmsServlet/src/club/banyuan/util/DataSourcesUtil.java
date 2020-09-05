@@ -18,7 +18,8 @@ public class DataSourcesUtil {
   }
 
   public static void init() {
-    InputStream inputStream = DataSourcesUtil.class.getClassLoader().getResourceAsStream("hrms.properties");
+    InputStream inputStream = DataSourcesUtil.
+            class.getClassLoader().getResourceAsStream("hrms.properties");
     Properties properties = new Properties();
     try {
       properties.load(inputStream);
