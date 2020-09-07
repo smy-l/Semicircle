@@ -19,4 +19,13 @@ public class AdminServiceImpl implements AdminService {
     DataSourcesUtil.closeConnection(conn);
     return admin;
   }
+
+  @Override
+  public int addAdmin(Admin admin) throws SQLException {
+    Connection conn = DataSourcesUtil.openConnection();
+    AdminDao adminDao = new AdminDaoImpl(conn);
+    int i = adminDao.addAdmin(admin);
+    DataSourcesUtil.closeConnection(conn);
+    return i;
+  }
 }

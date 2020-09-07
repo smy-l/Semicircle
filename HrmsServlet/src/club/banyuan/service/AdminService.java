@@ -6,4 +6,5 @@ import java.sql.SQLException;
 
 public interface AdminService {
   Admin checkAdmin(String username, String password) throws SQLException;
+  int addAdmin(Admin admin) throws SQLException;
 }

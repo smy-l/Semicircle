@@ -4,7 +4,7 @@ import club.banyuan.dao.BaseDao;
 
 import java.sql.*;
 
-public  abstract class BaseDaoImpl implements BaseDao {
+public abstract class BaseDaoImpl implements BaseDao {
   protected Connection connection;
 
   protected PreparedStatement pstm;
@@ -57,7 +57,7 @@ public  abstract class BaseDaoImpl implements BaseDao {
         pstm.setObject(i + 1, params[i]);
       }
       pstm.executeUpdate();
-      ResultSet rs =pstm.getGeneratedKeys();
+      ResultSet rs = pstm.getGeneratedKeys();
       if (rs.next()) {
         id = rs.getLong(1);
         System.out.println("数据主键：" + id);
