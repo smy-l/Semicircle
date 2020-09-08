@@ -1,4 +1,4 @@
-package club.banyuan.maven.task3;
+package com.netcompany.maven.task3;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringUtils;
@@ -11,6 +11,7 @@ public class Hello {
 
     private void verifyJunitNotOnClasspath() {
         try {
+            // 试图在当前类路径下加载 org.junit.Test 类
             this.getClass().getClassLoader().loadClass("org.junit.Test");
             throw new RuntimeException("JUnit should not be on main classpath, booh!");
         } catch (ClassNotFoundException e) {

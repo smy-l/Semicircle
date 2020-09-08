@@ -1,4 +1,4 @@
-package club.banyuan.maven.task3;
+package com.netcompany.maven.task3;
 
 import org.junit.Test;
 
