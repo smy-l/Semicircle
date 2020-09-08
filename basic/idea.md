@@ -70,7 +70,7 @@ for(int i = 0; i < answer.length; i++){
 翻译(直接替换) | ctrl + shift + X
 翻译(解释，无输入界面) | ctrl + shift + Y
 翻译(解释，有输入界面) | ctrl + shift + O
-快速删除一行 | ctrl + Y 
+快速删除一行 | shift + del 
 
 鼠标滑轮调节文字大小
 Settings>Editor>General>勾选change font size (zoom) with ctrl+mouse wheel
