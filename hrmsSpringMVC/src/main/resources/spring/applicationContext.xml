@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context
+  https://www.springframework.org/schema/context/spring-context.xsd
+  http://www.springframework.org/schema/mvc
+  http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--  管理properties配置文件-->
+    <context:property-placeholder location="classpath:hrms.properties"/>
+
+    <!--  配置注解扫描，让spring容器在初始化的时候，扫描指定包路径下的所有类，管理被注解标记的bean-->
+    <context:component-scan base-package="club.banyuan"/>
+
+    <!--  扫描requestMapping 让处理url的路径配置生效 -->
+    <mvc:annotation-driven/>
+
+    <mvc:resources mapping="/**" location="/static/"/>
+    <!--   /** 表示任意层级的路径 -->
+    <!--  <mvc:resources mapping="/abcd/**" location="/static/"/>-->
+
+</beans>
