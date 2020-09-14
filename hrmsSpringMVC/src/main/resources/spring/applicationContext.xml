@@ -20,4 +20,14 @@
     <!--  重新映射静态资源路径，使得浏览器的url不需要在路径上增加static即可访问页面-->
     <mvc:resources mapping="/**" location="/static/"/>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--  /**/*.html =>  /home_page.html  /abc/home_page.html    -->
+            <!--  /*/*.html =>  /abc/home_page.html  无法匹配/home_page.html -->
+            <mvc:mapping path="/*.html"/>
+            <mvc:exclude-mapping path="/login.html"/>
+            <bean class="club.banyuan.common.AuthInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

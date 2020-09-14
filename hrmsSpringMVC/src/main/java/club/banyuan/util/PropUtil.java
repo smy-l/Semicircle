@@ -9,7 +9,7 @@ public class PropUtil {
   private static Properties properties;
 
   static {
-    InputStream in = PropUtil.class.getResourceAsStream("/app.properties");
+    InputStream in = PropUtil.class.getResourceAsStream("/hrms.properties");
     properties = new Properties();
     try {
       properties.load(in);

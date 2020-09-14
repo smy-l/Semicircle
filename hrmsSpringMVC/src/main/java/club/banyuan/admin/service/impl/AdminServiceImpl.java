@@ -19,16 +19,20 @@ import java.util.stream.Collectors;
 @Service
 public class AdminServiceImpl implements AdminService {
 
-  @Autowired
   // @Qualifier("adminDaoImpl")
   // @Qualifier 指定注入接口的实现类 bean，里面填写的是注册到spring容器中的bean的id
   // @Qualifier 如何个没有显示指定id，则为对应的类名，首字母小写
+
+  @Autowired
   private AdminDao adminDao;
 
   @Override
   public Admin login(String username, String password) {
-    String passHash = CipherUtil.hmacSha256(password);
-    Admin admin = adminDao.getAdmin(username, passHash);
+//    String passHash = CipherUtil.hmacSha256(password);
+//    Admin admin = adminDao.getAdmin(username, passHash);
+    System.out.println(username);
+    System.out.println(password);
+    Admin admin = adminDao.getAdmin(username, password);
     return admin;
   }
 

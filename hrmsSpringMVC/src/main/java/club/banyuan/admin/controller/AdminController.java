@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,9 +39,11 @@ public class AdminController {
   public String login(String username, String password, HttpSession session) {
     Admin login = adminService.login(username, password);
     if (login == null) {
+      System.out.println("返回login.html");
       return "redirect:/login.html";
     } else {
       session.setAttribute(Constant.ADMIN_SESSION, login);
+      System.out.println("进入home_page.html");
       return "redirect:/home_page.html";
     }
   }
@@ -49,9 +52,56 @@ public class AdminController {
   // 让spring将方法返回的对象自动序列化为json
   @ResponseBody
   public Map<String, Object> getAdminList(Integer page, Integer rows, String username) {
-//    List<Admin> adminList
-    return null;
+    List<Admin> adminList = adminService.getAdminList(username);
+    int total = adminService.getAdminListCount(username);
+    Map<String, Object> rlt = new HashMap<>();
+    rlt.put("rows", adminList);
+    rlt.put("total", total);
+    rlt.put("code", 0);
+    rlt.put("message", "");
+    return rlt;
   }
 
+  @RequestMapping("/info")
+  // @ResponseBody 表示方法返回的对象自动序列化为json
+  @ResponseBody
+  public Map<String, Object> getAdminInfo(HttpSession session) {
+    Map<String, Object> rlt = new HashMap<>();
+    Object attribute = session.getAttribute(Constant.ADMIN_SESSION);
+    if (attribute != null) {
+      rlt.put("username", ((Admin) attribute).getUsername());
+      rlt.put("code", 0);
+      rlt.put("message", "");
+    } else {
+      rlt.put("code", 1);
+      rlt.put("message", "用户未登录");
+    }
+    return rlt;
+  }
+
+  @RequestMapping("/save")
+  @ResponseBody
+  public Map<String, Object> modifyAdmin(Integer id, String username, String password) {
+    Admin admin = new Admin();
+    admin.setPassword(password);
+    admin.setUsername(username);
+    if (id == null) {
+      adminService.addAdmin(admin);
+    } else {
+      admin.setId(id);
+      adminService.updateAdmin(admin);
+    }
+    Map<String, Object> rlt = new HashMap<>();
+    rlt.put("code", 0);
+    rlt.put("message", "");
+    return rlt;
+  }
+
+  @RequestMapping("/logout")
+  public String logoutAdmin(HttpSession session) {
+    // session置为失效
+    session.invalidate();
+    return "redirect:/login.html";
+  }
 
 }
