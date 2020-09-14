@@ -13,45 +13,21 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// @Component、@Repository、@Service、@Controller
+//              持久层        业务层     控制层
+// 四个注释一样，都是给 mvc 提示，但是不同名字的原因是为了给程序员更好的注释，四个中任意一个都可以
 @Service
 public class AdminServiceImpl implements AdminService {
 
-  // 注入配置文件中的 key = secret.key 的值
-  @Value("${secret.key}")
-  private String key;
-
   @Autowired
-  @Qualifier("adminDaoImpl")
-  // 指定注入接口的实现类 bean，里面填写的是注册到spring容器中的bean的id
-  // 如何个没有显示指定id，则为对应的类名，首字母小写
+  // @Qualifier("adminDaoImpl")
+  // @Qualifier 指定注入接口的实现类 bean，里面填写的是注册到spring容器中的bean的id
+  // @Qualifier 如何个没有显示指定id，则为对应的类名，首字母小写
   private AdminDao adminDao;
-
-  public AdminServiceImpl() {
-  }
-
-  public AdminServiceImpl(AdminDao adminDao) {
-    this.adminDao = adminDao;
-  }
-
-  public String getKey() {
-    return key;
-  }
-
-  public void setKey(String key) {
-    this.key = key;
-  }
-
-  public AdminDao getAdminDao() {
-    return adminDao;
-  }
-
-  public void setAdminDao(AdminDao adminDao) {
-    this.adminDao = adminDao;
-  }
 
   @Override
   public Admin login(String username, String password) {
-    String passHash = CipherUtil.hmacSha256(password, key);
+    String passHash = CipherUtil.hmacSha256(password);
     Admin admin = adminDao.getAdmin(username, passHash);
     return admin;
   }
@@ -93,7 +69,7 @@ public class AdminServiceImpl implements AdminService {
       return Integer.parseInt(t);
     }).collect(Collectors.toList());
 
-    adminDao.deleteAdmin(idList);
+    adminDao.deleteAdmins(idList);
   }
 
   @Override

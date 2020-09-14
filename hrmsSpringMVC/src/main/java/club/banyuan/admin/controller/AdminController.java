@@ -13,9 +13,23 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+/**
+ * 类定义处: 提供初步的请求映射信息。相对于 WEB 应用的根目录；
+ *
+ * 方法处: 提供进一步的细分映射信息。 相对于类定义处的 URL。
+ *
+ * 若类定义处未标注 @RequestMapping，则方法处标记的 URL相对于 WEB 应用的根目录
+ *
+ * 返回ModelAndView时的url会根据你的 @RequestMapping实际情况组成。
+ *
+ * 如果类上没有映射，那么url直接就是方法的映射；否则url为类上+方法上映射路径组合。
+ *
+ * 对应项目jsp位置则是一级路径对应一级文件目录。
+ */
 @RequestMapping("/admin")
 public class AdminController {
 
+  // 这里会自动寻找adminService，找到AdminService接口，会找到其实现类
   @Autowired
   private AdminService adminService;
 
@@ -35,7 +49,8 @@ public class AdminController {
   // 让spring将方法返回的对象自动序列化为json
   @ResponseBody
   public Map<String, Object> getAdminList(Integer page, Integer rows, String username) {
-    List<Admin> adminList
+//    List<Admin> adminList
+    return null;
   }
 
 

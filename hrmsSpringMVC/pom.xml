@@ -7,44 +7,28 @@
     <groupId>club.banyuan</groupId>
     <artifactId>hrmsSpringMVC</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <!-- 打包方式 -->
     <packaging>war</packaging>
 
-    <name>hrmsSpringMVC</name>
-
     <properties>
-<!--        解决编码模式-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<!--        解决jdk版本问题-->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-<!--        springMVC版本-->
         <spring.version>5.2.3.RELEASE</spring.version>
         <jackson.version>2.9.1</jackson.version>
+        <dbutils.version>1.7</dbutils.version>
+        <hutool.version>5.4.1</hutool.version>
+        <c3p0.version>0.9.5.5</c3p0.version>
+        <servlet.version>4.0.1</servlet.version>
+        <mysql.connector.version>8.0.11</mysql.connector.version>
     </properties>
 
     <dependencies>
-
-        <!--    <dependency>-->
-        <!--      <groupId>org.springframework</groupId>-->
-        <!--      <artifactId>spring-web</artifactId>-->
-        <!--      <version>${spring.version}</version>-->
-        <!--    </dependency>-->
-
         <!--    org.springframework.web.servlet.DispatcherServlet -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
-        <!--    ApplicationContext  ClassPathXmlApplicationContext-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
 
         <!--   用来将返回的对象转换为json格式  -->
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
@@ -66,19 +50,12 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!--    <dependency>-->
-        <!--      <groupId>org.springframework</groupId>-->
-        <!--      <artifactId>spring-context-support</artifactId>-->
-        <!--      <version>${spring.version}</version>-->
-        <!--    </dependency>-->
-
-
         <!-- jdbc的工具集，封装了查询和组装对象的方法 -->
         <!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
         <dependency>
             <groupId>commons-dbutils</groupId>
             <artifactId>commons-dbutils</artifactId>
-            <version>1.7</version>
+            <version>${dbutils.version}</version>
         </dependency>
 
 
@@ -87,7 +64,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.4.1</version>
+            <version>${hutool.version}</version>
         </dependency>
 
 
@@ -96,7 +73,7 @@
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
-            <version>0.9.5.5</version>
+            <version>${c3p0.version}</version>
         </dependency>
 
 
@@ -104,30 +81,26 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
+            <version>${servlet.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.73</version>
         </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.11</version>
+            <version>${mysql.connector.version}</version>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
-        <finalName>04.spring-mvc</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
@@ -157,7 +130,5 @@
             </plugin>
         </plugins>
     </build>
-
-
 
 </project>
