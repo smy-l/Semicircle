@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
-@Controller
+
 /**
  * 类定义处: 提供初步的请求映射信息。相对于 WEB 应用的根目录；
  *
@@ -25,6 +25,7 @@ import java.util.*;
  *
  * 对应项目jsp位置则是一级路径对应一级文件目录。
  */
+@Controller
 @RequestMapping("/admin")
 public class AdminController {
 

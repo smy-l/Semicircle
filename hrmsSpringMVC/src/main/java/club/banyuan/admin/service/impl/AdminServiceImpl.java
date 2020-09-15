@@ -30,6 +30,7 @@ public class AdminServiceImpl implements AdminService {
   public Admin login(String username, String password) {
     String passHash = CipherUtil.hmacSha256(password);
     Admin admin = adminDao.getAdmin(username, passHash);
+//    Admin admin = adminDao.getAdmin(username, password);
     return admin;
   }
 
