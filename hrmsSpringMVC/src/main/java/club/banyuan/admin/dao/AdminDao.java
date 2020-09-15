@@ -13,7 +13,7 @@ public interface AdminDao {
 
   void deleteAdmin(Admin admin);
 
-  void deleteAdmins(List<Integer> adminList);
+  void deleteAdmin(List<Integer> adminList);
 
   List<Admin> getAdminList();
 

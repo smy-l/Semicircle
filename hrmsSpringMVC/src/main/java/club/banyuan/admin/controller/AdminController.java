@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 /**
@@ -39,11 +37,9 @@ public class AdminController {
   public String login(String username, String password, HttpSession session) {
     Admin login = adminService.login(username, password);
     if (login == null) {
-      System.out.println("返回login.html");
       return "redirect:/login.html";
     } else {
       session.setAttribute(Constant.ADMIN_SESSION, login);
-      System.out.println("进入home_page.html");
       return "redirect:/home_page.html";
     }
   }
@@ -59,6 +55,7 @@ public class AdminController {
     rlt.put("total", total);
     rlt.put("code", 0);
     rlt.put("message", "");
+    System.out.println(rlt);
     return rlt;
   }
 
@@ -102,6 +99,20 @@ public class AdminController {
     // session置为失效
     session.invalidate();
     return "redirect:/login.html";
+  }
+
+  @RequestMapping("/delete")
+  @ResponseBody
+  public Map<String, Object> deleteAdmin(String ids) {
+    String[] idStr = ids.split(",");
+    List<String> idList = new ArrayList<>();
+    Collections.addAll(idList, idStr);
+    adminService.deleteAdmins(idList);
+
+    Map<String, Object> rlt = new HashMap<>();
+    rlt.put("code", 0);
+    rlt.put("message", "");
+    return rlt;
   }
 
 }

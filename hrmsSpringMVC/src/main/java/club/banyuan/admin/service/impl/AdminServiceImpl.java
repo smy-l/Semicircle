@@ -28,19 +28,18 @@ public class AdminServiceImpl implements AdminService {
 
   @Override
   public Admin login(String username, String password) {
-//    String passHash = CipherUtil.hmacSha256(password);
-//    Admin admin = adminDao.getAdmin(username, passHash);
-    System.out.println(username);
-    System.out.println(password);
-    Admin admin = adminDao.getAdmin(username, password);
+    String passHash = CipherUtil.hmacSha256(password);
+    Admin admin = adminDao.getAdmin(username, passHash);
     return admin;
   }
 
   @Override
   public List<Admin> getAdminList(String username) {
     if (username == null || username.trim().length() == 0) {
+      System.out.println("getAdminList()");
       return adminDao.getAdminList();
     } else {
+      System.out.println("getAdminList(username)");
       return adminDao.getAdminList(username);
     }
   }
@@ -73,7 +72,7 @@ public class AdminServiceImpl implements AdminService {
       return Integer.parseInt(t);
     }).collect(Collectors.toList());
 
-    adminDao.deleteAdmins(idList);
+    adminDao.deleteAdmin(idList);
   }
 
   @Override

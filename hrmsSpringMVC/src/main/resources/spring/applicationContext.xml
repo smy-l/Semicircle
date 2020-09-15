@@ -8,9 +8,11 @@
   http://www.springframework.org/schema/context
   https://www.springframework.org/schema/context/spring-context.xsd
   http://www.springframework.org/schema/mvc
-  https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+  https://www.springframework.org/schema/mvc/spring-mvc.xsd
+  http://mybatis.org/schema/mybatis-spring
+  http://mybatis.org/schema/mybatis-spring.xsd">
 
-
+    <context:property-placeholder location="classpath:hrms.properties"/>
     <!--  配置注解扫描，让spring容器在初始化的时候，扫描指定包路径下的所有类，管理被注解标记的bean-->
     <context:component-scan base-package="club.banyuan"/>
 
@@ -29,5 +31,28 @@
             <bean class="club.banyuan.common.AuthInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <!-- mybatis -->
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${driver}"/>
+        <property name="jdbcUrl" value="${url}"/>
+        <property name="user" value="${username}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--    多个包路径使用,隔开-->
+        <property name="basePackage"
+                  value="
+                  club.banyuan.dept.dao
+                  "/>
+    </bean>
 
 </beans>

@@ -70,12 +70,12 @@ public class AdminDaoImpl implements AdminDao {
 
   // QueryRunner 中的 batch 作用是遍历
   @Override
-  public void deleteAdmins(List<Integer> adminList) {
+  public void deleteAdmin(List<Integer> adminList) {
     String sql = "delete from t_admin where id = ?";
     try {
       Object[][] params = new Object[adminList.size()][1];
       for (int i = 0; i < adminList.size(); i++) {
-        params[i][1] = adminList.get(i);
+        params[i][0] = adminList.get(i);
       }
       qr.batch(sql, params);
     } catch (SQLException e) {
