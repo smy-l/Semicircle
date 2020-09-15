@@ -19,7 +19,7 @@
         <hutool.version>5.4.1</hutool.version>
         <c3p0.version>0.9.5.5</c3p0.version>
         <servlet.version>4.0.1</servlet.version>
-        <mysql.connector.version>8.0.11</mysql.connector.version>
+        <mysql.connector.version>8.0.16</mysql.connector.version>
         <mybatis.version>3.5.5</mybatis.version>
     </properties>
 
