@@ -27,7 +27,7 @@ public class SpringConfig {
   @Value("${url}")
   private String url;
 
-  @Value("${username}")
+  @Value("${name}")
   private String username;
 
   @Value("${password}")

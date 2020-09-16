@@ -32,7 +32,7 @@
             <version>${mybatis.version}</version>
         </dependency>
 
-        <!--    spring mybatis集成  SqlSessionFactoryBean -->
+        <!-- spring mybatis集成  SqlSessionFactoryBean -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
@@ -46,14 +46,14 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!--    org.springframework.web.servlet.DispatcherServlet -->
+        <!-- org.springframework.web.servlet.DispatcherServlet -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
-        <!--   用来将返回的对象转换为json格式  -->
+        <!-- 用来将返回的对象转换为json格式  -->
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -82,7 +82,7 @@
         </dependency>
 
 
-        <!--    工具集合，使用其中的Hash算法工具 -->
+        <!-- 工具集合，使用其中的Hash算法工具 -->
         <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -133,7 +133,7 @@
                 <configuration>
                     <path>/my-app</path> <!-- 项目访问路径 本例：localhost:9090, 如果配置的aa，则访问路径为localhost:9090/aa -->
                     <port>8080</port>
-                    <!--          <uriEncoding>UTF-8</uriEncoding>&lt;!&ndash; 非必需项 &ndash;&gt;-->
+<!--                     <uriEncoding>UTF-8</uriEncoding>&lt;!&ndash; 非必需项 &ndash;&gt;-->
                 </configuration>
             </plugin>
             <plugin>

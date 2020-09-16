@@ -19,11 +19,10 @@ import java.util.stream.Collectors;
 @Service
 public class AdminServiceImpl implements AdminService {
 
+  @Autowired
   // @Qualifier("adminDaoImpl")
   // @Qualifier 指定注入接口的实现类 bean，里面填写的是注册到spring容器中的bean的id
   // @Qualifier 如何个没有显示指定id，则为对应的类名，首字母小写
-
-  @Autowired
   private AdminDao adminDao;
 
   @Override
