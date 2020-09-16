@@ -45,3 +45,8 @@ $.extend($.fn.datagrid.defaults, {
     }
   },
 });
+
+$(document).ajaxError(function (e, xhr) {
+  let data = JSON.parse(xhr.responseText)
+  $.messager.alert("请求失败", data.message);
+});

@@ -27,7 +27,12 @@
             <!--  /**/*.html =>  /home_page.html  /abc/home_page.html    -->
             <!--  /*/*.html =>  /abc/home_page.html  无法匹配/home_page.html -->
             <mvc:mapping path="/*.html"/>
+            <mvc:mapping path="/admin/*"/>
+            <mvc:mapping path="/dept/*"/>
+            <mvc:mapping path="/empl/*"/>
+            <mvc:mapping path="/position/*"/>
             <mvc:exclude-mapping path="/login.html"/>
+            <mvc:exclude-mapping path="/admin/login"/>
             <bean class="club.banyuan.common.AuthInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

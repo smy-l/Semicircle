@@ -14,10 +14,14 @@ public class AuthInterceptor implements HandlerInterceptor {
           throws Exception {
     Object attribute = request.getSession().getAttribute(Constant.ADMIN_SESSION);
     if (attribute == null) {
-      response.sendRedirect(request.getContextPath() + "/login.html");
-      return false;
+      // 如果用户为 null 未登录，并且定向到html文件，则返回login页面
+      if(request.getServletPath().endsWith(".html")) {
+        response.sendRedirect(request.getContextPath() + "/login.html");
+        return false;
+      } else {
+        throw new ServerException("用户未登录");
+      }
     }
-
     // false表示拦截器不会把请求传递给 controller
     return true;
   }

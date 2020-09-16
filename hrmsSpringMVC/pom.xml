@@ -99,7 +99,6 @@
             <version>${c3p0.version}</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -131,7 +130,7 @@
                 <version>2.2</version>
 
                 <configuration>
-                    <path>/my-app</path> <!-- 项目访问路径 本例：localhost:9090, 如果配置的aa，则访问路径为localhost:9090/aa -->
+                    <path>/hrms</path> <!-- 项目访问路径 本例：localhost:9090, 如果配置的aa，则访问路径为localhost:9090/aa -->
                     <port>8080</port>
 <!--                     <uriEncoding>UTF-8</uriEncoding>&lt;!&ndash; 非必需项 &ndash;&gt;-->
                 </configuration>
