@@ -85,8 +85,8 @@
     select id, name description
     from t_dept
     <where>
-      <if test="name">
-
+      <if test="name！=null and name!=''">
+        name like concat('%', #{name}, '%')
       </if>
     </where>
   </select>

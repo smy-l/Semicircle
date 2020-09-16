@@ -26,7 +26,7 @@ public class DeptServiceImpl implements DeptService {
 
   @Override
   public void saveDept(Dept dept) {
-    if (dept.getId() != null) {
+    if (dept.getId() == null) {
       deptDao.insert(dept);
     } else {
       deptDao.updateByPrimaryKey(dept);

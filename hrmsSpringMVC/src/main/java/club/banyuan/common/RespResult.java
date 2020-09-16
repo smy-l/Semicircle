@@ -12,7 +12,7 @@ public class RespResult extends HashMap<String, Object> {
     return rlt;
   }
 
-  private static RespResult success() {
+  public static RespResult success() {
     RespResult rlt = new RespResult();
     rlt.put("code", 0);
     rlt.put("message", "");

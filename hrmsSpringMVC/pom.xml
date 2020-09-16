@@ -39,6 +39,13 @@
             <version>2.0.5</version>
         </dependency>
 
+        <!-- mybatis jdbc包 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
         <!--    org.springframework.web.servlet.DispatcherServlet -->
         <dependency>
             <groupId>org.springframework</groupId>
