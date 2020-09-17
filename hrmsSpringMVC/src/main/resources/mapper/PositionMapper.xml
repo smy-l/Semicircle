@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.banyuan.position.dao.PositionDao">
+  <resultMap id="BaseResultMap" type="club.banyuan.position.entity.Position">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_position
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getPositionListPageCount" resultType="java.lang.Integer">
+    select count(*) from t_position
+    <where>
+      <if test="name!=null and name != ''">
+        name like concat('%', #{name}, '%')
+      </if>
+    </where>
+  </select>
+  <select id="getPositionListPage" resultType="club.banyuan.position.entity.Position">
+    select id, name, position from t_position
+    <where>
+      <if test="name != null and name != ''">
+        name like concat('%', #{name}, '%')
+      </if>
+      limit #{page}, #{rows}
+    </where>
+  </select>
+  <select id="getPositionList" resultType="club.banyuan.position.entity.Position">
+    select id, name, position
+    from t_position
+  </select>
+  <select id="getPositionListByName" resultType="club.banyuan.position.entity.Position">
+    select id, name, position
+    from t_position
+    <where>
+      <if test="name != null and name != ''">
+        name like concat('%', #{name}, '%')
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_position
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deletePositionByIds">
+    delete from t_position
+    where id in
+    <foreach collection="list" item="item" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.banyuan.position.entity.Position" useGeneratedKeys="true">
+    insert into t_position (`name`, description)
+    values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.banyuan.position.entity.Position" useGeneratedKeys="true">
+    insert into t_position
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="club.banyuan.position.entity.Position">
+    update t_position
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="club.banyuan.position.entity.Position">
+    update t_position
+    set `name` = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

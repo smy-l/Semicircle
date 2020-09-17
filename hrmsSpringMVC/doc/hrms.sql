@@ -1,42 +1,45 @@
 -- 创建管理员表
 CREATE TABLE `t_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `password` varchar(20) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `rolename` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `username` varchar(20) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `roleName` varchar(20) DEFAULT 'admin',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `admin_username_uindex` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 创建部门表
 CREATE TABLE `t_dept` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `t_dept_name_uindex` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 创建员工表
 CREATE TABLE `t_employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
+  `name` varchar(20) NOT NULL,
   `sex` varchar(5) NOT NULL,
   `phone` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `address` varchar(100) NOT NULL,
   `education` varchar(50) NOT NULL,
   `birthday` datetime(6) NOT NULL,
-  `department` varchar(20) NOT NULL,
-  `position` varchar(30) NOT NULL,
-  `password` varchar(20) DEFAULT NULL,
+  `departmentId` int(11) NOT NULL,
+  `positionId` int(11) NOT NULL,
+  `positionName` varchar(20) DEFAULT NULL,
+  `departmentName` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 创建职位表
 CREATE TABLE `t_position` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(20) NOT NULL,
   `description` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 insert into `t_admin` VALUES(DEFAULT, '123','admin', 'administrator');

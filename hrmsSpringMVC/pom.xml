@@ -120,6 +120,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- 让spring容器可以在测试类中运行 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

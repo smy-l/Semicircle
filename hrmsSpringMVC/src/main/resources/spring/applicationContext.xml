@@ -52,11 +52,13 @@
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
     </bean>
 
+    <!-- 使 spring 能够获得 dao -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--    多个包路径使用,隔开-->
         <property name="basePackage"
                   value="
                   club.banyuan.dept.dao
+                  club.banyuan.position.dao
                   "/>
     </bean>
 
