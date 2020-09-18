@@ -14,7 +14,7 @@ public class PositionServiceImpl implements PositionService {
 
   @Override
   public List<Position> getPositionListPage(String name, int page, int rows) {
-    return positionDao.getPositionListPage(name, (page - 1) * rows, rows );
+    return positionDao.getPositionListPage(name, (page - 1) * rows, rows);
   }
 
   @Override
