@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.banyuan.bill.dao.BillDao">
+  <resultMap id="BaseResultMap" type="club.banyuan.bill.entity.Bill">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="isPay" jdbcType="INTEGER" property="isPay" />
+    <result column="isPayStr" jdbcType="VARCHAR" property="isPayStr" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="product" jdbcType="VARCHAR" property="product" />
+    <result column="providerId" jdbcType="INTEGER" property="providerId" />
+    <result column="providerName" jdbcType="VARCHAR" property="providerName" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, isPay, isPayStr, money, product, providerId, providerName, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_bill
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getBillList" resultType="club.banyuan.bill.entity.Bill">
+    select
+    <include refid="Base_Column_List"/>
+    from t_bill
+  </select>
+  <select id="getBillListByProAndIsPay" resultType="club.banyuan.bill.entity.Bill">
+    select
+    <include refid="Base_Column_List"/>
+    from t_bill
+    <where>
+      <trim suffixOverrides="and">
+        <if test="product != null and product != ''">
+          product like concat('%', #{product}, '%') and
+        </if>
+        <if test="desc != null and desc != ''">
+          desc like concat('%', #{desc}, '%') and
+        </if>
+      </trim>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_bill
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.banyuan.bill.entity.Bill" useGeneratedKeys="true">
+    insert into t_bill (isPay, isPayStr, money, 
+      product, providerId, providerName, 
+      updateTime)
+    values (#{isPay,jdbcType=INTEGER}, #{isPayStr,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, 
+      #{product,jdbcType=VARCHAR}, #{providerId,jdbcType=INTEGER}, #{providerName,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.banyuan.bill.entity.Bill" useGeneratedKeys="true">
+    insert into t_bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="isPay != null">
+        isPay,
+      </if>
+      <if test="isPayStr != null">
+        isPayStr,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="product != null">
+        product,
+      </if>
+      <if test="providerId != null">
+        providerId,
+      </if>
+      <if test="providerName != null">
+        providerName,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="isPay != null">
+        #{isPay,jdbcType=INTEGER},
+      </if>
+      <if test="isPayStr != null">
+        #{isPayStr,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="product != null">
+        #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="providerId != null">
+        #{providerId,jdbcType=INTEGER},
+      </if>
+      <if test="providerName != null">
+        #{providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="club.banyuan.bill.entity.Bill">
+    update t_bill
+    <set>
+      <if test="isPay != null">
+        isPay = #{isPay,jdbcType=INTEGER},
+      </if>
+      <if test="isPayStr != null">
+        isPayStr = #{isPayStr,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="product != null">
+        product = #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="providerId != null">
+        providerId = #{providerId,jdbcType=INTEGER},
+      </if>
+      <if test="providerName != null">
+        providerName = #{providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="club.banyuan.bill.entity.Bill">
+    update t_bill
+    set isPay = #{isPay,jdbcType=INTEGER},
+      isPayStr = #{isPayStr,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DOUBLE},
+      product = #{product,jdbcType=VARCHAR},
+      providerId = #{providerId,jdbcType=INTEGER},
+      providerName = #{providerName,jdbcType=VARCHAR},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
