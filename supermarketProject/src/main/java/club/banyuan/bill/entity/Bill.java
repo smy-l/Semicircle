@@ -22,7 +22,7 @@ public class Bill implements Serializable {
 
     private String providerName;
 
-    private Date updateTime;
+    private String updateTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -82,11 +82,11 @@ public class Bill implements Serializable {
         this.providerName = providerName;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

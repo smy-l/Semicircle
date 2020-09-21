@@ -8,7 +8,7 @@ public interface BillService {
 
   List<Bill> getBillList();
 
-  List<Bill> getBillListByProAndIsPay(String product, String isPay);
+  List<Bill> getBillListByProAndIsPay(String product, int isPay);
 
   Bill getBillById(Integer id);
 

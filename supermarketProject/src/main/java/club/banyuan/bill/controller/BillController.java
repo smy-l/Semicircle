@@ -3,7 +3,6 @@ package club.banyuan.bill.controller;
 import club.banyuan.bill.entity.Bill;
 import club.banyuan.bill.service.BillService;
 import club.banyuan.provider.service.ProviderService;
-import cn.hutool.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +17,7 @@ import java.util.List;
 @RequestMapping("/server/bill")
 public class BillController {
 
-  private static SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+  private static final SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
   @Autowired
   private BillService billService;
@@ -28,24 +27,21 @@ public class BillController {
 
   @RequestMapping("/list")
   @ResponseBody
-  public List<Bill> getUserList(Bill bill) {
-    System.out.println(bill);
-    if (bill.getProduct() == null & bill.getIsPay() == null) {
+  public List<Bill> getUserList(@RequestBody(required = false) Bill bill) {
+    System.out.println("789" + bill);
+    if (bill == null) {
       return billService.getBillList();
     } else {
-      return billService.getBillListByProAndIsPay(bill.getProduct(), bill.getIsPay().toString());
+      return billService.getBillListByProAndIsPay(bill.getProduct(), bill.getIsPay());
     }
   }
 
   @RequestMapping("/get")
   @ResponseBody
-  public Bill getUserById(@RequestBody JSONObject jsonObject) {
-    Object idObject = jsonObject.get("id");
-    int id = Integer.parseInt(idObject.toString());
-    return billService.getBillById(id);
+  public Bill getUserById(@RequestBody Bill bill) {
+    return billService.getBillById(bill.getId());
   }
 
-  //  id=0&name=1&pwd=2&pwdConfirm=3&userType=0
   @RequestMapping("/modify")
   public String modifyUser(String id, String providerId, String money, String product, String isPay) {
     Bill bill = new Bill();
@@ -55,20 +51,16 @@ public class BillController {
     bill.setMoney(Double.parseDouble(money));
     bill.setProduct(product);
     bill.setIsPay(Integer.parseInt(isPay));
-    bill.setUpdateTime(new Date());
-    bill.setIsPayStr(isPay.equals(1) ? "已付款" : "未付款");
+    bill.setUpdateTime(time.format(new Date()));
+    bill.setIsPayStr(isPay.equals("1") ? "已付款" : "未付款");
     bill.setProviderName(providerService.getProviderById(providerIdNum).getName());
-//    System.out.println(user);
     billService.saveBill(bill);
     return "redirect:/bill_list.html";
   }
 
   @RequestMapping("/delete")
-  public String deleteUser(@RequestBody JSONObject jsonObject) {
-//    System.out.println(jsonObject);
-    Object idObject = jsonObject.get("id");
-    int id = Integer.parseInt(idObject.toString());
-    billService.deleteBillById(id);
+  public String deleteUser(@RequestBody Bill bill) {
+    billService.deleteBillById(bill.getId());
     return "redirect:/bill_list.html";
   }
 
