@@ -28,11 +28,13 @@ public class BillController {
   @RequestMapping("/list")
   @ResponseBody
   public List<Bill> getUserList(@RequestBody(required = false) Bill bill) {
-    System.out.println("789" + bill);
-    if (bill == null) {
+    System.out.println(bill);
+    if (bill == null || (bill.getIsPay() == -1 && "".equals(bill.getProduct().trim()))) {
       return billService.getBillList();
     } else {
-      return billService.getBillListByProAndIsPay(bill.getProduct(), bill.getIsPay());
+      Integer isPay = bill.getIsPay();
+      System.out.println("sss" + isPay);
+      return billService.getBillListByProAndIsPay(bill.getProduct(), isPay);
     }
   }
 

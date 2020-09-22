@@ -21,7 +21,7 @@ public class BillServiceImpl implements BillService {
   }
 
   @Override
-  public List<Bill> getBillListByProAndIsPay(String product, int isPay) {
+  public List<Bill> getBillListByProAndIsPay(String product, Integer isPay) {
     return billDao.getBillListByProAndIsPay(product, isPay);
   }
 

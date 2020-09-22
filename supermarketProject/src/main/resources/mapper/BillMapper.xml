@@ -34,8 +34,8 @@
         <if test="product != null and product != ''">
           product like concat('%', #{product}, '%') and
         </if>
-        <if test="isPay != null and is != ''">
-          isPay = isPay and
+        <if test="isPay != -1">
+          isPay = #{isPay} and
         </if>
       </trim>
     </where>

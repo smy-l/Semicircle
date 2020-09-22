@@ -8,7 +8,7 @@ import java.util.List;
 public interface BillDao {
     List<Bill> getBillList();
 
-    List<Bill> getBillListByProAndIsPay(@Param("product") String product, @Param("isPay") int isPay);
+    List<Bill> getBillListByProAndIsPay(@Param("product") String product, @Param("isPay") Integer isPay);
 
     int deleteByPrimaryKey(Integer id);
 

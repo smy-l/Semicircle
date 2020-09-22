@@ -5,6 +5,8 @@ import club.banyuan.common.ServerException;
 import club.banyuan.user.entity.User;
 import club.banyuan.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,9 +81,9 @@ public class UserController {
   }
 
   @RequestMapping("/delete")
-  public String deleteUser(@RequestBody User user) {
+  public ResponseEntity deleteUser(@RequestBody User user) {
     userService.deleteUser(user.getId());
-    return "redirect:/user_list.html";
+    return new ResponseEntity(HttpStatus.OK);
   }
 
   @RequestMapping("/quit")
