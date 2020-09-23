@@ -22,7 +22,14 @@
 注：四个注释一样，都是给 mvc 提示，但是不同名字的原因是为了给程序员更好的注释，四个中任意一个都可以
 
 1. `@ControllerAdvice` 实现全局异常处理
+
 2. `@ResponseEntity` 设置返回的状态码
+
+3. `@Transactional` 开启一个事务，只有当事务中的方法全部完成后才可以提交数据
+
+   `@Transactional(rollbackFor = Exception.class)`
+
+   设置当出现exception异常的时候事务回滚
 
 ### dao层的注解
 
@@ -61,6 +68,13 @@
    使得后端的方法知道前端返回的数据是json格式的数据
 
    注：`@RequestBody(required = false)`表明前端可能不返回数据，也可能返回数据
+   
+4. `@RequestParam`获取前端页面发送的string数据，和`@RequestBody`类似
+
+### 获取前端请求可以使用工具
+
+1. postman
+2. idea自带的工具类 `HTTP Request`
 
 ### test测试类
 

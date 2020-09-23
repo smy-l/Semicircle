@@ -120,7 +120,25 @@ redis-cli -h 127.0.0.1 -p 6379
 
 http://redisdoc.com
 
-Windows
+# Windows10 安装
+
+window 版本下载路径：https://github.com/MicrosoftArchive/redis/releases
+
+1. 安装完成后，打开cmd，进入Redis安装目录，执行
+
+   ```
+   redis-server.exe redis.windows.conf
+   ```
+
+2. 若出现错误，依次执行一下命令
+
+   ```
+   redis-cli.exe
+   shutdown
+   exit
+   ```
+
+3. 在服务中将redis服务设置为自动
 
 
 

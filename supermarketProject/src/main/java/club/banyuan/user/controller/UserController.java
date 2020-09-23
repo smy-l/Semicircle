@@ -66,9 +66,18 @@ public class UserController {
 
   @RequestMapping("/modify")
   public String modifyUser(String id, String name, String pwd, String pwdConfirm, String userType) {
-    if (!pwd.equals(pwdConfirm)) {
-      throw new ServerException("两次密码输入不正确！");
+    System.out.println("查看id" + id);
+    if ("0".equals(id)) {
+      List<User> userByName = userService.getUserByName(name);
+      System.out.println(userByName);
+      if (userByName.size() != 0) {
+        throw new ServerException("用户名已存在");
+      }
     }
+    if (!pwd.equals(pwdConfirm)) {
+      throw new ServerException("两次密码输入不一致！");
+    }
+
     User user = new User();
     user.setId(Integer.parseInt(id));
     user.setName(name);
