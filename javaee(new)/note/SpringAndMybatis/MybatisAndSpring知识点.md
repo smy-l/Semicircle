@@ -25,11 +25,6 @@
 
 2. `@ResponseEntity` 设置返回的状态码
 
-3. `@Transactional` 开启一个事务，只有当事务中的方法全部完成后才可以提交数据
-
-   `@Transactional(rollbackFor = Exception.class)`
-
-   设置当出现exception异常的时候事务回滚
 
 ### dao层的注解
 
@@ -52,6 +47,12 @@
 1. `@Autowired`
 
    自动注入实现类（注入的类要在spring配置文件中配置好）
+   
+2. `@Transactional` 开启一个事务，只有当事务中的方法全部完成后才可以提交数据
+
+   `@Transactional(rollbackFor = Exception.class)`
+
+   设置当出现exception异常的时候事务回滚
 
 ### controller层的注解
 
