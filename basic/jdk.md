@@ -43,11 +43,11 @@ export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 **win10环境变量**
 
 1. 新建`JAVA_HOME` 属性为jdk安装路径
-2. 找到path，在最后输入`%JAVA_HOME%\bin`
-3. 新建`CLASSPATH`，属性为`%JAVA_HOME%\jre\lib\rt.jar;.;`
+2. 找到path，在最后输入`%JAVA_HOME%\bin`以及`%JAVA_HOME%\jre\bin`
+3. 新建`CLASSPATH`，属性为`.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;`
 4. 在cmd中输入`java -version`，显示java信息，则安装成功
 
 ## 其他
 
 JVM为java虚拟机，JRE为运行环境，JDK包含JRE，运行一定要安装JDK<br>
-java不需要自己释放空间，有程序自动完成，这个机制被称为垃圾回收
+java不需要自己释放空间，有程序自动完成，这个机制被称为垃圾回收。
