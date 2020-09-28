@@ -8,17 +8,21 @@
 
 在path中添加三条路径(windows)
 
-1. `D:\Git\bin`
-2. `D:\Gitmingw64libexec\git-core`
-3. `D:\Git\mingw32\bin`
+1. `D:\Program Files\Git\bin`
+2. `D:\Program Files\Git\mingw64\libexec\git-core`
+3. `D:\Program Files\Git\mingw64\bin`
 
 ### 生成SSH密钥
 
 1. 打开Git Bash软件
 2. 键入命令：`ssh-keygen -t rsa -C "xxx@email.com"` "xxx@email.com"即当前githab中包含的用户email
 3. 显示内容让你输入key的名称，默认回车即可，可以输入名称如id_rsa等，一般默认就行（一直回车）；
-4. 在C:\Users\管理员用户\.ssh\下产生两个文件：id_rsa和id_rsa.pub
+4. 在C:\Users\管理员用户\\.ssh\下产生两个文件：id_rsa和id_rsa.pub
 5. 用记事本打开id_rsa.pub文件，复制内容，粘贴在公司的git库的ssh密钥管理界面，添加新公钥，内容粘贴内容粘贴刚才复制的内容，github也同样适用。
+
+## git 下载完成后idea识别不了的问题
+
+在idea的设置里，搜索git，在上面选择git安装路径下的cmd\\git.exe文件
 
 ## 下载
 
