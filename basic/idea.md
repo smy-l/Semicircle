@@ -81,9 +81,10 @@ Settings>Editor>General>勾选change font size (zoom) with ctrl+mouse wheel
 BackgroundImage  |    修改背景
 Chinese (simplifies)...|   中文插件
 CodeGlance |  代码一览，右上角代码框
-Material Theme UI |   主题
+Material Theme UI | 主题（Deep Ocean Theme） 
 Rainbow Brackets |  彩色括号
 Translation |  翻译
+Free Mybatis plugin | mybatis逆向工程 
 
 
 
